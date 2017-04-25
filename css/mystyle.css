@@ -21,63 +21,40 @@ a:hover {
   display: none;
 }
 
-/* content */
-
-#content {
-  width: 90%;
-  margin: 20px auto;
-  overflow: hidden;
-}
-
 /* header */
 
 header {
-  height: 64px;
-  line-height: 64px;
-}
-
-/* navbar */
-
-.navbar {
-  text-align: center;
-  margin: 0;
-  background: none;
-}
-
-.nav {
-  display: inline-block;
-  float: none;
-  cursor: pointer;
-}
-
-.navbar-default .navbar-nav li:hover {
-  background: #fff;
-  border-radius: 8px;
-}
-
-.navbar-default .navbar-nav .open a:hover {
-  background: #fff;
-}
-
-.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus {
-  background: #eee;
-  border: 1px dotted #bbb;
-  border-radius: 8px;
-}
-
-/* pagetop */
-
-#pagetop {
-  cursor: pointer;
+  font-size: 2em;
+  margin: 20px 60px;
+  text-align: left;
 }
 
 /* footer */
 
 footer {
-  height: 32px;
-  line-height: 32px;
-  margin-bottom: 30px;
+  font-size: .75em;
+  margin: 20px 60px;
   text-align: right;
+}
+
+/* navbar */
+
+.navbar-nav li {
+  cursor: pointer;
+  margin: 0 10px;
+  border-bottom: 2px solid rgba(0,0,0,0);
+}
+
+.navbar-default .navbar-nav li:hover {
+  border-bottom: 2px solid #aaa;
+}
+
+/* content */
+
+#content {
+  width: 90%;
+  margin: 0 auto;
+  overflow: hidden;
 }
 
 /* other */
