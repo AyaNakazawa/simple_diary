@@ -14,9 +14,9 @@
   </head>
   <body>
     <header>
-      <span id="title">
+      <h1 id="title">
         Simple Diary
-      </span>
+      </h1>
     </header>
     <nav class="navbar navbar-default">
       <div class="container-fluid">
@@ -39,8 +39,40 @@
         </div>
       </div>
     </nav>
-    <div id="content">
-      content
+    <div class="content content-edit">
+      <div class="content-item form-group edit-area-type">
+        <button class="btn btn-default active" id="edit-type-diary">日記</button>
+        <button class="btn btn-default" id="edit-type-memo">メモ</button>
+      </div>
+      <div class="content-item form-group edit-area-title">
+        <label for="edit-title">タイトル</label>
+        <input type="text" id="edit-title" placeholder="Enter the title" class="form-control">
+      </div>
+      <div class="content-item form-group edit-area-datetime">
+        <label for="edit-datetime">日時</label>
+        <input type="datetime-local" id="edit-datetime" class="form-control">
+      </div>
+      <div class="content-item form-group edit-area-content">
+        <label for="edit-content">内容</label>
+        <textarea rows="4" cols="32" id="edit-content" placeholder="Enter the content" class="form-control"></textarea>
+      </div>
+      <div class="content-item form-group edit-area-submit">
+        <button class="btn btn-default" id="edit-submit-add">追加</button>
+        <button class="btn btn-default" id="edit-submit-update">更新</button>
+        <button class="btn btn-default" id="edit-submit-remove">削除</button>
+      </div>
+    </div>
+    <div class="content content-view">
+      View
+    </div>
+    <div class="content content-search">
+      Search
+    </div>
+    <div class="content content-setting">
+      Setting
+    </div>
+    <div class="content content-login">
+      Login
     </div>
     <footer>
       <span id="footer-text">
