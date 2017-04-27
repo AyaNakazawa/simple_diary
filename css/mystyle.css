@@ -62,8 +62,8 @@ main {
   margin: 0;
   padding: 10px 0;
   background: #f8f8f8;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
 }
 
 /* content */
@@ -74,7 +74,7 @@ main {
   padding: 10px;
   overflow: hidden;
   border: 1px solid #ddd;
-  border-radius: 6px;
+  border-radius: 4px;
 }
 
 .content:last-child {
