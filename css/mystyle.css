@@ -92,42 +92,42 @@ main {
 
 /* content-view */
 
-/* medium */
-
-@media (min-width: 480px) {
-  
-}
-
-/* large */
+/* Tablet */
 
 @media (min-width: 768px) {
   
 }
 
-/* wide */
+/* Medium desktop */
 
-@media (min-width: 1366px) {
+@media (min-width: 992px) {
+  
+}
+
+/* Large desktop */
+
+@media (min-width: 1200px) {
   
 }
 
  /*debug */
 
 body:before {
-  content: '- mini -';
+  content: '- Mobile -';
 }
 
-@media (min-width: 480px) {
-  body:before {
-    content: '- medium -';
-  }
-}
 @media (min-width: 768px) {
   body:before {
-    content: '- large -';
+    content: '- Tablet -';
   }
 }
-@media (min-width: 1366px) {
+@media (min-width: 992px) {
   body:before {
-    content: '- wide -';
+    content: '- Medium desktop -';
+  }
+}
+@media (min-width: 1200px) {
+  body:before {
+    content: '- Large desktop -';
   }
 }
