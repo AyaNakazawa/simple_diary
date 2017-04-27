@@ -59,8 +59,8 @@ function showDialog(_dialogTitle, _dialogContent) {
   var dialogContent = _dialogContent || "内容";
   
   // モーダルウィンドウを表示
-  $("#modalDialog").html(dialogContent);
-  $("#modalDialog").dialog({
+  $("#modal-dialog").html(dialogContent);
+  $("#modal-dialog").dialog({
     modal: true,
     title: dialogTitle
   });
@@ -74,8 +74,8 @@ function showConfirmDialog(_dialogTitle, _dialogContent, _callbackFunction) {
   var callbackFunction = _callbackFunction || function(){};
   
   // モーダルウィンドウを表示
-  $("#modalConfirmDialog").html(dialogContent);
-  $("#modalConfirmDialog").dialog({
+  $("#modal-confirm-dialog").html(dialogContent);
+  $("#modal-confirm-dialog").dialog({
     modal: true,
     title: dialogTitle,
     buttons: {
