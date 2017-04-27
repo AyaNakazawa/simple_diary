@@ -53,8 +53,15 @@ footer {
 
 .content {
   width: 90%;
-  margin: 0 auto;
+  margin: 0 auto 10px;
+  padding: 10px;
   overflow: hidden;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+}
+
+.content:last-child {
+  margin: 0 auto;
 }
 
 .content-item {
@@ -66,17 +73,17 @@ footer {
   margin-bottom: 0;
 }
 
-/* other */
+/* content-view */
 
 /* medium */
 
-@media (min-width: 585px) {
+@media (min-width: 480px) {
   
 }
 
 /* large */
 
-@media (min-width: 820px) {
+@media (min-width: 768px) {
   
 }
 
@@ -92,12 +99,12 @@ body:before {
   content: '- mini -';
 }
 
-@media (min-width: 585px) {
+@media (min-width: 480px) {
   body:before {
     content: '- medium -';
   }
 }
-@media (min-width: 820px) {
+@media (min-width: 768px) {
   body:before {
     content: '- large -';
   }
