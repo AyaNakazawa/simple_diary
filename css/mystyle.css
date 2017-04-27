@@ -24,7 +24,7 @@ a:hover {
 /* header */
 
 header {
-  margin: 20px 60px;
+  margin: 20px 60px 0;
   text-align: left;
   border-bottom: 1px solid #ddd
 }
