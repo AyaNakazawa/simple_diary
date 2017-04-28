@@ -47,18 +47,26 @@
         <div class="content-item form-group" id="edit-area-type">
           <button class="btn btn-default active" id="edit-type-diary">日記</button>
           <button class="btn btn-default" id="edit-type-memo">メモ</button>
+          <span class="help-block edit-type-description">タイプを指定します。</span>
         </div>
         <div class="content-item form-group" id="edit-area-title">
           <label for="edit-title">タイトル</label>
           <input type="text" id="edit-title" placeholder="Enter the title" class="form-control">
+          <span class="help-block edit-title-description">タイトルは省略できます。</span>
         </div>
         <div class="content-item form-group" id="edit-area-datetime">
           <label for="edit-datetime">日時</label>
           <input type="datetime-local" id="edit-datetime" class="form-control">
+          <span class="help-block edit-datetime-description">日時を省略すると、更新時間が表示されます。</span>
         </div>
         <div class="content-item form-group" id="edit-area-content">
           <label for="edit-content">内容</label>
           <textarea rows="4" cols="32" id="edit-content" placeholder="Enter the content" class="form-control"></textarea>
+        </div>
+        <div class="content-item form-group" id="edit-area-file">
+          <label for="edit-file">ファイル</label>
+          <input type="file" class="form-control" id="edit-file">
+          <span class="help-block edit-file-description">xxMBまでのjpeg, png, mp3, mp4をアップロードできます。</span>
         </div>
         <div class="content-item form-group" id="edit-area-submit">
           <button class="btn btn-default" id="edit-submit-add"><i class="fa fa-plus" aria-hidden="true"></i> 追加</button>
@@ -96,6 +104,7 @@
           <div class="checkbox" id="search-area-query-string-check-date">
             <label><input type="checkbox" id="search-query-check-date" checked>日時</label>
           </div>
+          <span class="help-block search-query-string-description">検索をする項目を指定します。</span>
         </div>
         <div class="form-group" id="search-area-date">
           <label for="search-date-init">日付指定</label>
@@ -103,8 +112,9 @@
           <span>～</span>
           <input type="date" class="form-control" id="search-date-exit" value="date">
           <div class="checkbox" id="search-area-date-check">
-            <label><input type="checkbox" id="search-date-check" checked>日時範囲指定</label>
+            <label><input type="checkbox" id="search-date-check" checked>日付範囲指定</label>
           </div>
+          <span class="help-block search-date-description">日付で範囲検索することができます。</span>
         </div>
         <div class="content-item form-group" id="search-area-submit">
           <button class="btn btn-default" id="search-submit-search"><i class="fa fa-search" aria-hidden="true"></i> 検索</button>
@@ -165,6 +175,7 @@
         </div>
         <div class="content-item checkbox" id="login-area-check">
           <label><input type="checkbox" id="login-check">ログインしたままにする</label>
+          <span class="help-block login-check-description">共有デバイスでは設定に注意してください。</span>
         </div>
         <div class="content-item form-group" id="login-area-submit">
           <button class="btn btn-default" id="login-submit-login"><i class="fa fa-sign-in" aria-hidden="true"></i> ログイン</button>
