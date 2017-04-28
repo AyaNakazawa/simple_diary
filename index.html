@@ -43,7 +43,7 @@
     </nav>
     <main>
       <!-- content-edit -->
-      <div class="content display-none" id="content-edit">
+      <div class="content" id="content-edit">
         <div class="content-item form-group" id="edit-area-type">
           <button class="btn btn-default active" id="edit-type-diary">日記</button>
           <button class="btn btn-default" id="edit-type-memo">メモ</button>
@@ -67,7 +67,7 @@
         </div>
       </div>
       <!-- content-view -->
-      <div class="content display-none" id="content-view">
+      <div class="content" id="content-view">
         <div class="content-item" id="view-area-item">
           <div class="form-group" id="view-area-title">
             <input type="text" class="form-control" id="view-title-title" value="title">
@@ -83,7 +83,7 @@
         </div>
       </div>
       <!-- content-search -->
-      <div class="content display-none" id="content-search">
+      <div class="content" id="content-search">
         <div class="form-group" id="search-area-query-string">
           <label for="search-query-string">検索文字列</label>
           <input type="text" class="form-control" id="search-query-string" value="query-string">
@@ -142,6 +142,15 @@
             </label>
           </div>
           <span class="help-block setting-description">temp-radio description</span>
+        </div>
+        <div class="content-item setting-item form-group" id="setting-area-temp-select">
+          <label>temp-select title</label>
+          <select class="form-control">
+            <option id="setting-temp-option1">temp-option1</option>
+            <option id="setting-temp-option2">temp-option2</option>
+            <option id="setting-temp-option3">temp-option3</option>
+          </select>
+          <span class="help-block setting-description">temp-select description</span>
         </div>
       </div>
       <!-- content-login -->
