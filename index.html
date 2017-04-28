@@ -43,67 +43,79 @@
     </nav>
     <main>
       <!-- content-edit -->
-      <div class="content content-edit">
-        <div class="content-item form-group edit-area-type">
+      <div class="content" id="content-edit">
+        <div class="content-item form-group" id="edit-area-type">
           <button class="btn btn-default active" id="edit-type-diary">日記</button>
           <button class="btn btn-default" id="edit-type-memo">メモ</button>
         </div>
-        <div class="content-item form-group edit-area-title">
+        <div class="content-item form-group" id="edit-area-title">
           <label for="edit-title">タイトル</label>
           <input type="text" id="edit-title" placeholder="Enter the title" class="form-control">
         </div>
-        <div class="content-item form-group edit-area-datetime">
+        <div class="content-item form-group" id="edit-area-datetime">
           <label for="edit-datetime">日時</label>
           <input type="datetime-local" id="edit-datetime" class="form-control">
         </div>
-        <div class="content-item form-group edit-area-content">
+        <div class="content-item form-group" id="edit-area-content">
           <label for="edit-content">内容</label>
           <textarea rows="4" cols="32" id="edit-content" placeholder="Enter the content" class="form-control"></textarea>
         </div>
-        <div class="content-item form-group edit-area-submit">
+        <div class="content-item form-group" id="edit-area-submit">
           <button class="btn btn-default" id="edit-submit-add"><i class="fa fa-plus" aria-hidden="true"></i> 追加</button>
           <button class="btn btn-default" id="edit-submit-update"><i class="fa fa-refresh" aria-hidden="true"></i> 更新</button>
           <button class="btn btn-default" id="edit-submit-remove"><i class="fa fa-times" aria-hidden="true"></i> 削除</button>
         </div>
       </div>
       <!-- content-view -->
-      <div class="content content-view">
-        <div class="content-item view-area-item">
-          <div class="form-group view-area-title">
-            <input type="text" class="form-control view-title-title" value="title">
-            <input type="text" class="form-control view-title-date" value="date">
+      <div class="content" id="content-view">
+        <div class="content-item" id="view-area-item">
+          <div class="form-group" id="view-area-title">
+            <input type="text" class="form-control" id="view-title-title" value="title">
+            <input type="text" class="form-control" id="view-title-date" value="date">
           </div>
-          <div class="form-group view-area-content">
-            <input type="text" class="form-control view-content" value="content">
+          <div class="form-group" id="view-area-content">
+            <input type="text" class="form-control" id="view-content" value="content">
           </div>
-          <div class="content-item form-group view-area-submit">
+          <div class="content-item form-group" id="view-area-submit">
             <button class="btn btn-default" id="view-submit-update"><i class="fa fa-refresh" aria-hidden="true"></i> 更新</button>
             <button class="btn btn-default" id="view-submit-remove"><i class="fa fa-times" aria-hidden="true"></i> 削除</button>
           </div>
         </div>
       </div>
       <!-- content-search -->
-      <div class="content content-search">
-        Search
+      <div class="content" id="content-search">
+        <div class="form-group" id="search-area-query-string">
+          <label for="search-query-string">内容</label>
+          <input type="text" class="form-control" id="search-query-string" value="query-string">
+          <div class="checkbox" id="search-area-query-string-check-title">
+            <label><input type="checkbox" id="search-title" checked>タイトル</label>
+          </div>
+          <div class="checkbox" id="search-area-query-string-check-content">
+            <label><input type="checkbox" id="search-content" checked>内容</label>
+          </div>
+          <div class="checkbox" id="search-area-query-string-check-date">
+            <label><input type="checkbox" id="search-date" checked>日時</label>
+          </div>
+        </div>
       </div>
       <!-- content-setting -->
-      <div class="content content-setting">
+      <div class="content" id="content-setting">
         Setting
       </div>
       <!-- content-login -->
-      <div class="content content-login">
-        <div class="content-item form-group login-area-id">
+      <div class="content" id="content-login">
+        <div class="content-item form-group" id="login-area-id">
           <label for="login-id">ID</label>
           <input type="text" id="login-id" placeholder="Enter the id" class="form-control">
         </div>
-        <div class="content-item form-group login-area-password">
+        <div class="content-item form-group" id="login-area-password">
           <label for="login-password">パスワード</label>
           <input type="password" id="login-password" placeholder="Enter the password" class="form-control">
         </div>
-        <div class="content-item checkbox login-area-check">
+        <div class="content-item checkbox" id="login-area-check">
           <label><input type="checkbox" id="login-check">ログインしたままにする</label>
         </div>
-        <div class="content-item form-group login-area-submit">
+        <div class="content-item form-group" id="login-area-submit">
           <button class="btn btn-default" id="login-submit-login"><i class="fa fa-sign-in" aria-hidden="true"></i> ログイン</button>
         </div>
       </div>
