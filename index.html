@@ -43,7 +43,7 @@
     </nav>
     <main>
       <!-- content-edit -->
-      <div class="content" id="content-edit">
+      <div class="display-none content" id="content-edit">
         <div class="content-item form-group" id="edit-area-type">
           <button class="btn btn-default active" id="edit-type-diary">日記</button>
           <button class="btn btn-default" id="edit-type-memo">メモ</button>
@@ -67,7 +67,7 @@
         </div>
       </div>
       <!-- content-view -->
-      <div class="content" id="content-view">
+      <div class="display-none content" id="content-view">
         <div class="content-item" id="view-area-item">
           <div class="form-group" id="view-area-title">
             <input type="text" class="form-control" id="view-title-title" value="title">
@@ -85,16 +85,25 @@
       <!-- content-search -->
       <div class="content" id="content-search">
         <div class="form-group" id="search-area-query-string">
-          <label for="search-query-string">内容</label>
+          <label for="search-query-string">検索文字列</label>
           <input type="text" class="form-control" id="search-query-string" value="query-string">
           <div class="checkbox" id="search-area-query-string-check-title">
-            <label><input type="checkbox" id="search-title" checked>タイトル</label>
+            <label><input type="checkbox" id="search-query-check-title" checked>タイトル</label>
           </div>
           <div class="checkbox" id="search-area-query-string-check-content">
-            <label><input type="checkbox" id="search-content" checked>内容</label>
+            <label><input type="checkbox" id="search-query-check-content" checked>内容</label>
           </div>
           <div class="checkbox" id="search-area-query-string-check-date">
-            <label><input type="checkbox" id="search-date" checked>日時</label>
+            <label><input type="checkbox" id="search-query-check-date" checked>日時</label>
+          </div>
+        </div>
+        <div class="form-group" id="search-area-date">
+          <label for="search-date-init">日付指定</label>
+          <input type="date" class="form-control" id="search-date-init" value="date">
+          <span>～</span>
+          <input type="date" class="form-control" id="search-date-exit" value="date">
+          <div class="checkbox" id="search-area-date-check">
+            <label><input type="checkbox" id="search-date-check" checked>日時範囲指定</label>
           </div>
         </div>
       </div>
