@@ -2,11 +2,11 @@
 // グローバル変数
 
 // 定数
-$(function() {
+$(() => {
   
   // ----------------------------------------------------------------
   // 初期化
-	$('#test-modal-button').click(function() {
+	$('#test-modal-button').click(() => {
 		$('#test-modal').modal();
 	});
   
