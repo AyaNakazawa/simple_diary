@@ -44,8 +44,14 @@
       <!-- content-edit -->
       <div class="content" id="content-edit">
         <div class="content-item form-group" id="edit-area-type">
-          <button class="btn btn-default active" id="edit-type-diary">日記</button>
-          <button class="btn btn-default" id="edit-type-memo">メモ</button>
+          <div class="btn-group" data-toggle="buttons" id="edit-area-type-button">
+            <label class="btn btn-default active" id="edit-type-diary">
+              <input type="radio">日記
+            </label>
+            <label class="btn btn-default" id="edit-type-memo">
+              <input type="radio">メモ
+            </label>
+          </div>
           <span class="help-block edit-type-description">タイプを指定します。</span>
         </div>
         <div class="content-item form-group" id="edit-area-title">
