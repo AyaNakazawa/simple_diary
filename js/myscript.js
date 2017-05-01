@@ -1,9 +1,9 @@
 
 $(() => {
   
-	$('#test-modal-button').click(() => {
-		$('#test-modal').modal();
-	});
+  $('#test-modal-button').click(() => {
+    $('#test-modal').modal();
+  });
   
 });
 
