@@ -1,6 +1,9 @@
 
 $(() => {
   
+  // ----------------------------------------------------------------
+  // Backbone
+  
   const ModalView = Backbone.View.extend({
     el: '#template-modal',
     events: {
@@ -10,6 +13,9 @@ $(() => {
       $('#test-modal').modal();
     }
   });
+  
+  // ----------------------------------------------------------------
+  // Instance
   
   let modalView = new ModalView();
   
