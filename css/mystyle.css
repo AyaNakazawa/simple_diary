@@ -89,7 +89,11 @@ main {
   margin-bottom: 0;
 }
 
-/* content-view */
+/* content-new */
+
+#edit-file-hide {
+  display: none;
+}
 
 /* Tablet */
 

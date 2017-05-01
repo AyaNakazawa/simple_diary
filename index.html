@@ -63,8 +63,16 @@
           <textarea rows="4" cols="32" id="edit-content" placeholder="Enter the content" class="form-control"></textarea>
         </div>
         <div class="content-item form-group" id="edit-area-file">
-          <label for="edit-file">ファイル</label>
-          <input type="file" class="form-control" id="edit-file">
+          <label for="edit-file-text">ファイル</label>
+          <input type="file" id="edit-file-hide">
+          <div class="input-group">
+            <input type="text" id="edit-file-text" class="form-control" placeholder="Select the file...">
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" id="edit-file-button" >
+                <i class="fa fa-file"></i>
+              </button>
+            </span>
+          </div>
           <span class="help-block edit-file-description">xxMBまでのjpeg, png, mp3, mp4をアップロードできます。</span>
         </div>
         <div class="content-item form-group" id="edit-area-submit">
