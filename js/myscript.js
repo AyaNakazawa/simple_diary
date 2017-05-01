@@ -1,9 +1,17 @@
 
 $(() => {
   
-  $('#test-modal-button').click(() => {
-    $('#test-modal').modal();
+  const ModalView = Backbone.View.extend({
+    el: '#template-modal',
+    events: {
+      'click #test-modal-button': 'open'
+    },
+    open: () => {
+      $('#test-modal').modal();
+    }
   });
+  
+  let modalView = new ModalView();
   
 });
 

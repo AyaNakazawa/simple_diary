@@ -7,9 +7,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 $(function () {
 
-  $('#test-modal-button').click(function () {
-    $('#test-modal').modal();
+  var ModalView = Backbone.View.extend({
+    el: '#template-modal',
+    events: {
+      'click #test-modal-button': 'open'
+    },
+    open: function open() {
+      $('#test-modal').modal();
+    }
   });
+
+  var modalView = new ModalView();
 });
 
 // ----------------------------------------------------------------
