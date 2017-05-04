@@ -63,7 +63,10 @@
         <div class="content-item form-group" id="edit-area-datetime">
           <label for="edit-datetime">日時</label>
           <span class="fa fa-question-circle" data-toggle="popover" data-content="日時を省略すると、更新日時が表示されます。"></span>
-          <input type="datetime-local" id="edit-datetime" class="form-control">
+          <div class="form-inline" id="edit-area-datetime-input">
+            <input type="date" id="edit-date" class="form-control">
+            <input type="time" id="edit-time" class="form-control">
+          </div>
         </div>
         <div class="content-item form-group" id="edit-area-content">
           <label for="edit-content">内容</label>
@@ -94,7 +97,8 @@
         <div class="content-item" id="view-area-item">
           <div class="form-inline" id="view-area-title">
             <input type="text" class="form-control" id="view-title-title" value="title">
-            <input type="datetime-local" class="form-control" id="view-title-date">
+            <input type="date" class="form-control" id="view-title-date">
+            <input type="time" class="form-control" id="view-title-time">
           </div>
           <div class="form-group" id="view-area-content">
             <input type="text" class="form-control" id="view-content" value="content">
