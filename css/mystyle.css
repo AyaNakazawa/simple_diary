@@ -21,6 +21,10 @@ a:hover {
   display: none;
 }
 
+textarea {
+  resize: vertical;
+}
+
 /* header */
 
 header {
