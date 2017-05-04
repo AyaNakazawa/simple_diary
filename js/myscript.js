@@ -1,28 +1,29 @@
 
 $(() => {
   
-  // ----------------------------------------------------------------
-  // Backbone
-  
-  const ModalView = Backbone.View.extend({
-    el: '#template-modal',
-    events: {
-      'click #test-modal-button': 'open'
-    },
-    open: () => {
-      $('#test-modal').modal();
-    }
-  });
-  
-  // ----------------------------------------------------------------
-  // Instance
-  
   let modalView = new ModalView();
   
 });
 
 // ----------------------------------------------------------------
 // Functions
+
+// ----------------------------------------------------------------
+// Backbone
+
+class ModalView extends Backbone.View {
+  constructor() {
+    super({
+      el: '#template-modal',
+      events: {
+        'click #test-modal-button': 'open'
+      },
+    });
+  }
+  open() {
+    $('#test-modal').modal();
+  }
+}
 
 // ----------------------------------------------------------------
 // Classes
