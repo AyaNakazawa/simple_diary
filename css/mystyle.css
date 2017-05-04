@@ -25,6 +25,10 @@ textarea {
   resize: vertical;
 }
 
+.form-inline .form-control + .form-control {
+  margin: 10px 0 0;
+}
+
 /* header */
 
 header {
@@ -125,7 +129,10 @@ span[data-toggle="popover"] {
 /* Tablet */
 
 @media (min-width: 768px) {
-  
+  .form-inline .form-control + .form-control {
+    margin: 0;
+  }
+
 }
 
 /* Medium desktop */
