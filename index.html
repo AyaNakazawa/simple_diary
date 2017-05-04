@@ -45,6 +45,7 @@
       <div class="content" id="content-edit">
         <div class="content-item form-group" id="edit-area-type">
           <label for="edit-type">タイプ</label>
+          <span class="fa fa-question-circle" data-toggle="popover" data-content="タイプを指定します。"></span>
           <div class="btn-group" data-toggle="buttons" id="edit-area-type-button">
             <label class="btn btn-default active" id="edit-type-diary">
               <input type="radio">日記
@@ -57,20 +58,24 @@
         </div>
         <div class="content-item form-group" id="edit-area-title">
           <label for="edit-title">タイトル</label>
+          <span class="fa fa-question-circle" data-toggle="popover" data-content="タイトルは省略できます。"></span>
           <input type="text" id="edit-title" placeholder="Enter the title" class="form-control">
           <span class="help-block edit-title-description">タイトルは省略できます。</span>
         </div>
         <div class="content-item form-group" id="edit-area-datetime">
           <label for="edit-datetime">日時</label>
+          <span class="fa fa-question-circle" data-toggle="popover" data-content="日時を省略すると、更新日時が表示されます。"></span>
           <input type="datetime-local" id="edit-datetime" class="form-control">
           <span class="help-block edit-datetime-description">日時を省略すると、更新日時が表示されます。</span>
         </div>
         <div class="content-item form-group" id="edit-area-content">
           <label for="edit-content">内容</label>
+          <span class="fa fa-question-circle" data-toggle="popover" data-content="内容は省略できます。"></span>
           <textarea rows="4" cols="32" id="edit-content" placeholder="Enter the content" class="form-control"></textarea>
         </div>
         <div class="content-item form-group" id="edit-area-file">
           <label for="edit-file-text">ファイル</label>
+          <span class="fa fa-question-circle" data-toggle="popover" data-content="xxMBまでのjpeg, png, mp3, mp4をアップロードできます。"></span>
           <input type="file" id="edit-file-hide">
           <div class="input-group">
             <input type="text" id="edit-file-text" class="form-control" placeholder="Select the file...">
@@ -108,20 +113,25 @@
       <div class="content" id="content-search">
         <div class="form-group" id="search-area-query-string">
           <label for="search-query-string">検索文字列</label>
+          <span class="fa fa-question-circle" data-toggle="popover" data-content="検索する文字列を入力します。"></span>
           <input type="text" class="form-control" id="search-query-string" value="query-string">
           <div class="checkbox" id="search-area-query-string-check-title">
             <label><input type="checkbox" id="search-query-check-title" checked>タイトル</label>
+            <span class="fa fa-question-circle" data-toggle="popover" data-content="タイトルから検索します。"></span>
           </div>
           <div class="checkbox" id="search-area-query-string-check-content">
             <label><input type="checkbox" id="search-query-check-content" checked>内容</label>
+            <span class="fa fa-question-circle" data-toggle="popover" data-content="内容から検索します。"></span>
           </div>
           <div class="checkbox" id="search-area-query-string-check-date">
             <label><input type="checkbox" id="search-query-check-date" checked>日時</label>
+            <span class="fa fa-question-circle" data-toggle="popover" data-content="日時から検索します。「2017/04/01 01:23:45」の形式にマッチするよう指定してください。"></span>
           </div>
           <span class="help-block search-query-string-description">検索をする項目を指定します。</span>
         </div>
         <div class="form-group" id="search-area-date">
           <label for="search-date-init">日付指定</label>
+          <span class="fa fa-question-circle" data-toggle="popover" data-content="検索する日時を指定します。"></span>
           <div class="form-inline" id="search-area-date-input">
             <input type="date" class="form-control" id="search-date-init">
             <span>～</span>
@@ -129,6 +139,7 @@
           </div>
           <div class="checkbox" id="search-area-date-check">
             <label><input type="checkbox" id="search-date-check" checked>日付範囲指定</label>
+            <span class="fa fa-question-circle" data-toggle="popover" data-content="日付で範囲検索することができます。"></span>
           </div>
           <span class="help-block search-date-description">日付で範囲検索することができます。</span>
         </div>
@@ -140,16 +151,19 @@
       <div class="content" id="content-setting">
         <div class="content-item setting-item form-group" id="setting-area-temp-text">
           <label for="setting-temp-text">temp-text title</label>
+          <span class="fa fa-question-circle" data-toggle="popover" data-content="temp-text description"></span>
           <input type="text" id="setting-temp-text" placeholder="Enter the temp-text" class="form-control">
           <span class="help-block setting-description">temp-text description</span>
         </div>
         <div class="content-item setting-item form-group" id="setting-area-temp-textarea">
           <label for="setting-temp-textarea">temp-textarea title</label>
+          <span class="fa fa-question-circle" data-toggle="popover" data-content="temp-textarea description"></span>
           <textarea rows="4" cols="32" id="setting-temp-textarea" placeholder="Enter the temp-textarea" class="form-control"></textarea>
           <span class="help-block setting-description">temp-textarea description</span>
         </div>
         <div class="content-item setting-item form-group" id="setting-area-temp-check">
           <label for="setting-temp-check">temp-check title</label>
+          <span class="fa fa-question-circle" data-toggle="popover" data-content="temp-check description"></span>
           <div class="checkbox" id="setting-temp-check-area">
             <label><input type="checkbox" id="setting-temp-check" checked>temp-check</label>
           </div>
@@ -157,6 +171,7 @@
         </div>
         <div class="content-item setting-item form-group" id="setting-area-temp-radio">
           <label>temp-radio title</label>
+          <span class="fa fa-question-circle" data-toggle="popover" data-content="temp-radio description"></span>
           <div class="radio">
             <label>
               <input type="radio" name="setting-temp-radio" id="setting-temp-radio1">temp-radio1
@@ -171,6 +186,7 @@
         </div>
         <div class="content-item setting-item form-group" id="setting-area-temp-select">
           <label for="setting-temp-select">temp-select title</label>
+          <span class="fa fa-question-circle" data-toggle="popover" data-content="temp-select description"></span>
           <select class="form-control" id="setting-temp-select">
             <option id="setting-temp-option1">temp-option1</option>
             <option id="setting-temp-option2">temp-option2</option>
@@ -183,14 +199,17 @@
       <div class="content" id="content-login">
         <div class="content-item form-group" id="login-area-id">
           <label for="login-id">ID</label>
+          <span class="fa fa-question-circle" data-toggle="popover" data-content="ユーザーIDを入力します。"></span>
           <input type="text" id="login-id" placeholder="Enter the id" class="form-control">
         </div>
         <div class="content-item form-group" id="login-area-password">
           <label for="login-password">パスワード</label>
+          <span class="fa fa-question-circle" data-toggle="popover" data-content="ユーザーのパスワードを入力します。"></span>
           <input type="password" id="login-password" placeholder="Enter the password" class="form-control">
         </div>
         <div class="content-item checkbox" id="login-area-check">
           <label><input type="checkbox" id="login-check">ログインしたままにする</label>
+          <span class="fa fa-question-circle" data-toggle="popover" data-content="共有デバイスでは設定に注意してください。"></span>
           <span class="help-block login-check-description">共有デバイスでは設定に注意してください。</span>
         </div>
         <div class="content-item form-group" id="login-area-submit">
