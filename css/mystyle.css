@@ -81,6 +81,7 @@ main {
 }
 
 .content-item {
+  width: 100%;
   padding: auto;
   margin-bottom: 10px;
 }
@@ -93,6 +94,14 @@ main {
 
 #edit-file-hide {
   display: none;
+}
+
+#edit-area-type-button {
+  width: 100%;
+}
+
+#edit-area-type-button label {
+  width: 50%;
 }
 
 /* Tablet */
