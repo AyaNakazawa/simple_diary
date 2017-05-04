@@ -92,14 +92,10 @@ main {
   border-radius: 4px;
 }
 
-.content:last-child {
-  margin-bottom: 0;
-}
-
 .content-item {
   width: 100%;
+  margin-bottom: 16px;
   padding: auto;
-  margin-bottom: 10px;
 }
 
 .content-item:last-child {
