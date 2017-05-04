@@ -94,26 +94,24 @@
       </div>
       <!-- content-view -->
       <div class="content" id="content-view">
-        <div class="content-item" id="view-area-item">
-          <div class="form-group" id="view-area-title">
-            <input type="text" class="form-control" id="view-title-title" value="title">
-          </div>
-          <div class="form-inline form-group" id="view-area-date">
-            <input type="date" class="form-control" id="view-title-date">
-            <input type="time" class="form-control" id="view-title-time">
-          </div>
-          <div class="form-group" id="view-area-content">
-            <textarea rows="4" cols="32" id="view-content" class="form-control">content</textarea>
-          </div>
-          <div class="content-item form-group" id="view-area-submit">
-            <button class="btn btn-default" id="view-submit-update"><i class="fa fa-refresh" aria-hidden="true"></i> 更新</button>
-            <button class="btn btn-default" id="view-submit-remove"><i class="fa fa-times" aria-hidden="true"></i> 削除</button>
-          </div>
+        <div class="content-item form-group" id="view-area-title">
+          <input type="text" class="form-control" id="view-title-title" value="title">
+        </div>
+        <div class="content-item form-inline form-group" id="view-area-date">
+          <input type="date" class="form-control" id="view-title-date">
+          <input type="time" class="form-control" id="view-title-time">
+        </div>
+        <div class="content-item form-group" id="view-area-content">
+          <textarea rows="4" cols="32" id="view-content" class="form-control">content</textarea>
+        </div>
+        <div class="content-item form-group" id="view-area-submit">
+          <button class="btn btn-default" id="view-submit-update"><i class="fa fa-refresh" aria-hidden="true"></i> 更新</button>
+          <button class="btn btn-default" id="view-submit-remove"><i class="fa fa-times" aria-hidden="true"></i> 削除</button>
         </div>
       </div>
       <!-- content-search -->
       <div class="content" id="content-search">
-        <div class="form-group" id="search-area-query-string">
+        <div class="content-item form-group" id="search-area-query-string">
           <label for="search-query-string">検索文字列</label>
           <span class="fa fa-question-circle" data-toggle="popover" data-content="検索する文字列を入力します。"></span>
           <input type="text" class="form-control" id="search-query-string" value="query-string">
@@ -130,7 +128,7 @@
             <span class="fa fa-question-circle" data-toggle="popover" data-content="日時から検索します。「2017/04/01 01:23:45」の形式にマッチするよう指定してください。"></span>
           </div>
         </div>
-        <div class="form-group" id="search-area-date">
+        <div class="content-item form-group" id="search-area-date">
           <label for="search-date-init">日付指定</label>
           <span class="fa fa-question-circle" data-toggle="popover" data-content="検索する日時を指定します。"></span>
           <div class="form-inline form-group" id="search-area-date-input">
