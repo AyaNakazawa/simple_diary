@@ -12,10 +12,14 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 $(function () {
 
   var modalView = new ModalView();
+  initPopover();
 });
 
 // ----------------------------------------------------------------
 // Functions
+function initPopover() {
+  $('[data-toggle="popover"]').popover();
+}
 
 // ----------------------------------------------------------------
 // Backbone

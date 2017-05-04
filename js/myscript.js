@@ -2,11 +2,15 @@
 $(() => {
   
   let modalView = new ModalView();
+  initPopover();
   
 });
 
 // ----------------------------------------------------------------
 // Functions
+function initPopover() {
+  $('[data-toggle="popover"]').popover();
+}
 
 // ----------------------------------------------------------------
 // Backbone
