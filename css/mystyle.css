@@ -90,6 +90,12 @@ main {
   margin-bottom: 0;
 }
 
+/* other */
+
+span[data-toggle="popover"] {
+  cursor: help;
+}
+
 /* content-new */
 
 #edit-file-hide {
