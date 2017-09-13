@@ -461,14 +461,14 @@ class DiaryDetailController extends CommonController {
       `DIARY`,
       _uploadFlg
     );
-    
-    let _file = new FormData();
-    _file.append(
-      'file',
-      $(`#detail-image ${this.MODEL.DIARY_DETAIL_UPLOAD_SELECTOR}`).prop('files')[0]
-    );
-    
     if (_uploadFlg) {
+      
+      let _file = new FormData();
+      _file.append(
+        'file',
+        $(`#detail-image ${this.MODEL.DIARY_DETAIL_UPLOAD_SELECTOR}`).prop('files')[0]
+      );
+      
       $.ajax({
         url: 'ruby/uploadImage.rb',
         type : "POST",
@@ -503,7 +503,6 @@ class DiaryDetailController extends CommonController {
       `DIARY`,
       "Choosed file"
     );
-    
     
     const filename = $(`#${_selector} ${this.MODEL.DIARY_DETAIL_UPLOAD_SELECTOR}`).val().replace(/\\/g, '/').replace(/.*\//, '');
     Log.logClassKey('Choosed file', `DIARY`, filename);
