@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
+    <!-- meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Simple Diary</title>
+    <!-- link -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/mystyle.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <!-- favicon -->
     <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon"/>
     <link rel="icon" href="favicon.ico" type="image/vnd.microsoft.icon"/>
+    <!-- title -->
+    <title>Simple Diary</title>
   </head>
   <body>
     <!-- header -->
     <header>
-      <h1 id="title">
-        Simple Diary
-      </h1>
+      <h1>Simple Diary</h1>
     </header>
     <!-- nav -->
     <nav class="navbar navbar-default">
@@ -31,222 +33,119 @@
         </div>
         <div class="collapse navbar-collapse" id="navbarTop">
           <ul class="nav navbar-nav">
-            <li id="action-new"><a>New</a></li>
-            <li class="current" id="action-view"><a>View</a></li>
-            <li id="action-search"><a>Search</a></li>
-            <li id="action-setting"><a>Setting</a></li>
-            <li id="action-login"><a>Login</a></li>
+            <li id="switch-user"><a>New</a></li>
           </ul>
         </div>
       </div>
     </nav>
+    <!-- main -->
     <main>
-      <!-- content-edit -->
-      <div class="content" id="content-edit">
-        <div class="content-item form-group" id="edit-area-type">
-          <label for="edit-type">タイプ</label>
-          <span class="fa fa-question-circle" data-toggle="popover" data-content="タイプを指定します。"></span>
-          <div class="btn-group" data-toggle="buttons" id="edit-area-type-button">
-            <label class="btn btn-default active" id="edit-type-diary">
-              <input type="radio">日記
-            </label>
-            <label class="btn btn-default" id="edit-type-memo">
-              <input type="radio">メモ
-            </label>
-          </div>
+      <!-- error -->
+      <div class="content" id="error-area">
+        <div class="content-header">
+          非対応ブラウザ
         </div>
-        <div class="content-item form-group" id="edit-area-title">
-          <label for="edit-title">タイトル</label>
-          <span class="fa fa-question-circle" data-toggle="popover" data-content="タイトルは省略できます。"></span>
-          <input type="text" id="edit-title" placeholder="Enter the title" class="form-control">
-        </div>
-        <div class="content-item form-group" id="edit-area-datetime">
-          <label for="edit-datetime">日時</label>
-          <span class="fa fa-question-circle" data-toggle="popover" data-content="日時を省略すると、更新日時が表示されます。"></span>
-          <div class="form-inline form-group" id="edit-area-datetime-input">
-            <input type="date" id="edit-date" class="form-control">
-            <input type="time" id="edit-time" class="form-control">
-          </div>
-        </div>
-        <div class="content-item form-group" id="edit-area-content">
-          <label for="edit-content">内容</label>
-          <span class="fa fa-question-circle" data-toggle="popover" data-content="内容は省略できます。"></span>
-          <textarea rows="4" cols="32" id="edit-content" placeholder="Enter the content" class="form-control"></textarea>
-        </div>
-        <div class="content-item form-group" id="edit-area-file">
-          <label for="edit-file-text">ファイル</label>
-          <span class="fa fa-question-circle" data-toggle="popover" data-content="xxMBまでのjpeg, png, mp3, mp4をアップロードできます。"></span>
-          <input type="file" id="edit-file-hide">
-          <div class="input-group">
-            <input type="text" id="edit-file-text" class="form-control" placeholder="Select the file...">
-            <span class="input-group-btn">
-              <button type="button" class="btn btn-default" id="edit-file-button" >
-                <i class="fa fa-file"></i>
-              </button>
-            </span>
-          </div>
-        </div>
-        <div class="content-item form-group" id="edit-area-submit">
-          <button class="btn btn-default" id="edit-submit-add"><i class="fa fa-plus" aria-hidden="true"></i> 追加</button>
-          <button class="btn btn-default" id="edit-submit-update"><i class="fa fa-refresh" aria-hidden="true"></i> 更新</button>
-          <button class="btn btn-default" id="edit-submit-remove"><i class="fa fa-times" aria-hidden="true"></i> 削除</button>
-        </div>
-      </div>
-      <!-- content-view -->
-      <div class="content" id="content-view">
-        <div class="content-item form-group" id="view-area-title">
-          <input type="text" class="form-control" id="view-title-title" value="title">
-        </div>
-        <div class="content-item form-inline form-group" id="view-area-date">
-          <input type="date" class="form-control" id="view-title-date">
-          <input type="time" class="form-control" id="view-title-time">
-        </div>
-        <div class="content-item form-group" id="view-area-content">
-          <textarea rows="4" cols="32" id="view-content" class="form-control">content</textarea>
-        </div>
-        <div class="content-item form-group" id="view-area-submit">
-          <button class="btn btn-default" id="view-submit-update"><i class="fa fa-refresh" aria-hidden="true"></i> 更新</button>
-          <button class="btn btn-default" id="view-submit-remove"><i class="fa fa-times" aria-hidden="true"></i> 削除</button>
-        </div>
-      </div>
-      <!-- content-search -->
-      <div class="content" id="content-search">
-        <div class="content-item form-group" id="search-area-query-string">
-          <label for="search-query-string">検索文字列</label>
-          <span class="fa fa-question-circle" data-toggle="popover" data-content="検索する文字列を入力します。"></span>
-          <input type="text" class="form-control" id="search-query-string" value="query-string">
-          <div class="checkbox" id="search-area-query-string-check-title">
-            <label><input type="checkbox" id="search-query-check-title" checked>タイトル</label>
-            <span class="fa fa-question-circle" data-toggle="popover" data-content="タイトルから検索します。"></span>
-          </div>
-          <div class="checkbox" id="search-area-query-string-check-content">
-            <label><input type="checkbox" id="search-query-check-content" checked>内容</label>
-            <span class="fa fa-question-circle" data-toggle="popover" data-content="内容から検索します。"></span>
-          </div>
-          <div class="checkbox" id="search-area-query-string-check-date">
-            <label><input type="checkbox" id="search-query-check-date" checked>日時</label>
-            <span class="fa fa-question-circle" data-toggle="popover" data-content="日時から検索します。「2017/04/01 01:23:45」の形式にマッチするよう指定してください。"></span>
-          </div>
-        </div>
-        <div class="content-item form-group" id="search-area-date">
-          <label for="search-date-init">日付指定</label>
-          <span class="fa fa-question-circle" data-toggle="popover" data-content="検索する日時を指定します。"></span>
-          <div class="form-inline form-group" id="search-area-date-input">
-            <input type="date" class="form-control" id="search-date-init">
-            <span>～</span>
-            <input type="date" class="form-control" id="search-date-exit">
-          </div>
-          <div class="checkbox" id="search-area-date-check">
-            <label><input type="checkbox" id="search-date-check" checked>日付範囲指定</label>
-            <span class="fa fa-question-circle" data-toggle="popover" data-content="日付で範囲検索することができます。"></span>
-          </div>
-        </div>
-        <div class="content-item form-group" id="search-area-submit">
-          <button class="btn btn-default" id="search-submit-search"><i class="fa fa-search" aria-hidden="true"></i> 検索</button>
-        </div>
-      </div>
-      <!-- content-setting -->
-      <div class="content" id="content-setting">
-        <div class="content-item setting-item form-group" id="setting-area-temp-text">
-          <label for="setting-temp-text">temp-text title</label>
-          <span class="fa fa-question-circle" data-toggle="popover" data-content="temp-text description"></span>
-          <input type="text" id="setting-temp-text" placeholder="Enter the temp-text" class="form-control">
-        </div>
-        <div class="content-item setting-item form-group" id="setting-area-temp-textarea">
-          <label for="setting-temp-textarea">temp-textarea title</label>
-          <span class="fa fa-question-circle" data-toggle="popover" data-content="temp-textarea description"></span>
-          <textarea rows="4" cols="32" id="setting-temp-textarea" placeholder="Enter the temp-textarea" class="form-control"></textarea>
-        </div>
-        <div class="content-item setting-item form-group" id="setting-area-temp-check">
-          <label for="setting-temp-check">temp-check title</label>
-          <span class="fa fa-question-circle" data-toggle="popover" data-content="temp-check description"></span>
-          <div class="checkbox" id="setting-temp-check-area">
-            <label><input type="checkbox" id="setting-temp-check" checked>temp-check</label>
-          </div>
-        </div>
-        <div class="content-item setting-item form-group" id="setting-area-temp-radio">
-          <label>temp-radio title</label>
-          <span class="fa fa-question-circle" data-toggle="popover" data-content="temp-radio description"></span>
-          <div class="radio">
-            <label>
-              <input type="radio" name="setting-temp-radio" id="setting-temp-radio1">temp-radio1
-            </label>
-          </div>
-          <div class="radio">
-            <label>
-              <input type="radio" name="setting-temp-radio" id="setting-temp-radio2">temp-radio2
-            </label>
-          </div>
-        </div>
-        <div class="content-item setting-item form-group" id="setting-area-temp-select">
-          <label for="setting-temp-select">temp-select title</label>
-          <span class="fa fa-question-circle" data-toggle="popover" data-content="temp-select description"></span>
-          <select class="form-control" id="setting-temp-select">
-            <option id="setting-temp-option1">temp-option1</option>
-            <option id="setting-temp-option2">temp-option2</option>
-            <option id="setting-temp-option3">temp-option3</option>
-          </select>
-        </div>
-      </div>
-      <!-- content-login -->
-      <div class="content" id="content-login">
-        <div class="content-item form-group" id="login-area-id">
-          <label for="login-id">ID</label>
-          <span class="fa fa-question-circle" data-toggle="popover" data-content="ユーザーIDを入力します。"></span>
-          <input type="text" id="login-id" placeholder="Enter the id" class="form-control">
-        </div>
-        <div class="content-item form-group" id="login-area-password">
-          <label for="login-password">パスワード</label>
-          <span class="fa fa-question-circle" data-toggle="popover" data-content="ユーザーのパスワードを入力します。"></span>
-          <input type="password" id="login-password" placeholder="Enter the password" class="form-control">
-        </div>
-        <div class="content-item checkbox" id="login-area-check">
-          <label><input type="checkbox" id="login-check">ログインしたままにする</label>
-          <span class="fa fa-question-circle" data-toggle="popover" data-content="共有デバイスでは設定に注意してください。"></span>
-        </div>
-        <div class="content-item form-group" id="login-area-submit">
-          <button class="btn btn-default" id="login-submit-login"><i class="fa fa-sign-in" aria-hidden="true"></i> ログイン</button>
+        <div class="content-item">
+          ES2015をサポートしているブラウザでご覧ください。
         </div>
       </div>
     </main>
     <!-- footer -->
     <footer>
-      <small id="footer-text">
-        © 2017 <a href="https://github.com/AyaNakazawa/simple_diary" target="_blank">Simple Diary</a> @ <a href="https://github.com/AyaNakazawa/" alt="Aya Nakazawa Github" target="_blank">Aya Nakazawa</a>
-      </small>
+      <p id="footer-text">
+        @ 2017 <a href="https://github.com/AyaNakazawa/simple_diary" target="_blank">Simple Diary</a>
+      </p>
     </footer>
-    <!-- content-template -->
-    <div class="content template" id="content-template">
-      <!-- modal -->
-      <div id="template-modal">
-        <button type="button" id="test-modal-button" class="btn btn-default">
-          modal test
-        </button>
-        <div id="test-modal" class="modal fade" tabindex="-1">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal"><span><i class="fa fa-close"></i></span></button>
-                <h4 class="modal-title">title</h4>
-              </div>
-              <div class="modal-body">
-                content
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-              </div>
+    <!-- confirm -->
+    <div id="confirm-view"></div>
+    <!-- template -->
+    <!-- confirm-view -->
+    <script type="text/template" id="confirm-view-template">
+      <div id="<%- confirmId %>" class="modal fade" data-backdrop="static" data-keyboard="false" data-html="true" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" id="<%- confirmId %>-close">
+                <span>
+                  <i class="fa fa-close"></i>
+                </span>
+              </button>
+              <h4 class="modal-title"><%- confirmTitle %></h4>
             </div>
+            <% if (confirmMessage.length > 0) { %>
+              <div class="modal-body"><%- confirmMessage %></div>
+            <% } %>
+            <% if (imageUrl.length > 0) { %>
+              <img class="modal-body" src="<%- imageUrl %>" style="width:100%; height:auto;">
+            <% } %>
+            <% if (type >= 1) { %>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="<%- confirmId %>-yes"><%- yes %></button>
+                <% if (type >= 2) { %>
+                  <button type="button" class="btn btn-default" data-dismiss="modal" id="<%- confirmId %>-no"><%- no %></button>
+                <% } %>
+              </div>
+            <% } %>
           </div>
         </div>
       </div>
-    </div>
-    
+    </script>
+    <!-- loading -->
+    <script type="text/template" id="loading-template">
+      <div class="content-header">
+        <%- header %>
+        <span class="fa fa-spinner loading-spinner"></span>
+      </div>
+      <div class="content-item">
+        <%- message %>
+        <span class="loading-dot"></span>
+      </div>
+    </script>
+    <!-- alert -->
+    <script type="text/template" id="alert-template">
+      <div class="alert alert-<%- type %> alert-dismissible" role="alert">
+        <% if (close) { %>
+        <button type="button" class="close" data-dismiss="alert">
+          <span class="fa fa-close" aria-hidden="true"></span>
+        </button>
+        <% } %>
+        <%- message %>
+      </div>
+    </script>
+    <!-- ruby -->
+    <script type="text/template" id="ruby-template">
+      <ruby>
+        <rb><%- body %></rb>
+        <rp>（</rp>
+        <rt><%- ruby %></rt>
+        <rp>）</rp>
+      </ruby>
+    </script>
     <!-- script -->
-    <script src="js/underscore-min.js"></script>
-    <script src="js/jquery-3.2.0.min.js"></script>
-    <script src="js/backbone-min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/myscript.es5.js"></script>
-    
+    <!-- error -->
+    <script src="js/mylib/error.js"></script>
+    <!-- lib -->
+    <script src="js/lib/underscore-min.js"></script>
+    <script src="js/lib/jquery-3.2.0.min.js"></script>
+    <script src="js/lib/jquery.easing.1.3.js"></script>
+    <script src="js/lib/bootstrap.min.js"></script>
+    <script src="js/lib/sha256.js"></script>
+    <!-- mylib -->
+    <script src="js/mylib/common.js"></script>
+    <script src="js/mylib/confirm.js"></script>
+    <script src="js/mylib/init.js"></script>
+    <script src="js/mylib/popover.js"></script>
+    <script src="js/mylib/process-stack.js"></script>
+    <script src="js/mylib/scroll.js"></script>
+    <script src="js/mylib/static-class.js"></script>
+    <script src="js/mylib/switch.js"></script>
+    <script src="js/mylib/extension.js"></script>
+    <script src="js/mylib/content.js"></script>
+    <!-- myapp -->
+    <script src="js/myapp/project.js"></script>
+    <script src="js/myapp/sd-process.js"></script>
+    <!-- app -->
+    <script src="js/global.js"></script>
+    <script src="js/myapp.js"></script>
   </body>
 </html>
