@@ -191,7 +191,7 @@ main {
     .content .content-item .content-input input {
       width: 100%; }
 
-  #card-detail-area .content-input .input-group-btn {
+  #diary-detail-area .content-input .input-group-btn {
     width: 1px; } }
 @media (min-width: 1200px) {
   header {
@@ -228,5 +228,45 @@ body:before {
 @media (min-width: 1200px) {
   body:before {
     content: '- Large desktop -'; } }
+#diary-area #diary-search {
+  display: inline-table; }
+#diary-area .diary-main {
+  cursor: pointer; }
+#diary-area .diary-hover {
+  background: #fdfdfd;
+  margin: 0px auto;
+  padding: 8px;
+  position: absolute;
+  border: 1px solid #ddd;
+  border-radius: 0 0 4px 4px;
+  z-index: 20; }
+  #diary-area .diary-hover label {
+    width: 140px;
+    text-align: right; }
+  #diary-area .diary-hover label::after {
+    content: ':'; }
+  #diary-area .diary-hover .diary-image-area {
+    padding: 8px;
+    display: inline-block; }
+    #diary-area .diary-hover .diary-image-area .diary-image {
+      width: 240px;
+      height: auto;
+      padding: 2px;
+      border: 1px solid #ddd; }
+  #diary-area .diary-hover .btn-group {
+    width: 100%;
+    text-align: center; }
+    #diary-area .diary-hover .btn-group .btn {
+      width: 25%; }
+
+#diary-detail-area .detail-upload {
+  display: none; }
+#diary-detail-area button.detail-image-preview {
+  padding: 2px; }
+  #diary-detail-area button.detail-image-preview img {
+    margin: 0;
+    padding: 0;
+    height: 28px;
+    width: auto; }
 
 /*# sourceMappingURL=main.css.map */

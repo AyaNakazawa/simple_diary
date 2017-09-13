@@ -22,6 +22,8 @@ class SDProcess extends CommonProcess {
     $('main').empty();
     $('main').append(Content.getContent('desc-area'));
     $('main').append(Content.getContent('user-area'));
+    $('main').append(Content.getContent('diary-area'));
+    $('main').append(Content.getContent('diary-detail-area'));
   }
   
   createDesc() {
@@ -65,6 +67,8 @@ class SDProcess extends CommonProcess {
   
   initController() {
     this.CONTROLLER = {
+      DIARY_DETAIL: new DiaryDetailController(),
+      DIARY: new DiaryController(),
       USER: new UserController()
     };
     
@@ -76,6 +80,16 @@ class SDProcess extends CommonProcess {
         TEMPLATE: 'user',
         currentView: true,
         LS_KEY: 'none'
+      }),
+      DIARY: new SwitchController({
+        NAME: 'Diary Switch',
+        SWITCH_SELECTOR: '#diary-area',
+        currentView: false
+      }),
+      DIARY_DETAIL: new SwitchController({
+        NAME: 'Diary Detail Switch',
+        SWITCH_SELECTOR: '#diary-detail-area',
+        currentView: false
       })
     };
     
@@ -87,6 +101,14 @@ class SDProcess extends CommonProcess {
       USER: new ScrollController({
         NAME: 'User Switch',
         SCROLL_SELECTOR: '#user-area'
+      }),
+      DIARY: new ScrollController({
+        NAME: 'Diary Switch',
+        SCROLL_SELECTOR: '#diary-area'
+      }),
+      DIARY_DETAIL: new ScrollController({
+        NAME: 'Diary Detail Switch',
+        SCROLL_SELECTOR: '#diary-detail-area'
       })
     };
   }

@@ -1,1 +1,73 @@
 @charset "utf-8";
+
+// diary-area
+
+#diary-area {
+  #diary-search {
+    display: inline-table;
+  }
+  
+  .diary-main {
+    cursor: pointer;
+  }
+  
+  .diary-hover {
+    background: #fdfdfd;
+    @include margin-auto(0px);
+    padding: 8px;
+    position: absolute;
+    @include border-c();
+    border-radius: 0 0 $border-radius-size $border-radius-size;
+    z-index: $z-diary-hover;
+    
+    label {
+      width: 140px;
+      text-align: right;
+    }
+    
+    label::after {
+      content: ':';
+    }
+    
+    .diary-image-area {
+      padding: 8px;
+      display: inline-block;
+      
+      .diary-image {
+        width: 240px;
+        height: auto;
+        padding: 2px;
+        border: 1px solid $border-color;
+      }
+    }
+    
+    .btn-group {
+      width: 100%;
+      text-align: center;
+      
+      .btn {
+        width: (100% / 4);
+      }
+    }
+  }
+}
+
+// diary-detail-area
+
+#diary-detail-area {
+  
+  .detail-upload {
+    display: none;
+  }
+  
+  button.detail-image-preview {
+    padding: 2px;
+    
+    img {
+      margin: 0;
+      padding: 0;
+      height: 28px;
+      width: auto;
+    }
+  }
+}

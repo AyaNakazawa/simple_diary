@@ -66,7 +66,7 @@ class UserView extends CommonView {
       $(`${this.MODEL.SWITCH_LABEL_SELECTOR} a`).text('Logout');
       
       PS.CONTROLLER.SWITCH.USER.VIEW.setView(false);
-      // PS.CONTROLLER.SWITCH.DIARY.VIEW.setView(true);
+      PS.CONTROLLER.SWITCH.DIARY.VIEW.setView(true);
       
     } else {
       // ログインしていないとき
@@ -233,7 +233,7 @@ class UserController extends CommonController {
         if (_data.length > 0) {
           this.MODEL.ID = _data;
           this.MODEL.LOGIN = true;
-          // PS.CONTROLLER.DIARY.setUser(this.MODEL.ID, this.MODEL.HASH);
+          PS.CONTROLLER.DIARY.setUser(this.MODEL.ID, this.MODEL.HASH);
           this.VIEW.generateUserArea(
             this.MODEL.ALERT_SUCCESS,
             `ユーザー ${this.MODEL.ID} でログインしました。`
@@ -261,8 +261,8 @@ class UserController extends CommonController {
     this.MODEL.LOGIN = false;
     this.MODEL.ID = null;
     this.MODEL.PASSWORD = null;
-    // PS.CONTROLLER.DIARY.setUser(null, null);
-    // PS.CONTROLLER.DIARY_DETAIL.openCard(null, null, null);
+    PS.CONTROLLER.DIARY.setUser(null, null);
+    PS.CONTROLLER.DIARY_DETAIL.openDiary(null, null, null);
     this.VIEW.generateUserArea(
       'success',
       'ログアウトしました。'
@@ -291,7 +291,7 @@ class UserController extends CommonController {
         if (_data.length > 0) {
           this.MODEL.ID = _data;
           this.MODEL.LOGIN = true;
-          // PS.CONTROLLER.DIARY.setUser(this.MODEL.ID, this.MODEL.HASH);
+          PS.CONTROLLER.DIARY.setUser(this.MODEL.ID, this.MODEL.HASH);
           this.VIEW.generateUserArea(
             this.MODEL.ALERT_SUCCESS,
             `ユーザー ${this.MODEL.ID} を登録しました。`
