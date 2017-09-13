@@ -34,11 +34,7 @@ class DiaryDetailModel extends CommonModel {
     this.ADD = true;
     this.COPY = false;
     
-    this.IMAGE_NAME_1 = "";
-    this.IMAGE_NAME_2 = "";
-    
-    this.UPLOAD_IMAGE_1 = false;
-    this.UPLOAD_IMAGE_2 = false;
+    this.UPLOAD_IMAGE = false;
     
     this.DIARY_EDIT = null;
     
@@ -93,7 +89,7 @@ class DiaryDetailView extends CommonView {
       _close
     );
     if (this.MODEL.DIARY != null) {
-      // カードがある場合
+      // 日記がある場合
       $(this.MODEL.DIARY_DETAIL_AREA_SELECTOR).append(this.getTemplate(
         this.MODEL.TEMPLATE_DIARY_DETAIL_SELECTOR,
         {
@@ -102,13 +98,12 @@ class DiaryDetailView extends CommonView {
         }
       ));
     } else {
-      // カードがない場合
+      // 日記がない場合
       $(this.MODEL.DIARY_DETAIL_AREA_SELECTOR).append(this.getTemplate(
         this.MODEL.TEMPLATE_DIARY_DETAIL_SELECTOR,
         {
           diary: {
-            imageName1: "",
-            imageName2: "",
+            imageName: "",
             registerDate: (new Date()).getString(),
             updateDate: (new Date()).getString()
           },
@@ -120,24 +115,9 @@ class DiaryDetailView extends CommonView {
   
   getDiaryEdit() {
     let diary = {
-      address1: $('#detail-address1').val(),
-      address2: $('#detail-address2').val(),
-      cellphone: $('#detail-cellphone').val(),
-      companyName: $('#detail-company-name').val(),
-      companyNameKana: $('#detail-company-name-kana').val(),
-      department: $('#detail-department').val(),
-      fax: $('#detail-fax').val(),
-      mail: $('#detail-mail').val(),
-      name: $('#detail-name').val(),
-      nameKana: $('#detail-name-kana').val(),
-      note: $('#detail-note').val(),
-      post: $('#detail-post').val(),
-      telephone: $('#detail-telephone').val(),
-      url: $('#detail-url').val(),
-      userId: $('#detail-user-id').val(),
-      zipCode: $('#detail-zip-code').val(),
-      imageName1: $('#detail-image1 .upload-file-name').val(),
-      imageName2: $('#detail-image2 .upload-file-name').val(),
+      title: $('#detail-title').val(),
+      content: $('#detail-content').val(),
+      imageName: $('#detail-image .upload-file-name').val(),
       registerDate: (new Date()).getString(),
       updateDate: (new Date()).getString()
     }
@@ -284,37 +264,37 @@ class DiaryDetailController extends CommonController {
     
     if (_id != null && _hash != null) {
       if (_diary == null) {
-        // カードがない場合
+        // 日記がない場合
         if (PS.CONTROLLER.USER.MODEL.LOGIN) {
           // ログイン済み
-          // カードの追加
+          // 日記の追加
           this.VIEW.generateDiaryDetailArea(
             this.MODEL.ALERT_SUCCESS,
-            'カードを追加できます。'
+            '日記を追加できます。'
           );
           PS.CONTROLLER.SWITCH.DIARY_DETAIL.VIEW.setView(true);
         } else {
           // ログインしていない
-          // カードの選択
+          // 日記の選択
           this.VIEW.generateDiaryDetailArea(
             this.MODEL.ALERT_WARNING,
-            'カードを選択してください。'
+            '日記を選択してください。'
           );
           PS.CONTROLLER.SWITCH.DIARY_DETAIL.VIEW.setView(false);
         }
       } else {
         if (_copy) {
-          // カードの編集
+          // 日記の編集
           this.VIEW.generateDiaryDetailArea(
             this.MODEL.ALERT_SUCCESS,
-            'コピーしたカードを追加できます。'
+            'コピーした日記を追加できます。'
           );
           PS.CONTROLLER.SWITCH.DIARY_DETAIL.VIEW.setView(true);
         } else {
-          // カードの編集
+          // 日記の編集
           this.VIEW.generateDiaryDetailArea(
             this.MODEL.ALERT_SUCCESS,
-            'カードを編集できます。'
+            '日記を編集できます。'
           );
           PS.CONTROLLER.SWITCH.DIARY_DETAIL.VIEW.setView(true);
         }
@@ -332,12 +312,12 @@ class DiaryDetailController extends CommonController {
   checkValidate(
     _diary = this.MODEL.DIARY
   ) {
-    if (_diary['name'].length < 1) {
+    if (_diary['content'].length < 1) {
       this.MODEL.DIARY = _diary;
       this.MODEL.COPY = true;
       this.VIEW.generateDiaryDetailArea(
         this.MODEL.ALERT_WARNING,
-        '氏名 を入力してください。'
+        '内容 を入力してください。'
       );
       PS.CONTROLLER.SCROLL.DIARY_DETAIL.VIEW.scroll();
       return false;
@@ -352,8 +332,7 @@ class DiaryDetailController extends CommonController {
     _type = null
   ) {
     
-    this.CONTROLLER.uploadImage(1, this.MODEL.UPLOAD_IMAGE_1);
-    this.CONTROLLER.uploadImage(2, this.MODEL.UPLOAD_IMAGE_2);
+    this.CONTROLLER.uploadImage(this.MODEL.UPLOAD_IMAGE);
     
     if (_type == this.MODEL.TYPE_ADD) {
       this.VIEW.generateLoading($(this.MODEL.DIARY_DETAIL_AREA_SELECTOR),'日記追加中',  `日記を追加中`);
@@ -374,25 +353,11 @@ class DiaryDetailController extends CommonController {
         userName: _id,
         password: _hash,
         id: _diary['id'],
-        address1: _diary['address1'],
-        address2: _diary['address2'],
-        cellphone: _diary['cellphone'],
-        companyName: _diary['companyName'],
-        companyNameKana: _diary['companyNameKana'],
-        department: _diary['department'],
-        fax: _diary['fax'],
-        mail: _diary['mail'],
-        name: _diary['name'],
-        nameKana: _diary['nameKana'],
-        note: _diary['note'],
-        post: _diary['post'],
+        title: _diary['title'],
+        content: _diary['content'],
         registerDate: _diary['registerDate'],
-        telephone: _diary['telephone'],
         updateDate: (new Date()).getString(),
-        url: _diary['url'],
-        zipCode: _diary['zipCode'],
-        imageName1: _diary['imageName1'],
-        imageName2: _diary['imageName2']
+        imageName: _diary['imageName']
       },
       success: (_data) => {
         Log.logClassKey(this.NAME, 'ajax saveDiary', 'success');
@@ -428,7 +393,7 @@ class DiaryDetailController extends CommonController {
       const confirmDiaryDelete = new ConfirmController({
         CONFIRM_ID: 'confirm-diary-delete',
         CONFIRM_TITLE: '日記の削除',
-        CONFIRM_MESSAGE: `${_diary.name}(${_diary.companyName}) さんの日記を本当に削除しますか？`,
+        CONFIRM_MESSAGE: `日記「${_diary.title}」を本当に削除しますか？`,
         AUTO_OPEN: true,
         FUNCTION_YES: () => {
           this.saveDiary(
@@ -451,16 +416,12 @@ class DiaryDetailController extends CommonController {
     }
     Log.logClassKey(
       "Diary Detail Controller",
-      `DIARY: ${this.MODEL.DIARY["id"]}: ${_selector}`,
+      `DIARY`,
       "Open image preview"
     );
     
     let imageName = '';
-    if (_selector.slice(-1) == '1') {
-      imageName = this.MODEL.DIARY['imageName1']
-    } else {
-      imageName = this.MODEL.DIARY['imageName2']
-    }
+    imageName = this.MODEL.DIARY['imageName'];
     
     new ConfirmController({
       CONFIRM_ID: 'image-preview',
@@ -481,7 +442,7 @@ class DiaryDetailController extends CommonController {
     }
     Log.logClassKey(
       "Diary Detail Controller",
-      `DIARY: ${this.MODEL.DIARY["id"]}: ${_selector}`,
+      `DIARY`,
       "Open file chooser"
     );
     
@@ -489,23 +450,22 @@ class DiaryDetailController extends CommonController {
   }
   
   uploadImage(
-    _selectorId = null,
     _uploadFlg = null
   ) {
-    if (_selectorId == null || _uploadFlg == null) {
+    if (_uploadFlg == null) {
       Log.logCaution("uploadImage", "set upload flag of first argument");
       return;
     }
     Log.logClassKey(
       "Upload image",
-      `DIARY: ${this.MODEL.DIARY["id"]}: ${_selectorId}`,
+      `DIARY`,
       _uploadFlg
     );
     
     let _file = new FormData();
     _file.append(
       'file',
-      $(`#detail-image${_selectorId} ${this.MODEL.DIARY_DETAIL_UPLOAD_SELECTOR}`).prop('files')[0]
+      $(`#detail-image ${this.MODEL.DIARY_DETAIL_UPLOAD_SELECTOR}`).prop('files')[0]
     );
     
     if (_uploadFlg) {
@@ -540,33 +500,23 @@ class DiaryDetailController extends CommonController {
     }
     Log.logClassKey(
       "Diary Detail Controller",
-      `DIARY: ${this.MODEL.DIARY["id"]}: ${_selector}`,
+      `DIARY`,
       "Choosed file"
     );
     
     
     const filename = $(`#${_selector} ${this.MODEL.DIARY_DETAIL_UPLOAD_SELECTOR}`).val().replace(/\\/g, '/').replace(/.*\//, '');
-    Log.logClassKey('Choosed file', `DIARY: ${this.MODEL.DIARY["id"]}: ${_selector}`, filename);
+    Log.logClassKey('Choosed file', `DIARY`, filename);
     $(`#${_selector} ${this.MODEL.DIARY_DETAIL_FILE_NAME_SELECTOR}`).val(filename);
     
     if (filename.length == 0) {
       Log.logClass('Diary Detail Controller', 'Upload cancel');
-      if (_selector.slice(-1) == '1') {
-        this.MODEL.UPLOAD_IMAGE_1 = false;
-        
-      } else {
-        this.MODEL.UPLOAD_IMAGE_2 = false;
-        
-      }
+      this.MODEL.UPLOAD_IMAGE = false;
+      
     } else {
       Log.logClass('Diary Detail Controller', 'Make a upload flg');
-      if (_selector.slice(-1) == '1') {
-        this.MODEL.UPLOAD_IMAGE_1 = true;
-        
-      } else {
-        this.MODEL.UPLOAD_IMAGE_2 = true;
-        
-      }
+      this.MODEL.UPLOAD_IMAGE = true;
+      
     }
   }
 }

@@ -20,13 +20,8 @@
     border-radius: 0 0 $border-radius-size $border-radius-size;
     z-index: $z-diary-hover;
     
-    label {
-      width: 140px;
-      text-align: right;
-    }
-    
-    label::after {
-      content: ':';
+    div {
+      padding: 8px;
     }
     
     .diary-image-area {
@@ -46,7 +41,7 @@
       text-align: center;
       
       .btn {
-        width: (100% / 4);
+        width: (100% / 3);
       }
     }
   }

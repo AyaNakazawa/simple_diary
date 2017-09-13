@@ -179,10 +179,6 @@
           <span class="fa fa-edit"></span>
           編集
         </button>
-        <button type="button" class="btn btn-default" id="diary-submit-copy" disabled>
-          <span class="fa fa-clone"></span>
-          コピー
-        </button>
         <button type="button" class="btn btn-default" id="diary-submit-delete" disabled>
           <span class="fa fa-trash"></span>
           削除
@@ -200,11 +196,8 @@
           <table class="table table-hover table-condensed">
             <thead>
               <tr>
-                <th>氏名</th>
-                <th>会社</th>
-                <th>所属</th>
-                <th>役職</th>
-                <th>電話</th>
+                <th>タイトル</th>
+                <th>更新日時</th>
               </tr>
             </thead>
             <tbody id="diary-tbody">
@@ -216,84 +209,26 @@
     <!-- diary-tbody -->
     <script type="text/template" id="diary-tbody-template">
       <tr class="diary-<%- diary['id'] %> diary-main" id="diary-<%- diary['id'] %>-main">
-        <td><ruby>
-          <rb><%- diary['name'] %></rb>
-          <rp>（</rp>
-          <rt><%- diary['nameKana'] %></rt>
-          <rp>）</rp>
-        </ruby></td>
-        <td><ruby>
-          <rb><%- diary['companyName'] %></rb>
-          <rp>（</rp>
-          <rt><%- diary['companyNameKana'] %></rt>
-          <rp>）</rp>
-        </ruby></td>
-        <td><%- diary['department'] %></td>
-        <td><%- diary['post'] %></td>
+        <td><%- diary['title'] %></td>
+        <td><%- diary['updateDate'] %></td>
         <td><%- diary['telephone'] %></td>
       </tr>
     </script>
     <!-- diary-hover -->
     <script type="text/template" id="diary-hover-template">
       <div class="diary-<%- diary['id'] %> diary-hover" id="diary-<%- diary['id'] %>-detail" style="display:none;">
-        <% if (diary['imageName1'].length > 0) { %>
+        <% if (diary['imageName'].length > 0) { %>
           <div class="diary-image-area">
-            <img class="diary-image" src="image/<%- diary['imageName1'] %>">
-          </div>
-        <% } %>
-        <% if (diary['imageName2'].length > 0) { %>
-          <div class="diary-image-area">
-            <img class="diary-image" src="image/<%- diary['imageName2'] %>">
+            <img class="diary-image" src="image/<%- diary['imageName'] %>">
           </div>
         <% } %>
         <div>
-          <label>登録日時</label>
-          <span><%- diary['registerDate'] %></span>
-        </div>
-        <div>
-          <label>更新日時</label>
-          <span><%- diary['updateDate'] %></span>
-        </div>
-        <div>
-          <label>郵便番号</label>
-          <span><a href="http://www.post.japanpost.jp/cgi-zip/zipcode.php?zip=<%- diary['zipCode'] %>" target="_blank"><%- diary['zipCode'] %></a></span>
-        </div>
-        <div>
-          <label>住所１</label>
-          <span><a href="https://www.google.co.jp/search?q=<%- diary['address1'] %>" target="_blank"><%- diary['address1'] %></a></span>
-        </div>
-        <div>
-          <label>住所２</label>
-          <span><a href="https://www.google.co.jp/search?q=<%- diary['address2'] %>" target="_blank"><%- diary['address2'] %></a></span>
-        </div>
-        <div>
-          <label>FAX番号</label>
-          <span><a href="https://www.google.co.jp/search?q=<%- diary['fax'] %>" target="_blank"><%- diary['fax'] %></a></span>
-        </div>
-        <div>
-          <label>携帯電話</label>
-          <span><a href="https://www.google.co.jp/search?q=<%- diary['cellphone'] %>" target="_blank"><%- diary['cellphone'] %></a></span>
-        </div>
-        <div>
-          <label>メールアドレス</label>
-          <span><a href="mailto:<%- diary['mail'] %>" target="_blank"><%- diary['mail'] %></a></span>
-        </div>
-        <div>
-          <label>URL</label>
-          <span><a href="<%- diary['url'] %>" target="_blank"><%- diary['url'] %></a></span>
-        </div>
-        <div>
-          <label>備考</label>
-          <span><%- diary['note'] %></span>
+          <%- diary['content'] %>
         </div>
         <div class="btn-group">
           <button type="button" class="btn btn-default diary-<%- diary['id'] %>-edit">
             <span class="fa fa-edit"></span>
             編集
-          </button>
-          <button type="button" class="btn btn-default diary-<%- diary['id'] %>-copy">
-            <span class="fa fa-clone"></span>
-            コピー
           </button>
           <button type="button" class="btn btn-default diary-<%- diary['id'] %>-delete">
             <span class="fa fa-trash"></span>
@@ -310,14 +245,14 @@
     <script type="text/template" id="diary-detail-template">
       <div class="content-item form-inline">
         <div class="content-label">
-          <label for="detail-image1">名刺（表）</label>
+          <label for="detail-image">名刺（表）</label>
         </div>
         <span>:</span>
-        <div class="content-input input-group" id="detail-image1">
+        <div class="content-input input-group" id="detail-image">
           <span class="input-group-btn">
-            <% if (diary['imageName1'].length > 0) { %>
+            <% if (diary['imageName'].length > 0) { %>
               <button type="button" class="btn btn-default detail-image-preview">
-                <img src="image/<%- diary['imageName1'] %>">
+                <img src="image/<%- diary['imageName'] %>">
               </button>
             <% } %>
             <button type="button" class="btn btn-default detail-choose-file">
@@ -326,163 +261,25 @@
             </button>
           </span>
           <input type="file" class="detail-upload">
-          <input type="text" class="form-control upload-file-name" value="<%- diary['imageName1'] %>" placeholder="アップロードする画像を選択してください" readonly>
+          <input type="text" class="form-control upload-file-name" value="<%- diary['imageName'] %>" placeholder="アップロードする画像を選択してください" readonly>
         </div>
       </div>
       <div class="content-item form-inline">
         <div class="content-label">
-          <label for="detail-image2">名刺（裏）</label>
-        </div>
-        <span>:</span>
-        <div class="content-input input-group" id="detail-image2">
-          <span class="input-group-btn">
-            <% if (diary['imageName2'].length > 0) { %>
-              <button type="button" class="btn btn-default detail-image-preview">
-                <img src="image/<%- diary['imageName2'] %>">
-              </button>
-            <% } %>
-            <button type="button" class="btn btn-default detail-choose-file">
-              <span class="fa fa-file"></span>
-              画像選択
-            </button>
-          </span>
-          <input type="file" class="detail-upload">
-          <input type="text" class="form-control upload-file-name" value="<%- diary['imageName2'] %>" placeholder="アップロードする画像を選択してください" readonly>
-        </div>
-      </div>
-      <div class="content-item form-inline">
-        <div class="content-label">
-          <label for="detail-name">氏名</label>
+          <label for="detail-title">タイトル</label>
         </div>
         <span>:</span>
         <div class="content-input">
-          <input type="text" id="detail-name" class="form-control" value="<%- diary['name'] %>">
+          <input type="text" id="detail-title" class="form-control" value="<%- diary['title'] %>">
         </div>
       </div>
       <div class="content-item form-inline">
         <div class="content-label">
-          <label for="detail-name-kana">氏名（カナ）</label>
+          <label for="detail-content">内容</label>
         </div>
         <span>:</span>
         <div class="content-input">
-          <input type="text" id="detail-name-kana" class="form-control" value="<%- diary['nameKana'] %>">
-        </div>
-      </div>
-      <div class="content-item form-inline">
-        <div class="content-label">
-          <label for="detail-company-name">会社名</label>
-        </div>
-        <span>:</span>
-        <div class="content-input">
-          <input type="text" id="detail-company-name" class="form-control" value="<%- diary['companyName'] %>">
-        </div>
-      </div>
-      <div class="content-item form-inline">
-        <div class="content-label">
-          <label for="detail-company-name-kana">会社名（カナ）</label>
-        </div>
-        <span>:</span>
-        <div class="content-input">
-          <input type="text" id="detail-company-name-kana" class="form-control" value="<%- diary['companyNameKana'] %>">
-        </div>
-      </div>
-      <div class="content-item form-inline">
-        <div class="content-label">
-          <label for="detail-department">所属</label>
-        </div>
-        <span>:</span>
-        <div class="content-input">
-          <input type="text" id="detail-department" class="form-control" value="<%- diary['department'] %>">
-        </div>
-      </div>
-      <div class="content-item form-inline">
-        <div class="content-label">
-          <label for="detail-post">役職</label>
-        </div>
-        <span>:</span>
-        <div class="content-input">
-          <input type="text" id="detail-post" class="form-control" value="<%- diary['post'] %>">
-        </div>
-      </div>
-      <div class="content-item form-inline">
-        <div class="content-label">
-          <label for="detail-zip-code">郵便番号</label>
-        </div>
-        <span>:</span>
-        <div class="content-input">
-          <input type="text" id="detail-zip-code" class="form-control" value="<%- diary['zipCode'] %>">
-        </div>
-      </div>
-      <div class="content-item form-inline">
-        <div class="content-label">
-          <label for="detail-address1">住所１</label>
-        </div>
-        <span>:</span>
-        <div class="content-input">
-          <input type="text" id="detail-address1" class="form-control" value="<%- diary['address1'] %>">
-        </div>
-      </div>
-      <div class="content-item form-inline">
-        <div class="content-label">
-          <label for="detail-address2">住所２</label>
-        </div>
-        <span>:</span>
-        <div class="content-input">
-          <input type="text" id="detail-address2" class="form-control" value="<%- diary['address2'] %>">
-        </div>
-      </div>
-      <div class="content-item form-inline">
-        <div class="content-label">
-          <label for="detail-telephone">電話番号</label>
-        </div>
-        <span>:</span>
-        <div class="content-input">
-          <input type="text" id="detail-telephone" class="form-control" value="<%- diary['telephone'] %>">
-        </div>
-      </div>
-      <div class="content-item form-inline">
-        <div class="content-label">
-          <label for="detail-fax">FAX番号</label>
-        </div>
-        <span>:</span>
-        <div class="content-input">
-          <input type="text" id="detail-fax" class="form-control" value="<%- diary['fax'] %>">
-        </div>
-      </div>
-      <div class="content-item form-inline">
-        <div class="content-label">
-          <label for="detail-cellphone">携帯番号</label>
-        </div>
-        <span>:</span>
-        <div class="content-input">
-          <input type="text" id="detail-cellphone" class="form-control" value="<%- diary['cellphone'] %>">
-        </div>
-      </div>
-      <div class="content-item form-inline">
-        <div class="content-label">
-          <label for="detail-mail">メールアドレス</label>
-        </div>
-        <span>:</span>
-        <div class="content-input">
-          <input type="text" id="detail-mail" class="form-control" value="<%- diary['mail'] %>">
-        </div>
-      </div>
-      <div class="content-item form-inline">
-        <div class="content-label">
-          <label for="detail-url">URL</label>
-        </div>
-        <span>:</span>
-        <div class="content-input">
-          <input type="text" id="detail-url" class="form-control" value="<%- diary['url'] %>">
-        </div>
-      </div>
-      <div class="content-item form-inline">
-        <div class="content-label">
-          <label for="detail-note">備考</label>
-        </div>
-        <span>:</span>
-        <div class="content-input">
-          <input type="text" id="detail-note" class="form-control" value="<%- diary['note'] %>">
+          <input type="text" id="detail-content" class="form-control" value="<%- diary['content'] %>">
         </div>
       </div>
       <div class="content-item form-inline">

@@ -20,7 +20,6 @@ class DiaryModel extends CommonModel {
     
     this.DIARY_ADD_SELECTOR = '#diary-submit-add';
     this.DIARY_EDIT_SELECTOR = '#diary-submit-edit';
-    this.DIARY_COPY_SELECTOR = '#diary-submit-copy';
     this.DIARY_DELETE_SELECTOR = '#diary-submit-delete';
     this.DIARY_REFRESH_SELECTOR = '#diary-submit-refresh';
     
@@ -87,23 +86,10 @@ class DiaryView extends CommonView {
         this.MODEL.DIARYS[_id][this.MODEL.ACTIVE] = false;
         
         let diaryData = '';
-        diaryData += ', ' + _val['name'];
-        diaryData += ', ' + _val['nameKana'];
-        diaryData += ', ' + _val['companyName'];
-        diaryData += ', ' + _val['companyNameKana'];
-        diaryData += ', ' + _val['department'];
-        diaryData += ', ' + _val['post'];
-        diaryData += ', ' + _val['telephone'];
+        diaryData += ', ' + _val['title'];
+        diaryData += ', ' + _val['content'];
         diaryData += ', ' + _val['registerDate'];
         diaryData += ', ' + _val['updateDate'];
-        diaryData += ', ' + _val['zipCode'];
-        diaryData += ', ' + _val['address1'];
-        diaryData += ', ' + _val['address2'];
-        diaryData += ', ' + _val['fax'];
-        diaryData += ', ' + _val['cellphone'];
-        diaryData += ', ' + _val['mail'];
-        diaryData += ', ' + _val['url'];
-        diaryData += ', ' + _val['note'];
         
         if (diaryData.indexOf(this.MODEL.SEARCH) == -1) {
           return true;
@@ -121,7 +107,6 @@ class DiaryView extends CommonView {
         this.EVENT.setDiaryHover(_id);
         this.EVENT.setEditClick(_id);
         this.EVENT.setDeleteClick(_id);
-        this.EVENT.setCopyClick(_id);
         this.EVENT.setcloseClick(_id);
       });
       PS.CONTROLLER.SCROLL.DIARY.VIEW.scroll();
@@ -142,7 +127,7 @@ class DiaryView extends CommonView {
       );
       const diaryTop = $(`#diary-${_id}-main`).offset().top + $(`#diary-${_id}-main`).height();
       const diaryHeight = $(`#diary-${_id}-detail`).height();
-      const diaryBottom = diaryTop + diaryHeight;
+      const diaryBottom = diaryTop + diaryHeight + 16;
       const bodyBottom = $('body').height();
       if (diaryBottom > bodyBottom) {
         $('body').height(diaryBottom);
@@ -167,7 +152,6 @@ class DiaryView extends CommonView {
           this.MODEL.SELECT = _id;
           this.setDiaryActive(_id, true);
           $(this.MODEL.DIARY_EDIT_SELECTOR).prop('disabled', false);
-          $(this.MODEL.DIARY_COPY_SELECTOR).prop('disabled', false);
           $(this.MODEL.DIARY_DELETE_SELECTOR).prop('disabled', false);
           // ホバー表示済みかで速度を変更
           if (this.MODEL.DIARYS[_id][this.MODEL.HOVER]) {
@@ -187,7 +171,6 @@ class DiaryView extends CommonView {
           this.MODEL.DIARYS[_id][this.MODEL.HOVER] = false;
           this.setDiaryActive(_id, false);
           $(this.MODEL.DIARY_EDIT_SELECTOR).prop('disabled', true);
-          $(this.MODEL.DIARY_COPY_SELECTOR).prop('disabled', true);
           $(this.MODEL.DIARY_DELETE_SELECTOR).prop('disabled', true);
         }
         $(`#diary-${_id}-detail`).slideUp(_speed);
@@ -236,13 +219,6 @@ class DiaryEvent extends CommonEvent {
       this.MODEL.DIARY_EDIT_SELECTOR,
       () => {
         this.CONTROLLER.editDiary(this.MODEL.SELECT);
-      }
-    );
-    super.setOn(
-      'click',
-      this.MODEL.DIARY_COPY_SELECTOR,
-      () => {
-        this.CONTROLLER.copyDiary(this.MODEL.SELECT);
       }
     );
     super.setOn(
@@ -332,16 +308,6 @@ class DiaryEvent extends CommonEvent {
       $(`.diary-${_id}-delete`).click(
         () => {
           this.CONTROLLER.deleteDiary(_id);
-        }
-      );
-    }
-  }
-  
-  setCopyClick(_id = null) {
-    if (_id != null) {
-      $(`.diary-${_id}-copy`).click(
-        () => {
-          this.CONTROLLER.copyDiary(_id);
         }
       );
     }
@@ -460,18 +426,6 @@ class DiaryController extends CommonController {
       this.MODEL.HASH,
       this.MODEL.DIARYS[_id]
     );
-    this.VIEW.setDetailView(_id, false, this.MODEL.ACTIVE, this.MODEL.VIEW_SPEED_MS);
-  }
-  
-  copyDiary(_id = null) {
-    Log.logClassKey(`${this.NAME}:${_id}`, 'Click', 'Copy');
-    PS.CONTROLLER.DIARY_DETAIL.openDiary(
-      this.MODEL.ID,
-      this.MODEL.HASH,
-      this.MODEL.DIARYS[_id],
-      true
-    );
-    PS.CONTROLLER.SCROLL.DIARY_DETAIL.VIEW.scroll();
     this.VIEW.setDetailView(_id, false, this.MODEL.ACTIVE, this.MODEL.VIEW_SPEED_MS);
   }
   
