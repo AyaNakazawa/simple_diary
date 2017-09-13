@@ -33,7 +33,9 @@
         </div>
         <div class="collapse navbar-collapse" id="navbarTop">
           <ul class="nav navbar-nav">
-            <li id="switch-user"><a>New</a></li>
+            <li id="switch-desc"><a>Desc</a></li>
+            <li id="switch-new"><a>New</a></li>
+            <li id="switch-user"><a>Login</a></li>
           </ul>
         </div>
       </div>
@@ -121,6 +123,52 @@
         <rp>）</rp>
       </ruby>
     </script>
+    <!-- not-login -->
+    <script type="text/template" id="not-login-template">
+      <div class="content-item form-inline" id="user-id-area">
+        <div class="content-label">
+          <label for="user-id">ID</label>
+        </div>
+        <span class="help-icon fa fa-question-circle" id="user-id-help"></span>
+        <div class="content-input">
+          <input type="text" id="user-id" class="form-control" value="<%- id %>" placeholder="Enter your ID">
+        </div>
+      </div>
+      <div class="content-item form-inline" id="user-password-area">
+        <div class="content-label">
+          <label for="user-password">パスワード</label>
+        </div>
+        <span class="help-icon fa fa-question-circle" id="user-password-help"></span>
+        <div class="content-input">
+          <input type="password" id="user-password" class="form-control" value="<%- password %>" placeholder="Enter your password">
+        </div>
+      </div>
+      <!-- <div class="content-item form-inline" id="user-check-area">
+        <span class="checkbox">
+          <label><input type="checkbox" id="user-check">ログインしたままにする</label>
+        </span>
+        <span class="help-icon fa fa-question-circle" id="user-check-help"></span>
+      </div> -->
+      <div class="content-item form-group" id="login-submit-area">
+        <button class="btn btn-default" id="login-submit"><i class="fa fa-sign-in" aria-hidden="true"></i> ログイン</button>
+        <button class="btn btn-default" id="signup-submit"><i class="fa fa-user-plus" aria-hidden="true"></i> サインアップ</button>
+      </div>
+    </script>
+    <!-- logined -->
+    <script type="text/template" id="logined-template">
+      <div class="content-item" id="logined-message">
+        <div class="content-label">
+          <label for="logined-id">ID</label>
+        </div>
+        <span class="help-icon fa fa-question-circle" id="logined-id-help"></span>
+        <div class="content-input">
+          <input type="text" id="logined-id" class="form-control" value="<%- id %>" disabled>
+        </div>
+      </div>
+      <div class="content-item form-group" id="logined-logout-area">
+        <button class="btn btn-default" id="logout-submit"><i class="fa fa-sign-out" aria-hidden="true"></i> ログアウト</button>
+      </div>
+    </script>
     <!-- script -->
     <!-- error -->
     <script src="js/mylib/error.js"></script>
@@ -144,6 +192,7 @@
     <!-- myapp -->
     <script src="js/myapp/project.js"></script>
     <script src="js/myapp/sd-process.js"></script>
+    <script src="js/myapp/user.js"></script>
     <!-- app -->
     <script src="js/global.js"></script>
     <script src="js/myapp.js"></script>
