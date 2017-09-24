@@ -115,6 +115,11 @@ main {
           margin-bottom: 8px; }
       main .content .content-item .checkbox {
         display: inline-table; }
+      main .content .content-item .btn {
+        padding-top: 4px; }
+      main .content .content-item .form-control {
+        margin-top: 4px;
+        padding-top: 4px; }
     main .content .content-header {
       width: 100%;
       margin-bottom: 8px;
