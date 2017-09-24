@@ -107,7 +107,7 @@ class DiaryView extends CommonView {
         this.EVENT.setDiaryHover(_id);
         this.EVENT.setEditClick(_id);
         this.EVENT.setDeleteClick(_id);
-        this.EVENT.setcloseClick(_id);
+        this.EVENT.setCloseClick(_id);
       });
       PS.CONTROLLER.SCROLL.DIARY.VIEW.scroll();
       
@@ -313,7 +313,7 @@ class DiaryEvent extends CommonEvent {
     }
   }
   
-  setcloseClick(_id = null) {
+  setCloseClick(_id = null) {
     if (_id != null) {
       $(`.diary-${_id}-close`).click(
         () => {
