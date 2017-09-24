@@ -247,7 +247,6 @@
         <div class="content-label">
           <label for="detail-title">タイトル</label>
         </div>
-        <span>:</span>
         <div class="content-input">
           <input type="text" id="detail-title" class="form-control" value="<%- diary['title'] %>">
         </div>
@@ -256,7 +255,6 @@
         <div class="content-label">
           <label for="detail-content">内容</label>
         </div>
-        <span>:</span>
         <div class="content-input">
           <textarea id="detail-content" class="form-control" rows="3"><%- diary['content'] %></textarea>
         </div>
@@ -265,7 +263,6 @@
         <div class="content-label">
           <label for="detail-image">画像</label>
         </div>
-        <span>:</span>
         <div class="content-input input-group" id="detail-image">
           <span class="input-group-btn">
             <% if (diary['imageName'].length > 0) { %>
@@ -286,7 +283,6 @@
         <div class="content-label">
           <label for="detail-register-date">登録日時</label>
         </div>
-        <span>:</span>
         <div class="content-input">
           <input type="text" id="detail-register-date" class="form-control" value="<%- diary['registerDate'] %>" disabled>
         </div>
@@ -295,7 +291,6 @@
         <div class="content-label">
           <label for="detail-update-date">更新日時</label>
         </div>
-        <span>:</span>
         <div class="content-input">
           <input type="text" id="detail-update-date" class="form-control" value="<%- diary['updateDate'] %>" disabled>
         </div>
