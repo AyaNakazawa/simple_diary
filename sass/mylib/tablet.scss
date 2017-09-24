@@ -3,7 +3,7 @@
 // Tablet
 
 @include media($size-tablet) {
-  
+
   // content
   
   .content {
@@ -19,6 +19,10 @@
         line-height: 34px;
         text-align: right;
         position: relative;
+        
+        label {
+          margin-bottom: 0;
+        }
       }
       
       .content-input {
