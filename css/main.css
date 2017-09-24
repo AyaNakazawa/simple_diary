@@ -257,7 +257,8 @@ body:before {
       width: 240px;
       height: auto;
       padding: 2px;
-      border: 1px solid #ddd; }
+      border: 1px solid #ddd;
+      cursor: pointer; }
   #diary-area .diary-hover .btn-group {
     width: 100%;
     text-align: center; }
