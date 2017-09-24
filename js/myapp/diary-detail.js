@@ -64,23 +64,13 @@ class DiaryDetailView extends CommonView {
     $(this.MODEL.DIARY_DETAIL_AREA_SELECTOR).empty();
     
     let body = '';
-    let ruby = '';
     if (this.MODEL.DIARY == null) {
       body = '新規作成';
     } else {
-      body = this.MODEL.DIARY['name'];
-      ruby = this.MODEL.DIARY['nameKana'];
+      body = this.MODEL.DIARY['title'];
     }
     $(this.MODEL.DIARY_DETAIL_AREA_SELECTOR).append(
-      Content.getHeader(
-        this.getTemplate(
-          this.MODEL.TEMPLATE_RUBY,
-          {
-            body: body,
-            ruby: ruby
-          }
-        )
-      )
+      Content.getHeader(body)
     );
     super.generateAlert(
       this.MODEL.DIARY_DETAIL_AREA_SELECTOR,
