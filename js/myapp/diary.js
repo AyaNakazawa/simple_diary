@@ -322,6 +322,16 @@ class DiaryEvent extends CommonEvent {
       );
     }
   }
+  
+  setImageClick(_id = null) {
+    if (_id != null) {
+      $(`.diary-${_id}-image`).click(
+        () => {
+          this.CONTROLLER.openImagePreview(_id);
+        }
+      );
+    }
+  }
 }
 
 // ----------------------------------------------------------------
