@@ -115,9 +115,7 @@ main {
           margin-bottom: 8px; }
       main .content .content-item .checkbox {
         display: inline-table; }
-      main .content .content-item .btn {
-        padding-top: 4px; }
-      main .content .content-item .form-control {
+      main .content .content-item .item-list > * {
         margin-top: 4px;
         padding-top: 4px; }
     main .content .content-header {
@@ -237,6 +235,9 @@ body:before {
     content: '- Large desktop -'; } }
 #diary-area #diary-search {
   display: inline-table; }
+  #diary-area #diary-search > * {
+    margin-top: 4px;
+    padding-top: 4px; }
 #diary-area .diary-main {
   cursor: pointer; }
 #diary-area .diary-hover {
