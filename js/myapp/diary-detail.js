@@ -420,8 +420,7 @@ class DiaryDetailController extends CommonController {
       "Open image preview"
     );
     
-    let imageName = '';
-    imageName = this.MODEL.DIARY['imageName'];
+    const imageName = this.MODEL.DIARY['imageName'];
     
     new ConfirmController({
       CONFIRM_ID: 'image-preview',
