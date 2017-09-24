@@ -170,7 +170,7 @@
     </script>
     <!-- diary-table -->
     <script type="text/template" id="diary-table-template">
-      <div class="content-item">
+      <div class="content-item item-list">
         <button type="button" class="btn btn-default" id="diary-submit-add">
           <span class="fa fa-plus-circle"></span>
           新規作成
@@ -219,7 +219,7 @@
       <div class="diary-<%- diary['id'] %> diary-hover" id="diary-<%- diary['id'] %>-detail" style="display:none;">
         <% if (diary['imageName'].length > 0) { %>
           <div class="diary-image-area">
-            <img class="diary-image" src="image/<%- diary['imageName'] %>">
+            <img class="diary-image diary-<%- diary['id'] %>-image" src="image/<%- diary['imageName'] %>">
           </div>
         <% } %>
         <div>
