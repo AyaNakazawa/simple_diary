@@ -3,7 +3,9 @@
 // Tablet
 
 @include media($size-tablet) {
-
+  
+  main {
+  
   // content
   
   .content {
@@ -50,5 +52,6 @@
         width: 1px;
       }
     }
+  }
   }
 }
