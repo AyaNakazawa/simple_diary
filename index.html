@@ -245,6 +245,24 @@
     <script type="text/template" id="diary-detail-template">
       <div class="content-item form-inline">
         <div class="content-label">
+          <label for="detail-title">タイトル</label>
+        </div>
+        <span>:</span>
+        <div class="content-input">
+          <input type="text" id="detail-title" class="form-control" value="<%- diary['title'] %>">
+        </div>
+      </div>
+      <div class="content-item form-inline">
+        <div class="content-label">
+          <label for="detail-content">内容</label>
+        </div>
+        <span>:</span>
+        <div class="content-input">
+          <input type="text" id="detail-content" class="form-control" value="<%- diary['content'] %>">
+        </div>
+      </div>
+      <div class="content-item form-inline">
+        <div class="content-label">
           <label for="detail-image">画像</label>
         </div>
         <span>:</span>
@@ -262,24 +280,6 @@
           </span>
           <input type="file" class="detail-upload">
           <input type="text" class="form-control upload-file-name" value="<%- diary['imageName'] %>" placeholder="アップロードする画像を選択してください" readonly>
-        </div>
-      </div>
-      <div class="content-item form-inline">
-        <div class="content-label">
-          <label for="detail-title">タイトル</label>
-        </div>
-        <span>:</span>
-        <div class="content-input">
-          <input type="text" id="detail-title" class="form-control" value="<%- diary['title'] %>">
-        </div>
-      </div>
-      <div class="content-item form-inline">
-        <div class="content-label">
-          <label for="detail-content">内容</label>
-        </div>
-        <span>:</span>
-        <div class="content-input">
-          <input type="text" id="detail-content" class="form-control" value="<%- diary['content'] %>">
         </div>
       </div>
       <div class="content-item form-inline">
