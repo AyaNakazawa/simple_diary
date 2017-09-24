@@ -5,6 +5,10 @@
 #diary-area {
   #diary-search {
     display: inline-table;
+    & > * {
+      margin-top: 4px;
+      padding-top: 4px;
+    }
   }
   
   .diary-main {
