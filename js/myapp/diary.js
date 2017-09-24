@@ -108,6 +108,7 @@ class DiaryView extends CommonView {
         this.EVENT.setEditClick(_id);
         this.EVENT.setDeleteClick(_id);
         this.EVENT.setCloseClick(_id);
+        this.EVENT.setImageClick(_id, _val['imageName']);
       });
       PS.CONTROLLER.SCROLL.DIARY.VIEW.scroll();
       
@@ -323,11 +324,11 @@ class DiaryEvent extends CommonEvent {
     }
   }
   
-  setImageClick(_id = null) {
-    if (_id != null) {
+  setImageClick(_id = null, _imageName = null) {
+    if (_id != null || _imageName != null) {
       $(`.diary-${_id}-image`).click(
         () => {
-          this.CONTROLLER.openImagePreview(_id);
+          this.CONTROLLER.openImagePreview(_imageName);
         }
       );
     }
@@ -452,4 +453,28 @@ class DiaryController extends CommonController {
   clearSearchString() {
     this.MODEL.SEARCH = '';
   }
+  
+  openImagePreview(
+    _imageName = null
+  ) {
+    if (_imageName == null) {
+      Log.logCaution("openImagePreview", "set image name of first argument");
+      return;
+    }
+    Log.logClassKey(
+      "Diary Controller",
+      `DIARY`,
+      "Open image preview"
+    );
+    
+    new ConfirmController({
+      CONFIRM_ID: 'image-preview',
+      CONFIRM_TITLE: 'プレビュー',
+      IMAGE_URL: `image/${_imageName}`,
+      AUTO_OPEN: true,
+      TYPE: ConfirmModel.TYPE_1BUTTON,
+      YES: '閉じる'
+    });
+  }
+  
 }
