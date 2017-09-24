@@ -111,7 +111,8 @@ main {
       main .content .content-item .content-label {
         display: inline-table; }
         main .content .content-item .content-label label {
-          margin: 0; }
+          margin: 0;
+          margin-bottom: 8px; }
       main .content .content-item .checkbox {
         display: inline-table; }
     main .content .content-header {
@@ -174,24 +175,25 @@ main {
   75% {
     content: '...'; } }
 @media (min-width: 768px) {
-  .content .form-group {
+  main .content .form-group {
     width: auto;
     margin-left: 160px; }
-  .content .content-item .content-label {
+  main .content .content-item .content-label {
     width: 120px;
     line-height: 34px;
     text-align: right;
     position: relative; }
-  .content .content-item .content-input {
+    main .content .content-item .content-label label {
+      margin-bottom: 0; }
+  main .content .content-item .content-input {
     width: 100%;
     margin-left: -160px;
     padding-left: 160px;
     position: relative;
     float: right; }
-    .content .content-item .content-input input {
+    main .content .content-item .content-input input {
       width: 100%; }
-
-  #diary-detail-area .content-input .input-group-btn {
+  main #diary-detail-area .content-input .input-group-btn {
     width: 1px; } }
 @media (min-width: 1200px) {
   header {
@@ -209,7 +211,7 @@ main {
     margin-left: auto;
     margin-right: auto; }
 
-  .content {
+  main .content {
     width: 1064px; } }
 body:before {
   content: '- Mobile -';
@@ -265,5 +267,7 @@ body:before {
     padding: 0;
     height: 28px;
     width: auto; }
+#diary-detail-area #detail-content {
+  width: 100%; }
 
 /*# sourceMappingURL=main.css.map */
