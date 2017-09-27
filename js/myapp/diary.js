@@ -65,7 +65,7 @@ class DiaryView extends CommonView {
     
     let template = null;
     if (this.MODEL.DOWNLOAD) {
-      Log.logClass(this.NAME, 'Diarys is found');
+      Log.logClass(this.NAME, 'Diaries is found');
       
       let dataExists = null;
       if (this.MODEL.DIARYS == null) {
@@ -113,7 +113,7 @@ class DiaryView extends CommonView {
       PS.CONTROLLER.SCROLL.DIARY.VIEW.scroll();
       
     } else {
-      Log.logClass(this.NAME, 'Diarys is not found');
+      Log.logClass(this.NAME, 'Diaries is not found');
     }
   }
   
