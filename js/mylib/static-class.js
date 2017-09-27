@@ -276,4 +276,16 @@ class Validate {
     }
     return false;
   }
+  
+  static checkMinLength(
+    _string = null,
+    _digit = null
+  ) {
+    if (_string != null && _digit != null) {
+      if (_string.length >= _digit) {
+        return true;
+      }
+    }
+    return false;
+  }
 }
