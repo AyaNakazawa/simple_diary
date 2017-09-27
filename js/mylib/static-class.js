@@ -263,3 +263,6 @@ class SHA256 {
     return null;
   }
 }
+
+class Validate {
+}
