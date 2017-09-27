@@ -250,6 +250,8 @@ body:before {
   z-index: 20; }
   #diary-area .diary-hover div {
     padding: 8px; }
+  #diary-area .diary-hover pre {
+    margin: 0; }
   #diary-area .diary-hover .diary-image-area {
     padding: 8px;
     display: inline-block; }
