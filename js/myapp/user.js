@@ -213,6 +213,10 @@ class UserController extends CommonController {
     return true;
   }
   
+  checkIdValidate() {
+    
+  }
+  
   submitLogin() {
     Log.logClassKey(this.NAME, 'Submit', 'Login');
     
