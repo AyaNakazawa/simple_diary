@@ -106,6 +106,14 @@ class UserEvent extends CommonEvent {
   }
   
   setEvent() {
+    this.setClickLogin();
+    this.setClickLogout();
+    this.setClickSignup();
+    this.setPressEnterID();
+    this.setPressEnterPassword();
+  }
+  
+  setClickLogin() {
     super.setOn(
       this.CONTROLLER.MODEL.LOGIN_TRIGGER,
       this.CONTROLLER.MODEL.LOGIN_SELECTOR,
@@ -113,6 +121,9 @@ class UserEvent extends CommonEvent {
         this.CONTROLLER.submitLogin();
       }
     );
+  }
+  
+  setClickLogout() {
     super.setOn(
       this.CONTROLLER.MODEL.LOGOUT_TRIGGER,
       this.CONTROLLER.MODEL.LOGOUT_SELECTOR,
@@ -128,6 +139,9 @@ class UserEvent extends CommonEvent {
         });
       }
     );
+  }
+  
+  setClickSignup() {
     super.setOn(
       this.CONTROLLER.MODEL.SIGNUP_TRIGGER,
       this.CONTROLLER.MODEL.SIGNUP_SELECTOR,
@@ -143,6 +157,9 @@ class UserEvent extends CommonEvent {
         });
       }
     );
+  }
+  
+  setPressEnterID() {
     super.setOn(
       'keypress',
       this.CONTROLLER.MODEL.USER_ID_SELECTOR,
@@ -152,6 +169,9 @@ class UserEvent extends CommonEvent {
         }
       }
     );
+  }
+  
+  setPressEnterPassword() {
     super.setOn(
       'keypress',
       this.CONTROLLER.MODEL.USER_PASSWORD_SELECTOR,
