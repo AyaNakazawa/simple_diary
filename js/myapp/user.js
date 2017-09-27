@@ -113,6 +113,7 @@ class UserEvent extends CommonEvent {
     this.setPressEnterPassword();
     this.setPressEnterOldPassword();
     this.setPressEnterNewPassword();
+    this.setClickChangePassword();
   }
   
   setClickLogin() {
@@ -205,6 +206,24 @@ class UserEvent extends CommonEvent {
         if (e.keyCode == 13) {
           $(this.CONTROLLER.MODEL.CHANGE_PASSWORD_SELECTOR).trigger(this.CONTROLLER.MODEL.CHANGE_PASSWORD_TRIGGER);
         }
+      }
+    );
+  }
+  
+  setClickChangePassword() {
+    super.setOn(
+      this.CONTROLLER.MODEL.CHANGE_PASSWORD_TRIGGER,
+      this.CONTROLLER.MODEL.CHANGE_PASSWORD_SELECTOR,
+      () => {
+        new ConfirmController({
+          CONFIRM_ID: 'confirm-submit-change-password',
+          CONFIRM_TITLE: 'パスワードの変更',
+          CONFIRM_MESSAGE: `パスワードを変更してもよろしいですか？`,
+          AUTO_OPEN: true,
+          FUNCTION_YES: () => {
+            this.CONTROLLER.submitChangePassword();
+          }
+        });
       }
     );
   }
