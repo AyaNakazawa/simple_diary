@@ -63,7 +63,7 @@ class UserView extends CommonView {
       // ログインしているとき
       Log.logClass(this.NAME, 'Logined');
       template = this.MODEL.TEMPLATE_LOGINED_SELECTOR;
-      $(`${this.MODEL.SWITCH_LABEL_SELECTOR} a`).text('Logout');
+      $(`${this.MODEL.SWITCH_LABEL_SELECTOR} a`).text('Option');
       
       PS.CONTROLLER.SWITCH.USER.VIEW.setView(false);
       PS.CONTROLLER.SWITCH.DIARY.VIEW.setView(true);
