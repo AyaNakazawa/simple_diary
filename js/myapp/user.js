@@ -183,42 +183,89 @@ class UserController extends CommonController {
   }
     
   checkValidate() {
+    if (this.checkIdValidate() && this.checkPasswordValidate()) {
+      return true;
+    }
+    return false;
+  }
+  
+  checkIdValidate() {
     this.MODEL.ID = $(this.MODEL.USER_ID_SELECTOR).val();
-    this.MODEL.PASSWORD = $(this.MODEL.USER_PASSWORD_SELECTOR).val();
-    if (this.MODEL.ID.length == 0) {
+    if (
+      !Validate.checkMinLength(
+        this.MODEL.ID,
+        0
+      )
+    ) {
       this.VIEW.generateUserArea(
         this.MODEL.ALERT_WARNING,
         'ID を入力してください。'
       );
       return false;
-    } else if (this.MODEL.ID.length < this.MODEL.ID_LENGTH_MIN) {
+    } else if (
+      !Validate.checkMinLength(
+        this.MODEL.ID,
+        this.MODEL.ID_LENGTH_MIN
+      )
+    ) {
       this.VIEW.generateUserArea(
         this.MODEL.ALERT_WARNING,
         `ID は ${this.MODEL.ID_LENGTH_MIN} 文字以上で入力してください。`
       );
       return false;
-    } else if (this.MODEL.ID.length > this.MODEL.ID_LENGTH_MAX) {
+    } else if (
+      !Validate.checkMaxLength(
+        this.MODEL.ID,
+        this.MODEL.ID_LENGTH_MAX
+      )
+    ) {
       this.VIEW.generateUserArea(
         this.MODEL.ALERT_WARNING,
         `ID は ${this.MODEL.ID_LENGTH_MAX} 文字以下で入力してください。`
-      );
-      return false;
-    } else if (this.MODEL.PASSWORD.length == 0) {
-      this.VIEW.generateUserArea(
-        this.MODEL.ALERT_WARNING,
-        'パスワード を入力してください。'
       );
       return false;
     }
     return true;
   }
   
-  checkIdValidate() {
-    
-  }
-  
   checkPasswordValidate() {
-    
+    this.MODEL.PASSWORD = $(this.MODEL.USER_PASSWORD_SELECTOR).val();
+    if (
+      !Validate.checkMinLength(
+        this.MODEL.PASSWORD,
+        0
+      )
+    ) {
+      this.VIEW.generateUserArea(
+        this.MODEL.ALERT_WARNING,
+        'パスワード を入力してください。'
+      );
+      return false;
+    } else if (
+      !Validate.checkMinLength(
+        this.MODEL.PASSWORD,
+        this.MODEL.PASSWORD_LENGTH_MIN
+      )
+    ) {
+      this.VIEW.generateUserArea(
+        this.MODEL.ALERT_WARNING,
+        `パスワード は ${this.MODEL.PASSWORD_LENGTH_MIN} 文字以上で入力してください。`
+      );
+      return false;
+    } else if (!Validate.checkIncludeNumber(this.MODEL.PASSWORD)) {
+      this.VIEW.generateUserArea(
+        this.MODEL.ALERT_WARNING,
+        `パスワード は数字を含めてください。`
+      );
+      return false;
+    } else if (!Validate.checkIncludeAlphabet(this.MODEL.PASSWORD)) {
+      this.VIEW.generateUserArea(
+        this.MODEL.ALERT_WARNING,
+        `パスワード はアルファベットを含めてください。`
+      );
+      return false;
+    }
+    return true;
   }
   
   submitLogin() {
