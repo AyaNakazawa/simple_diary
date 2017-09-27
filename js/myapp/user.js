@@ -34,7 +34,7 @@ class UserModel extends CommonModel {
     this.ID_LENGTH_MAX = 31;
     this.ID_LENGTH_MIN = 3;
     
-    this.PAASSWORD_LENGTH_MIN = 8;
+    this.PASSWORD_LENGTH_MIN = 8;
     
     this.SWITCH_LABEL_SELECTOR = '#switch-user';
   }
