@@ -17,7 +17,11 @@ class UserModel extends CommonModel {
       LOGOUT_SELECTOR: '#logout-submit',
       LOGOUT_TRIGGER: 'click',
       SIGNUP_SELECTOR: '#signup-submit',
-      SIGNUP_TRIGGER: 'click'
+      SIGNUP_TRIGGER: 'click',
+      USER_PASSWORD_OLD_SELECTOR: '#option-old-password',
+      USER_PASSWORD_NEW_SELECTOR: '#option-new-password',
+      CHANGE_PASSWORD_SELECTOR: '#change-password-submit',
+      CHANGE_PASSWORD_TRIGGER: 'click'
     }
   ) {
     super(_initSetting);
