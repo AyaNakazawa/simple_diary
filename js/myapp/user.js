@@ -183,17 +183,20 @@ class UserController extends CommonController {
   }
     
   checkValidate() {
-    if (this.checkIdValidate() && this.checkPasswordValidate()) {
+    if (this.checkIdValidate($(this.MODEL.USER_ID_SELECTOR).val()) && this.checkPasswordValidate($(this.MODEL.USER_PASSWORD_SELECTOR).val())) {
       return true;
     }
     return false;
   }
   
-  checkIdValidate() {
-    this.MODEL.ID = $(this.MODEL.USER_ID_SELECTOR).val();
+  checkIdValidate(_id = null) {
+    if (_id == null) {
+      return false;
+    }
+    this.MODEL.ID = _id;
     if (
       !Validate.checkMinLength(
-        this.MODEL.ID,
+        _id,
         0
       )
     ) {
@@ -204,7 +207,7 @@ class UserController extends CommonController {
       return false;
     } else if (
       !Validate.checkMinLength(
-        this.MODEL.ID,
+        _id,
         this.MODEL.ID_LENGTH_MIN
       )
     ) {
@@ -215,7 +218,7 @@ class UserController extends CommonController {
       return false;
     } else if (
       !Validate.checkMaxLength(
-        this.MODEL.ID,
+        _id,
         this.MODEL.ID_LENGTH_MAX
       )
     ) {
@@ -228,11 +231,14 @@ class UserController extends CommonController {
     return true;
   }
   
-  checkPasswordValidate() {
-    this.MODEL.PASSWORD = $(this.MODEL.USER_PASSWORD_SELECTOR).val();
+  checkPasswordValidate(_password = null) {
+    if (_password == null) {
+      return false;
+    }
+    this.MODEL.PASSWORD = _password;
     if (
       !Validate.checkMinLength(
-        this.MODEL.PASSWORD,
+        _password,
         0
       )
     ) {
@@ -243,7 +249,7 @@ class UserController extends CommonController {
       return false;
     } else if (
       !Validate.checkMinLength(
-        this.MODEL.PASSWORD,
+        _password,
         this.MODEL.PASSWORD_LENGTH_MIN
       )
     ) {
@@ -252,13 +258,13 @@ class UserController extends CommonController {
         `パスワード は ${this.MODEL.PASSWORD_LENGTH_MIN} 文字以上で入力してください。`
       );
       return false;
-    } else if (!Validate.checkIncludeNumber(this.MODEL.PASSWORD)) {
+    } else if (!Validate.checkIncludeNumber(_password)) {
       this.VIEW.generateUserArea(
         this.MODEL.ALERT_WARNING,
         `パスワード は数字を含めてください。`
       );
       return false;
-    } else if (!Validate.checkIncludeAlphabet(this.MODEL.PASSWORD)) {
+    } else if (!Validate.checkIncludeAlphabet(_password)) {
       this.VIEW.generateUserArea(
         this.MODEL.ALERT_WARNING,
         `パスワード はアルファベットを含めてください。`
