@@ -465,5 +465,16 @@ class UserController extends CommonController {
     const newPasswordHash = SHA256.getHash(newPassword);
     
     this.MODEL.HASH = newPasswordHash;
+    
+    this.VIEW.generateLoading($(this.MODEL.USER_AREA_SELECTOR),'更新中',  `ユーザー ${this.MODEL.ID} のパスワードを更新中`);
+    
+    $.ajax({
+      url: 'ruby/changePassword.rb',
+      data: {
+        name: this.MODEL.ID,
+        oldPassword: oldPasswordHash,
+        newPassword: newPasswordHash
+      }
+    });
   }
 }
