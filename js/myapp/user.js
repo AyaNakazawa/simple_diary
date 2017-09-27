@@ -493,6 +493,15 @@ class UserController extends CommonController {
             true
           );
         }
+      },
+      error: () => {
+        Log.logClassKey(this.NAME, 'ajax changePassword', 'failed');
+        this.VIEW.generateUserArea(
+          this.MODEL.ALERT_DANGER,
+          'ajax通信に失敗しました。',
+          false,
+          true
+        );
       }
     });
   }
