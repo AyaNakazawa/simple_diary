@@ -484,6 +484,14 @@ class UserController extends CommonController {
             true,
             true
           );
+        } else {
+          this.MODEL.HASH = oldPasswordHash;
+          this.VIEW.generateUserArea(
+            this.MODEL.ALERT_WARNING,
+            `ユーザー ${this.MODEL.ID} の現在のパスワードが間違っています。`,
+            true,
+            true
+          );
         }
       }
     });
