@@ -111,6 +111,8 @@ class UserEvent extends CommonEvent {
     this.setClickSignup();
     this.setPressEnterID();
     this.setPressEnterPassword();
+    this.setPressEnterOldPassword();
+    this.setPressEnterNewPassword();
   }
   
   setClickLogin() {
@@ -178,6 +180,30 @@ class UserEvent extends CommonEvent {
       (e) => {
         if (e.keyCode == 13) {
           $(this.CONTROLLER.MODEL.LOGIN_SELECTOR).trigger(this.CONTROLLER.MODEL.LOGIN_TRIGGER);
+        }
+      }
+    );
+  }
+  
+  setPressEnterOldPassword() {
+    super.setOn(
+      'keypress',
+      this.CONTROLLER.MODEL.USER_PASSWORD_OLD_SELECTOR,
+      (e) => {
+        if (e.keyCode == 13) {
+          $(this.CONTROLLER.MODEL.USER_PASSWORD_NEW_SELECTOR).focus();
+        }
+      }
+    );
+  }
+  
+  setPressEnterNewPassword() {
+    super.setOn(
+      'keypress',
+      this.CONTROLLER.MODEL.USER_PASSWORD_NEW_SELECTOR,
+      (e) => {
+        if (e.keyCode == 13) {
+          $(this.CONTROLLER.MODEL.CHANGE_PASSWORD_SELECTOR).trigger(this.CONTROLLER.MODEL.CHANGE_PASSWORD_TRIGGER);
         }
       }
     );
