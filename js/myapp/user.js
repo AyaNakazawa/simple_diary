@@ -183,7 +183,9 @@ class UserController extends CommonController {
   }
     
   checkValidate() {
-    if (this.checkIdValidate($(this.MODEL.USER_ID_SELECTOR).val()) && this.checkPasswordValidate($(this.MODEL.USER_PASSWORD_SELECTOR).val())) {
+    this.MODEL.ID = $(this.MODEL.USER_ID_SELECTOR).val();
+    this.MODEL.PASSWORD = $(this.MODEL.USER_PASSWORD_SELECTOR).val();
+    if (this.checkIdValidate(this.MODEL.ID) && this.checkPasswordValidate(this.MODEL.PASSWORD)) {
       return true;
     }
     return false;
@@ -235,7 +237,6 @@ class UserController extends CommonController {
     if (_password == null) {
       return false;
     }
-    this.MODEL.PASSWORD = _password;
     if (
       !Validate.checkMinLength(
         _password,
