@@ -474,6 +474,17 @@ class UserController extends CommonController {
         name: this.MODEL.ID,
         oldPassword: oldPasswordHash,
         newPassword: newPasswordHash
+      },
+      success: (_data) => {
+        Log.logClassKey(this.NAME, 'ajax changePassword', 'success');
+        if (_data.length > 0) {
+          this.VIEW.generateUserArea(
+            this.MODEL.ALERT_SUCCESS,
+            `ユーザー ${this.MODEL.ID} のパスワードを変更しました。`,
+            true,
+            true
+          );
+        }
       }
     });
   }
