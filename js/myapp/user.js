@@ -217,7 +217,6 @@ class UserController extends CommonController {
     
   }
   
-  
   checkPasswordValidate() {
     
   }
