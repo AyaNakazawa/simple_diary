@@ -450,5 +450,15 @@ class UserController extends CommonController {
   
   submitChangePassword() {
     Log.logClassKey(this.NAME, 'Submit', 'Change password');
+    
+    const oldPassword = $(this.MODEL.USER_PASSWORD_OLD_SELECTOR).val();
+    const newPassword = $(this.MODEL.USER_PASSWORD_NEW_SELECTOR).val();
+    
+    if (this.checkPasswordValidate(oldPassword) == false) {
+      return;
+    }
+    if (this.checkPasswordValidate(newPassword) == false) {
+      return;
+    }
   }
 }
