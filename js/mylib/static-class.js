@@ -299,4 +299,15 @@ class Validate {
     }
     return false;
   }
+  
+  static checkIncludeAlphabet(
+    _string = null
+  ) {
+    if (_string != null) {
+      if (_string.match(/[a-zA-Z]/)) {
+        return true;
+      }
+    }
+    return false;
+  }
 }
