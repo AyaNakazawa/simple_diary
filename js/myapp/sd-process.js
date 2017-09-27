@@ -51,7 +51,17 @@ class SDProcess extends CommonProcess {
     new PopoverController({
       NAME: 'Password Popover',
       SELECTOR: '#user-password-help',
-      HELP: 'パスワード を入力してください。'
+      HELP: 'パスワードは、アルファベットと数字の両方を含め、8文字以上で入力してください。'
+    });
+    new PopoverController({
+      NAME: 'Password Popover old',
+      SELECTOR: '#option-old-password-help',
+      HELP: '現在のパスワードを入力してください。'
+    });
+    new PopoverController({
+      NAME: 'Password Popover new',
+      SELECTOR: '#option-new-password-help',
+      HELP: '新しいパスワードを、アルファベットと数字の両方を含め、8文字以上で入力してください。'
     });
     new PopoverController({
       NAME: 'Login Check Popover',
