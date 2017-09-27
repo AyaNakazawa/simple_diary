@@ -217,6 +217,11 @@ class UserController extends CommonController {
     
   }
   
+  
+  checkPasswordValidate() {
+    
+  }
+  
   submitLogin() {
     Log.logClassKey(this.NAME, 'Submit', 'Login');
     
