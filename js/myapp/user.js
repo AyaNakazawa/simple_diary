@@ -447,4 +447,8 @@ class UserController extends CommonController {
       }
     });
   }
+  
+  submitChangePassword() {
+    Log.logClassKey(this.NAME, 'Submit', 'Change password');
+  }
 }
