@@ -460,5 +460,10 @@ class UserController extends CommonController {
     if (this.checkPasswordValidate(newPassword) == false) {
       return;
     }
+    
+    const oldPasswordHash = SHA256.getHash(oldPassword);
+    const newPasswordHash = SHA256.getHash(newPassword);
+    
+    this.MODEL.HASH = newPasswordHash;
   }
 }
