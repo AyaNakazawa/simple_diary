@@ -55,7 +55,8 @@ class UserView extends CommonView {
   generateUserArea(
     _alertType = this.MODEL.ALERT_SUCCESS,
     _message = null,
-    _close = true
+    _close = true,
+    _view = false
   ) {
     $(this.MODEL.USER_AREA_SELECTOR).empty();
     this.generateAlert(this.MODEL.USER_AREA_SELECTOR, _alertType, _message, _close);
@@ -67,7 +68,7 @@ class UserView extends CommonView {
       template = this.MODEL.TEMPLATE_LOGINED_SELECTOR;
       $(`${this.MODEL.SWITCH_LABEL_SELECTOR} a`).text('Option');
       
-      PS.CONTROLLER.SWITCH.USER.VIEW.setView(false);
+      PS.CONTROLLER.SWITCH.USER.VIEW.setView(_view);
       PS.CONTROLLER.SWITCH.DIARY.VIEW.setView(true);
       
     } else {
