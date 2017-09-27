@@ -288,4 +288,15 @@ class Validate {
     }
     return false;
   }
+  
+  static checkIncludeNumber(
+    _string = null
+  ) {
+    if (_string != null) {
+      if (_string.match(/[0-9]/)) {
+        return true;
+      }
+    }
+    return false;
+  }
 }
