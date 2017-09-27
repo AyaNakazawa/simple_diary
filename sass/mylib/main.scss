@@ -95,6 +95,20 @@ main {
       }
     }
     
+    // item-header
+    
+    .content-item-header {
+      width: 100%;
+      margin-bottom: 4px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.2em;
+      
+      button {
+        margin-left: 4px;
+      }
+    }
+    
     // help
     
     .help-icon {
