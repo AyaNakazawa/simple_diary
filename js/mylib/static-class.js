@@ -265,4 +265,15 @@ class SHA256 {
 }
 
 class Validate {
+  static checkMaxLength(
+    _string = null,
+    _digit = null
+  ) {
+    if (_string != null && _digit != null) {
+      if (_string.length <= _digit) {
+        return true;
+      }
+    }
+    return false;
+  }
 }
