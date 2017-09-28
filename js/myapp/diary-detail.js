@@ -387,7 +387,7 @@ class DiaryDetailController extends CommonController {
   ) {
     
     this.CONTROLLER.uploadImage();
-    
+  
     if (_type == this.MODEL.TYPE_ADD) {
       this.VIEW.generateLoading($(this.MODEL.DIARY_DETAIL_AREA_SELECTOR),'日記追加中',  `日記を追加中`);
     } else if (_type == this.MODEL.TYPE_UPDATE) {
@@ -592,8 +592,8 @@ class DiaryDetailController extends CommonController {
         $(`${this.MODEL.DIARY_DETAIL_UPLOAD_SELECTOR}`).prop('files')[0]
       );
       
-      this.MODEL.UPLOAD_FILE.PUSH(file);
-      
+      this.MODEL.UPLOAD_FILE[this.MODEL.IMAGE_ID] = file;
+      this.MODEL.IMAGE_ID ++;
     }
   }
 }
