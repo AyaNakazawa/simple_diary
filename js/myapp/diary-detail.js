@@ -386,6 +386,13 @@ class DiaryDetailController extends CommonController {
     _type = null
   ) {
     
+    let imageName = '';
+    for (const fileText of $(this.MODEL.DIARY_DETAIL_FILE_NAME_SELECTOR)) {
+      imageName += ',' + fileText.value;
+    }
+    imageName = imageName.substr(1);
+    Log.logObj(imageName);
+    
     if (!this.checkValidate(_diary)) {
       return;
     }
@@ -399,12 +406,6 @@ class DiaryDetailController extends CommonController {
     }
     
     this.CONTROLLER.uploadImage();
-    
-    let imageName = '';
-    for (const fileText of $(this.MODEL.DIARY_DETAIL_FILE_NAME_SELECTOR)) {
-      imageName += ',' + fileText.value;
-    }
-    imageName = imageName.substr(1);
     
     $.ajax({
       url: 'ruby/saveDiary.rb',
