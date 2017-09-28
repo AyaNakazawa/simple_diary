@@ -25,14 +25,14 @@ class DiaryDetailModel extends CommonModel {
     this.DIARY_DETAIL_CHOOSE_FILE_SELECTOR = '.detail-choose-file';
     this.DIARY_DETAIL_UPLOAD_FILE_SELECTOR = '.detail-upload-file';
     this.DIARY_DETAIL_FILE_NAME_SELECTOR = '.upload-file-name';
+    this.DIARY_DETAIL_FILE_NAME_SELECTOR = '.detail-submit-increase-image';
     
     this.DIARY_DETAIL_UPLOAD_SELECTOR = '.detail-upload';
     
     this.ID = null;
     this.HASH = null;
     this.DIARY = null;
-    this.ADD = true;
-    this.COPY = false;
+    this.ADD_FLAG = true;
     
     this.UPLOAD_IMAGE = false;
     
@@ -197,7 +197,7 @@ class DiaryDetailEvent extends CommonEvent {
       'click',
       this.MODEL.DIARY_DETAIL_IMAGE_PREVIEW_SELECTOR,
       function () {
-        PS.CONTROLLER.DIARY_DETAIL.openImagePreview($(this).parent().parent().attr("id"));
+        PS.CONTROLLER.DIARY_DETAIL.openImagePreview($(this).attr("id"));
       }
     );
   }
@@ -207,7 +207,7 @@ class DiaryDetailEvent extends CommonEvent {
       'click',
       this.MODEL.DIARY_DETAIL_CHOOSE_FILE_SELECTOR,
       function () {
-        PS.CONTROLLER.DIARY_DETAIL.openChooseFile($(this).parent().parent().attr("id"));
+        PS.CONTROLLER.DIARY_DETAIL.openChooseFile();
       }
     );
   }
@@ -217,7 +217,7 @@ class DiaryDetailEvent extends CommonEvent {
       'change',
       this.MODEL.DIARY_DETAIL_UPLOAD_SELECTOR,
       function () {
-        PS.CONTROLLER.DIARY_DETAIL.choosedFile($(this).parent().attr("id"));
+        PS.CONTROLLER.DIARY_DETAIL.choosedFile();
       }
     );
   }
@@ -244,13 +244,12 @@ class DiaryDetailController extends CommonController {
   openDiary(
     _id = null,
     _hash = null,
-    _diary = null,
-    _copy = false
+    _diary = null
   ) {
     this.MODEL.ID = _id;
     this.MODEL.HASH = _hash;
     this.MODEL.DIARY = _diary;
-    this.MODEL.COPY = _copy;
+    this.MODEL.ADD_FLAG = true;
     
     if (_id != null && _hash != null) {
       if (_diary == null) {
@@ -406,16 +405,16 @@ class DiaryDetailController extends CommonController {
     }
     Log.logClassKey(
       "Diary Detail Controller",
-      `DIARY`,
+      `DIARY ${_selector}`,
       "Open image preview"
     );
     
-    const imageName = this.MODEL.DIARY['imageName'];
+    const imageId = parseInt(_selector.slice(-1));
     
     new ConfirmController({
       CONFIRM_ID: 'image-preview',
       CONFIRM_TITLE: 'プレビュー',
-      IMAGE_URL: `image/${imageName}`,
+      IMAGE_URL: `image/${this.MODEL.IMAGE[imageId]}`,
       AUTO_OPEN: true,
       TYPE: ConfirmModel.TYPE_1BUTTON,
       YES: '閉じる'
