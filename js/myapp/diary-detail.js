@@ -48,6 +48,9 @@ class DiaryDetailModel extends CommonModel {
     
     this.DIARY_EDIT = null;
     
+    this.SRC_TYPE_UPLOAD = 'upload';
+    this.SRC_TYPE_RENDER = 'render';
+    
     this.TYPE_ADD = 'add';
     this.TYPE_UPDATE = 'update';
     this.TYPE_DELETE = 'delete';
@@ -127,6 +130,7 @@ class DiaryDetailView extends CommonView {
         $(this.MODEL.DIARY_DETAIL_IMAGE_SPAN_SELECTOR).append(this.getTemplate(
           this.MODEL.TEMPLATE_DIARY_DETAIL_IMAGE_SELECTOR,
           {
+            type: this.MODEL.SRC_TYPE_UPLOAD,
             imageName: imageName,
             imageId: this.MODEL.IMAGE_ID
           }
@@ -606,6 +610,7 @@ class DiaryDetailController extends CommonController {
       $(this.MODEL.DIARY_DETAIL_IMAGE_SPAN_SELECTOR).append(this.VIEW.getTemplate(
         this.MODEL.TEMPLATE_DIARY_DETAIL_IMAGE_SELECTOR,
         {
+          type: this.MODEL.SRC_TYPE_RENDER,
           imageName: filename,
           imageId: this.MODEL.IMAGE_ID
         }
