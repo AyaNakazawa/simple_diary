@@ -97,11 +97,17 @@ class DiaryView extends CommonView {
         
         $(this.MODEL.DIARY_TBODY_SELECTOR).append(this.getTemplate(
           this.MODEL.TEMPLATE_DIARY_TBODY_SELECTOR,
-          {diary: _val}
+          {
+            diary: _val,
+            id: _id
+          }
         ));
         $(this.MODEL.DIARY_AREA_SELECTOR).append(this.getTemplate(
           this.MODEL.TEMPLATE_DIARY_HOVER_SELECTOR,
-          {diary: _val}
+          {
+            diary: _val,
+            id: _id
+          }
         ));
         this.EVENT.setDiaryClick(_id);
         this.EVENT.setDiaryHover(_id);
