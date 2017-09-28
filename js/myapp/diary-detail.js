@@ -319,6 +319,8 @@ class DiaryDetailController extends CommonController {
       this.MODEL.IMAGE = _diary['imageName'].split(',');
     }
     
+    this.MODEL.IMAGE_ID = 0;
+    
     this.MODEL.ADD_FLAG = true;
     
     if (_id != null && _hash != null) {
