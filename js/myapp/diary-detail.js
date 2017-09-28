@@ -293,17 +293,21 @@ class DiaryDetailController extends CommonController {
   checkValidate(
     _diary = this.MODEL.DIARY
   ) {
-    if (_diary['content'].length < 1) {
-      this.MODEL.DIARY = _diary;
-      this.MODEL.COPY = true;
-      this.VIEW.generateDiaryDetailArea(
-        this.MODEL.ALERT_WARNING,
-        '内容 を入力してください。'
-      );
-      PS.CONTROLLER.SCROLL.DIARY_DETAIL.VIEW.scroll();
-      return false;
+    this.MODEL.DIARY = _diary;
+    
+    this.checkTitleValidate()
+    if (this.checkContentValidate()) {
+      return true;
     }
-    return true;
+    
+    PS.CONTROLLER.SCROLL.DIARY_DETAIL.VIEW.scroll();
+    return false;
+  }
+  
+  checkTitleValidate() {
+  }
+  
+  checkContentValidate() {
   }
   
   saveDiary(
