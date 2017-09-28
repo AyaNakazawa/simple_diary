@@ -121,13 +121,13 @@ class DiaryDetailView extends CommonView {
       imageId ++;
     }
     
-    // 日時
-    $(this.MODEL.DIARY_DETAIL_AREA_SELECTOR).append(this.getTemplate(
-      this.MODEL.TEMPLATE_DIARY_DETAIL_DATE_SELECTOR,
-      {
-        diary: this.MODEL.DIARY
-      }
-    ));
+    // // 日時
+    // $(this.MODEL.DIARY_DETAIL_AREA_SELECTOR).append(this.getTemplate(
+    //   this.MODEL.TEMPLATE_DIARY_DETAIL_DATE_SELECTOR,
+    //   {
+    //     diary: this.MODEL.DIARY
+    //   }
+    // ));
     
     // 下のボタン
     $(this.MODEL.DIARY_DETAIL_AREA_SELECTOR).append(this.getTemplate(
