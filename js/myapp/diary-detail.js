@@ -591,13 +591,20 @@ class DiaryDetailController extends CommonController {
     
     const filename = $(`${this.MODEL.DIARY_DETAIL_UPLOAD_SELECTOR}`).val().replace(/\\/g, '/').replace(/.*\//, '');
     Log.logClassKey('Choosed file', `Diary Detail`, filename);
-    $(`${this.MODEL.DIARY_DETAIL_FILE_NAME_SELECTOR}`).val(filename);
     
     if (filename.length == 0) {
       Log.logClass('Diary Detail Controller', 'Upload cancel');
       
     } else {
       Log.logClass('Diary Detail Controller', 'File choosed');
+      
+      $(this.MODEL.DIARY_DETAIL_IMAGE_SPAN_SELECTOR).append(this.VIEW.getTemplate(
+        this.MODEL.TEMPLATE_DIARY_DETAIL_IMAGE_SELECTOR,
+        {
+          imageName: filename,
+          imageId: this.MODEL.IMAGE_ID
+        }
+      ));
       
       let file = new FormData();
       file.append(
