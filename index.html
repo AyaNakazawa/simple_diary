@@ -274,8 +274,8 @@
         </div>
       </div>
     </script>
-    <!-- diary-detail -->
-    <script type="text/template" id="diary-detail-template">
+    <!-- diary-detail-title -->
+    <script type="text/template" id="diary-detail-title-template">
       <div class="content-item form-inline">
         <div class="content-label">
           <label for="detail-title">タイトル</label>
@@ -284,6 +284,9 @@
           <input type="text" id="detail-title" class="form-control" value="<%- diary['title'] %>">
         </div>
       </div>
+    </script>
+    <!-- diary-detail-content -->
+    <script type="text/template" id="diary-detail-content-template">
       <div class="content-item form-inline">
         <div class="content-label">
           <label for="detail-content">内容</label>
@@ -292,31 +295,37 @@
           <textarea id="detail-content" class="form-control" rows="3"><%- diary['content'] %></textarea>
         </div>
       </div>
+    </script>
+    <!-- diary-detail-image-button -->
+    <script type="text/template" id="diary-detail-image-button-template">
       <div class="content-item form-inline">
         <div class="content-label">
-          <label for="detail-image">画像</label>
+          <label for="detail-choose-file">画像</label>
         </div>
-        <div class="content-input input-group" id="detail-image">
+        <div class="content-input">
+          <button type="button" class="btn btn-default detail-choose-file"><span class="fa fa-file"></span> 画像を選択</button>
+          <input type="file" class="display-none" id="detail-upload">
+        </div>
+      </div>
+    </script>
+    <!-- diary-detail-image -->
+    <script type="text/template" id="diary-detail-image-template">
+      <div class="content-item form-inline">
+        <div class="content-input input-group" id="detail-image-<%- imageId %>">
           <span class="input-group-btn">
-            <% if (diary['imageName'].length > 0) { %>
-              <button type="button" class="btn btn-default detail-image-preview">
-                <img src="image/<%- diary['imageName'] %>">
-              </button>
-            <% } %>
-            <button type="button" class="btn btn-default detail-choose-file">
-              <span class="fa fa-file"></span>
-              画像選択
+            <button type="button" class="btn btn-default detail-image-preview" id="preview-image-<%- imageId %>">
+              <img src="image/<%- imageName %>">
             </button>
           </span>
-          <input type="file" class="detail-upload">
-          <input type="text" class="form-control upload-file-name" value="<%- diary['imageName'] %>" placeholder="アップロードする画像を選択してください" readonly>
+          <input type="text" class="form-control upload-file-name" value="<%- imageName %>" placeholder="アップロードする画像を選択してください" readonly>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default detail-image-delete" id="delete-image-<%- imageId %>"><i class="fa fa-trash" aria-hidden="true"></i> 削除</button>
+          </span>
         </div>
       </div>
-      <div class="content-item form-inline">
-        <div class="content-input">
-          <button class="btn btn-default" id="detail-submit-increase-image"><i class="fa fa-plus-square" aria-hidden="true"></i> 画像をさらに追加</button>
-        </div>
-      </div>
+    </script>
+    <!-- diary-detail-date -->
+    <script type="text/template" id="diary-detail-date-template">
       <div class="content-item form-inline display-none">
         <div class="content-label">
           <label for="detail-register-date">登録日時</label>
@@ -333,6 +342,9 @@
           <input type="text" id="detail-update-date" class="form-control" value="<%- diary['updateDate'] %>" disabled>
         </div>
       </div>
+    </script>
+    <!-- diary-detail-last-button -->
+    <script type="text/template" id="diary-detail-last-button-template">
       <div class="content-item form-group">
         <% if (add) { %>
           <button class="btn btn-default" id="detail-submit-add"><i class="fa fa-plus-circle" aria-hidden="true"></i> 追加</button>
@@ -340,7 +352,7 @@
           <button class="btn btn-default" id="detail-submit-save"><i class="fa fa-floppy-o" aria-hidden="true"></i> 保存</button>
           <button class="btn btn-default" id="detail-submit-delete"><i class="fa fa-trash" aria-hidden="true"></i> 削除</button>
         <% } %>
-        <button class="btn btn-default" id="detail-submit-close"><i class="fa fa-close" aria-hidden="true"></i> 閉じる</button>
+        <button class="btn btn-default" id="detail-submit-close"><i class="fa fa-close" aria-hidden="true"></i> キャンセル</button>
       </div>
     </script>
     <!-- script -->
