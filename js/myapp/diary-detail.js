@@ -594,6 +594,7 @@ class DiaryDetailController extends CommonController {
     );
     
     const file = $(`${this.MODEL.DIARY_DETAIL_UPLOAD_SELECTOR}`);
+    const fileData = file.prop('files')[0];
     const filename = file.val().replace(/\\/g, '/').replace(/.*\//, '');
     Log.logClassKey('Choosed file', `Diary Detail`, filename);
     
@@ -628,7 +629,7 @@ class DiaryDetailController extends CommonController {
     let formData = new FormData();
     formData.append(
       'file',
-      $(`${this.MODEL.DIARY_DETAIL_UPLOAD_SELECTOR}`).prop('files')[0]
+      fileData
     );
     
     this.MODEL.UPLOAD_FILE[this.MODEL.IMAGE_ID] = formData;
