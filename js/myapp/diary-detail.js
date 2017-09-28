@@ -545,7 +545,7 @@ class DiaryDetailController extends CommonController {
     );
     if (_uploadFlg) {
       
-      for (const file in this.MODEL.UPLOAD_FILE) {
+      for (const file of this.MODEL.UPLOAD_FILE) {
         $.ajax({
           url: 'ruby/uploadImage.rb',
           type : 'POST',
