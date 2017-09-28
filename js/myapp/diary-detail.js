@@ -609,14 +609,21 @@ class DiaryDetailController extends CommonController {
     
     Log.logClass('Diary Detail Controller', 'File choosed');
     
-    $(this.MODEL.DIARY_DETAIL_IMAGE_SPAN_SELECTOR).append(this.VIEW.getTemplate(
-      this.MODEL.TEMPLATE_DIARY_DETAIL_IMAGE_SELECTOR,
-      {
-        type: this.MODEL.SRC_TYPE_READER,
-        imageName: filename,
-        imageId: this.MODEL.IMAGE_ID
-      }
-    ));
+    const reader = new FileReader();
+    
+    reader.onload = () => {
+      $(this.MODEL.DIARY_DETAIL_IMAGE_SPAN_SELECTOR).append(this.VIEW.getTemplate(
+        this.MODEL.TEMPLATE_DIARY_DETAIL_IMAGE_SELECTOR,
+        {
+          type: this.MODEL.SRC_TYPE_READER,
+          imageURL: reader.result,
+          imageName: filename,
+          imageId: this.MODEL.IMAGE_ID
+        }
+      ));
+    }
+    
+    reader.readAsDataURL(fileData);
     
     let formData = new FormData();
     formData.append(
