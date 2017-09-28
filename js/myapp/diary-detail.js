@@ -32,7 +32,6 @@ class DiaryDetailModel extends CommonModel {
     this.DIARY_DETAIL_CHOOSE_FILE_SELECTOR = '.detail-choose-file';
     this.DIARY_DETAIL_UPLOAD_FILE_SELECTOR = '.detail-upload-file';
     this.DIARY_DETAIL_FILE_NAME_SELECTOR = '.upload-file-name';
-    this.DIARY_DETAIL_FILE_NAME_SELECTOR = '.detail-submit-increase-image';
     
     this.DIARY_DETAIL_UPLOAD_SELECTOR = '.detail-upload';
     
