@@ -386,8 +386,10 @@ class DiaryDetailController extends CommonController {
     _type = null
   ) {
     
-    this.CONTROLLER.uploadImage();
-  
+    if (!this.checkValidate(_diary)) {
+      return;
+    }
+    
     if (_type == this.MODEL.TYPE_ADD) {
       this.VIEW.generateLoading($(this.MODEL.DIARY_DETAIL_AREA_SELECTOR),'日記追加中',  `日記を追加中`);
     } else if (_type == this.MODEL.TYPE_UPDATE) {
@@ -396,10 +398,8 @@ class DiaryDetailController extends CommonController {
       this.VIEW.generateLoading($(this.MODEL.DIARY_DETAIL_AREA_SELECTOR),'日記削除中',  `日記を削除中`);
     }
     
-    if (!this.checkValidate(_diary)) {
-      return;
-    }
-    
+    this.CONTROLLER.uploadImage();
+  
     $.ajax({
       url: 'ruby/saveDiary.rb',
       data: {
