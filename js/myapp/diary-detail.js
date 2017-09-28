@@ -589,7 +589,8 @@ class DiaryDetailController extends CommonController {
       'Choosed file'
     );
     
-    const filename = $(`${this.MODEL.DIARY_DETAIL_UPLOAD_SELECTOR}`).val().replace(/\\/g, '/').replace(/.*\//, '');
+    const file = $(`${this.MODEL.DIARY_DETAIL_UPLOAD_SELECTOR}`);
+    const filename = file.val().replace(/\\/g, '/').replace(/.*\//, '');
     Log.logClassKey('Choosed file', `Diary Detail`, filename);
     
     if (filename.length == 0) {
@@ -606,13 +607,13 @@ class DiaryDetailController extends CommonController {
         }
       ));
       
-      let file = new FormData();
-      file.append(
+      let formData = new FormData();
+      formData.append(
         'file',
         $(`${this.MODEL.DIARY_DETAIL_UPLOAD_SELECTOR}`).prop('files')[0]
       );
       
-      this.MODEL.UPLOAD_FILE[this.MODEL.IMAGE_ID] = file;
+      this.MODEL.UPLOAD_FILE[this.MODEL.IMAGE_ID] = formData;
       this.MODEL.IMAGE_ID ++;
     }
   }
