@@ -59,7 +59,7 @@ a {
     text-decoration: none; }
 
 .display-none {
-  display: none; }
+  display: none !important; }
 
 textarea {
   resize: vertical; }
@@ -262,9 +262,12 @@ body:before {
     margin: 0; }
   #diary-area .diary-hover .diary-image-area {
     padding: 8px;
-    display: inline-block; }
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline; }
     #diary-area .diary-hover .diary-image-area .diary-image {
-      width: 240px;
+      width: 180px;
       height: auto;
       padding: 2px;
       border: 1px solid #ddd;
