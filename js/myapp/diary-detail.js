@@ -41,6 +41,7 @@ class DiaryDetailModel extends CommonModel {
     this.HASH = null;
     this.DIARY = null;
     this.IMAGE = [];
+    this.UPLOAD_FILE = [];
     this.ADD_FLAG = true;
     
     this.UPLOAD_IMAGE = false;
@@ -528,8 +529,7 @@ class DiaryDetailController extends CommonController {
     );
   }
   
-  openChooseFile(
-  ) {
+  openChooseFile() {
     Log.logClassKey(
       "Diary Detail Controller",
       `DIARY`,
@@ -581,8 +581,7 @@ class DiaryDetailController extends CommonController {
     }
   }
   
-  choosedFile(
-  ) {
+  choosedFile() {
     Log.logClassKey(
       "Diary Detail Controller",
       `Diary Detail`,
@@ -598,8 +597,15 @@ class DiaryDetailController extends CommonController {
       this.MODEL.UPLOAD_IMAGE = false;
       
     } else {
-      Log.logClass('Diary Detail Controller', 'Make a upload flg');
-      this.MODEL.UPLOAD_IMAGE = true;
+      Log.logClass('Diary Detail Controller', 'File choosed');
+      
+      let file = new FormData();
+      file.append(
+        'file',
+        $(`${this.MODEL.DIARY_DETAIL_UPLOAD_SELECTOR}`).prop('files')[0]
+      );
+      
+      this.MODEL.UPLOAD_FILE.PUSH(file);
       
     }
   }
