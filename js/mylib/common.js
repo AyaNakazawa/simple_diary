@@ -161,6 +161,19 @@ class CommonView extends CommonClass {
       ));
     }
   }
+  
+  removeHTML(_selector = null, _speed = null) {
+    if (_selector == null) {
+      return false;
+    }
+    if (_speed == null) {
+      _speed = this.MODEL.SPEED_REMOVE;
+    }
+    $(_selector).hide(_speed, () => {
+      $(_selector).remove();
+    });
+    return true;
+  }
 }
 
 // ----------------------------------------------------------------
