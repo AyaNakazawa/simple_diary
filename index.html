@@ -73,11 +73,11 @@
               </button>
               <h4 class="modal-title"><%- confirmTitle %></h4>
             </div>
-            <% if (confirmMessage.length > 0) { %>
-              <div class="modal-body"><%- confirmMessage %></div>
-            <% } %>
             <% if (imageUrl.length > 0) { %>
               <img class="modal-body" src="<%- imageUrl %>" style="width:100%; height:auto;">
+              <% } %>
+            <% if (confirmMessage.length > 0) { %>
+              <div class="modal-body"><%- confirmMessage %></div>
             <% } %>
             <% if (type >= 1) { %>
               <div class="modal-footer">
