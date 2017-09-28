@@ -49,7 +49,7 @@ class DiaryDetailModel extends CommonModel {
     this.DIARY_EDIT = null;
     
     this.SRC_TYPE_UPLOAD = 'upload';
-    this.SRC_TYPE_RENDER = 'render';
+    this.SRC_TYPE_READER = 'reader';
     
     this.TYPE_ADD = 'add';
     this.TYPE_UPDATE = 'update';
@@ -612,7 +612,7 @@ class DiaryDetailController extends CommonController {
     $(this.MODEL.DIARY_DETAIL_IMAGE_SPAN_SELECTOR).append(this.VIEW.getTemplate(
       this.MODEL.TEMPLATE_DIARY_DETAIL_IMAGE_SELECTOR,
       {
-        type: this.MODEL.SRC_TYPE_RENDER,
+        type: this.MODEL.SRC_TYPE_READER,
         imageName: filename,
         imageId: this.MODEL.IMAGE_ID
       }
