@@ -311,6 +311,14 @@ class DiaryDetailController extends CommonController {
   }
   
   checkContentValidate() {
+    if (Validate.checkMinLength(this.MODEL.DIARY['content'], 1)) {
+      return true;
+    }
+    this.VIEW.generateDiaryDetailArea(
+      this.MODEL.ALERT_WARNING,
+      '内容 を入力してください。'
+    );
+    return false;
   }
   
   saveDiary(
