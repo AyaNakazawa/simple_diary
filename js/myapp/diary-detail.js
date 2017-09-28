@@ -14,7 +14,13 @@ class DiaryDetailModel extends CommonModel {
     super(_initSetting);
     
     this.DIARY_DETAIL_AREA_SELECTOR = '#diary-detail-area';
-    this.TEMPLATE_DIARY_DETAIL_SELECTOR = '#diary-detail-template';
+    
+    this.TEMPLATE_DIARY_DETAIL_TITLE_SELECTOR = '#diary-detail-title-template';
+    this.TEMPLATE_DIARY_DETAIL_CONTENT_SELECTOR = '#diary-detail-content-template';
+    this.TEMPLATE_DIARY_DETAIL_IMAGE_BUTTON_SELECTOR = '#diary-detail-image-button-template';
+    this.TEMPLATE_DIARY_DETAIL_IMAGE_SELECTOR = '#diary-detail-image-template';
+    this.TEMPLATE_DIARY_DETAIL_DATE_SELECTOR = '#diary-detail-date-template';
+    this.TEMPLATE_DIARY_DETAIL_LAST_BUTTON_SELECTOR = '#diary-detail-last-button-template';
     
     this.DIARY_DETAIL_ADD_SELECTOR = '#detail-submit-add';
     this.DIARY_DETAIL_SAVE_SELECTOR = '#detail-submit-save';
