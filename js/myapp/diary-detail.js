@@ -73,6 +73,7 @@ class DiaryDetailView extends CommonView {
     let body = '';
     if (this.MODEL.DIARY == null) {
       body = '新規作成';
+      this.MODEL.DIARY = this.getDiaryEdit();
     } else {
       body = this.MODEL.DIARY['title'];
     }
@@ -85,29 +86,56 @@ class DiaryDetailView extends CommonView {
       _message,
       _close
     );
-    if (this.MODEL.DIARY != null) {
-      // 日記がある場合
+    
+    // タイトル
+    $(this.MODEL.DIARY_DETAIL_AREA_SELECTOR).append(this.getTemplate(
+      this.MODEL.TEMPLATE_DIARY_DETAIL_TITLE_SELECTOR,
+      {
+        diary: this.MODEL.DIARY
+      }
+    ));
+    
+    // 内容
+    $(this.MODEL.DIARY_DETAIL_AREA_SELECTOR).append(this.getTemplate(
+      this.MODEL.TEMPLATE_DIARY_DETAIL_CONTENT_SELECTOR,
+      {
+        diary: this.MODEL.DIARY
+      }
+    ));
+    
+    // 画像選択ボタン
+    $(this.MODEL.DIARY_DETAIL_AREA_SELECTOR).append(this.getTemplate(
+      this.MODEL.TEMPLATE_DIARY_DETAIL_IMAGE_BUTTON_SELECTOR
+    ));
+    
+    // 画像単体
+    let imageId = 0;
+    for (const imageName of this.MODEL.IMAGE) {
       $(this.MODEL.DIARY_DETAIL_AREA_SELECTOR).append(this.getTemplate(
-        this.MODEL.TEMPLATE_DIARY_DETAIL_SELECTOR,
+        this.MODEL.TEMPLATE_DIARY_DETAIL_IMAGE_SELECTOR,
         {
-          diary: this.MODEL.DIARY,
-          add: this.MODEL.COPY
+          imageName: imageName,
+          imageId: imageId
         }
       ));
-    } else {
-      // 日記がない場合
-      $(this.MODEL.DIARY_DETAIL_AREA_SELECTOR).append(this.getTemplate(
-        this.MODEL.TEMPLATE_DIARY_DETAIL_SELECTOR,
-        {
-          diary: {
-            imageName: "",
-            registerDate: (new Date()).getString(),
-            updateDate: (new Date()).getString()
-          },
-          add: this.MODEL.ADD
-        }
-      ));
+      imageId ++;
     }
+    
+    // 日時
+    $(this.MODEL.DIARY_DETAIL_AREA_SELECTOR).append(this.getTemplate(
+      this.MODEL.TEMPLATE_DIARY_DETAIL_DATE_SELECTOR,
+      {
+        diary: this.MODEL.DIARY
+      }
+    ));
+    
+    // 下のボタン
+    $(this.MODEL.DIARY_DETAIL_AREA_SELECTOR).append(this.getTemplate(
+      this.MODEL.TEMPLATE_DIARY_DETAIL_LAST_BUTTON_SELECTOR,
+      {
+        add: this.MODEL.ADD_FLAG
+      }
+    ));
   }
   
   getDiaryEdit() {
