@@ -66,7 +66,7 @@ class CommonModel extends CommonClass {
     this.ACTIVE = 'active';
     this.HOVER = 'hover';
     
-    this.SPEED_REMOVE = 200;
+    this.SPEED_REMOVE = 400;
     
     this.ALERT_SUCCESS = 'success';
     this.ALERT_INFO = 'info';
@@ -162,14 +162,17 @@ class CommonView extends CommonClass {
     }
   }
   
-  removeHTML(_selector = null, _speed = null) {
+  removeHTML(
+    _selector = null,
+    _speed = null
+  ) {
     if (_selector == null) {
       return false;
     }
     if (_speed == null) {
       _speed = this.MODEL.SPEED_REMOVE;
     }
-    $(_selector).hide(_speed, () => {
+    $(_selector).slideUp(_speed, () => {
       $(_selector).remove();
     });
     return true;
