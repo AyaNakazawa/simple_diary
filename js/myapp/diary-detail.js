@@ -30,12 +30,12 @@ class DiaryDetailModel extends CommonModel {
     
     this.DIARY_DETAIL_IMAGE_PREVIEW_SELECTOR = '.detail-image-preview';
     this.DIARY_DETAIL_IMAGE_DELETE_SELECTOR = '.detail-image-delete';
-    this.DIARY_DETAIL_CHOOSE_FILE_SELECTOR = '.detail-choose-file';
     this.DIARY_DETAIL_UPLOAD_FILE_SELECTOR = '.detail-upload-file';
     this.DIARY_DETAIL_FILE_NAME_SELECTOR = '.upload-file-name';
     
-    this.DIARY_DETAIL_UPLOAD_SELECTOR = '.detail-upload';
-    this.DIARY_DETAIL_IMAGE_SPAN_SELECTOR = '.detail-image-span';
+    this.DIARY_DETAIL_CHOOSE_FILE_SELECTOR = '#detail-choose-file';
+    this.DIARY_DETAIL_IMAGE_SPAN_SELECTOR = '#detail-image-span';
+    this.DIARY_DETAIL_UPLOAD_SELECTOR = '#detail-upload';
     
     this.ID = null;
     this.HASH = null;
