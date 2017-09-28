@@ -19,11 +19,13 @@ query = "SELECT id FROM User WHERE name = '#{_id}' AND password = '#{_password}'
 userId = db.execute(query)
 
 if userId.length > 0 then
-  query = "SELECT * FROM Diary WHERE userId = #{userId[0][0]};"
+  query = "SELECT * FROM Diary WHERE userId = #{userId[0][0]} ORDER BY updateDate desc;"
   
+  order = 0
   db.results_as_hash = true
   db.execute(query) do |row|
-    result[row['id']] = row
+    result[order] = row
+    order += 1
   end
   
   puts result.to_json
