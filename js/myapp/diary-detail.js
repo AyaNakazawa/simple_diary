@@ -529,19 +529,14 @@ class DiaryDetailController extends CommonController {
   }
   
   openChooseFile(
-    _selector = null
   ) {
-    if (_selector == null) {
-      Log.logCaution("openChooseFile", "set selector of first argument");
-      return;
-    }
     Log.logClassKey(
       "Diary Detail Controller",
       `DIARY`,
       "Open file chooser"
     );
     
-    $(`#${_selector} ${this.MODEL.DIARY_DETAIL_UPLOAD_SELECTOR}`).click();
+    $(`${this.MODEL.DIARY_DETAIL_UPLOAD_SELECTOR}`).click();
   }
   
   uploadImage(
