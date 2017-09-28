@@ -44,8 +44,6 @@ class DiaryDetailModel extends CommonModel {
     this.UPLOAD_FILE = [];
     this.ADD_FLAG = true;
     
-    this.UPLOAD_IMAGE = false;
-    
     this.DIARY_EDIT = null;
     
     this.TYPE_ADD = 'add';
@@ -387,7 +385,7 @@ class DiaryDetailController extends CommonController {
     _type = null
   ) {
     
-    this.CONTROLLER.uploadImage(this.MODEL.UPLOAD_IMAGE);
+    this.CONTROLLER.uploadImage();
     
     if (_type == this.MODEL.TYPE_ADD) {
       this.VIEW.generateLoading($(this.MODEL.DIARY_DETAIL_AREA_SELECTOR),'日記追加中',  `日記を追加中`);
@@ -594,7 +592,6 @@ class DiaryDetailController extends CommonController {
     
     if (filename.length == 0) {
       Log.logClass('Diary Detail Controller', 'Upload cancel');
-      this.MODEL.UPLOAD_IMAGE = false;
       
     } else {
       Log.logClass('Diary Detail Controller', 'File choosed');
