@@ -496,11 +496,18 @@ class DiaryDetailController extends CommonController {
     );
     
     const imageId = parseInt(_selector.slice(-1));
+    let imageURL = '';
+    
+    if (this.MODEL.UPLOAD_FILE[imageId - 1] == null) {
+      imageURL = `image/${this.MODEL.IMAGE[imageId]}`;
+    } else {
+      imageURL = this.MODEL.UPLOAD_READER[imageId - 1].result;
+    }
     
     new ConfirmController({
       CONFIRM_ID: 'image-preview',
       CONFIRM_TITLE: 'プレビュー',
-      IMAGE_URL: `image/${this.MODEL.IMAGE[imageId]}`,
+      IMAGE_URL: imageURL,
       AUTO_OPEN: true,
       TYPE: ConfirmModel.TYPE_1BUTTON,
       YES: '閉じる'
