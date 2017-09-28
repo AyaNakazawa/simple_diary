@@ -400,6 +400,12 @@ class DiaryDetailController extends CommonController {
     
     this.CONTROLLER.uploadImage();
     
+    let imageName = '';
+    for (const fileText of $(this.MODEL.DIARY_DETAIL_FILE_NAME_SELECTOR)) {
+      imageName += ',' + fileText.value;
+    }
+    imageName = imageName.substr(1);
+    
     $.ajax({
       url: 'ruby/saveDiary.rb',
       data: {
@@ -411,7 +417,7 @@ class DiaryDetailController extends CommonController {
         content: _diary['content'],
         registerDate: _diary['registerDate'],
         updateDate: (new Date()).getString(),
-        imageName: _diary['imageName']
+        imageName: imageName
       },
       success: (_data) => {
         Log.logClassKey(this.NAME, 'ajax saveDiary', 'success');
