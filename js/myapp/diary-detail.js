@@ -110,10 +110,15 @@ class DiaryDetailView extends CommonView {
       this.MODEL.TEMPLATE_DIARY_DETAIL_IMAGE_BUTTON_SELECTOR
     ));
     
+    // 画像リストボタン
+    $(this.MODEL.DIARY_DETAIL_AREA_SELECTOR).append(this.getTemplate(
+      this.MODEL.TEMPLATE_DIARY_DETAIL_IMAGE_SPAN_SELECTOR
+    ));
+    
     // 画像単体
     let imageId = 0;
     for (const imageName of this.MODEL.IMAGE) {
-      $(this.MODEL.DIARY_DETAIL_AREA_SELECTOR).append(this.getTemplate(
+      $(this.MODEL.DIARY_DETAIL_IMAGE_SPAN_SELECTOR).append(this.getTemplate(
         this.MODEL.TEMPLATE_DIARY_DETAIL_IMAGE_SELECTOR,
         {
           imageName: imageName,
@@ -582,12 +587,7 @@ class DiaryDetailController extends CommonController {
   }
   
   choosedFile(
-    _selector = null
   ) {
-    if (_selector == null) {
-      Log.logCaution("choosedFile", "set selector of first argument");
-      return;
-    }
     Log.logClassKey(
       "Diary Detail Controller",
       `Diary Detail`,
