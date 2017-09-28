@@ -492,6 +492,20 @@ class DiaryDetailController extends CommonController {
       `DIARY ${_selector}`,
       "Open image delete"
     );
+    
+    const imageId = parseInt(_selector.slice(-1));
+    
+    new ConfirmController({
+      CONFIRM_ID: 'image-delete',
+      CONFIRM_TITLE: '画像の削除',
+      CONFIRM_MESSAGE: 'この画像を削除しますか？',
+      IMAGE_URL: `image/${this.MODEL.IMAGE[imageId]}`,
+      AUTO_OPEN: true,
+      TYPE: ConfirmModel.TYPE_2BUTTON,
+      FUNCTION_YES: () => {
+        this.deleteImage(imageId);
+      }
+    });
   }
   
   openChooseFile(
