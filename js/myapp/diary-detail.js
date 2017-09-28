@@ -537,13 +537,7 @@ class DiaryDetailController extends CommonController {
     $(`${this.MODEL.DIARY_DETAIL_UPLOAD_SELECTOR}`).click();
   }
   
-  uploadImage(
-    _uploadFlg = null
-  ) {
-    if (_uploadFlg == null) {
-      Log.logCaution("uploadImage", "set upload flag of first argument");
-      return;
-    }
+  uploadImage() {
     Log.logClassKey(
       "Upload image",
       `Diary`,
