@@ -32,6 +32,7 @@ class DiaryDetailModel extends CommonModel {
     this.ID = null;
     this.HASH = null;
     this.DIARY = null;
+    this.IMAGE = null;
     this.ADD_FLAG = true;
     
     this.UPLOAD_IMAGE = false;
@@ -249,6 +250,11 @@ class DiaryDetailController extends CommonController {
     this.MODEL.ID = _id;
     this.MODEL.HASH = _hash;
     this.MODEL.DIARY = _diary;
+    this.MODEL.IMAGE = null;
+    if (_diary != null) {
+      this.MODEL.IMAGE = _diary['imageName'].split(',');
+    }
+    
     this.MODEL.ADD_FLAG = true;
     
     if (_id != null && _hash != null) {
