@@ -21,7 +21,7 @@ userId = db.execute(query)
 if userId.length > 0 then
   query = "SELECT * FROM Diary WHERE userId = #{userId[0][0]} ORDER BY updateDate desc;"
   
-  order = 0
+  order = 1
   db.results_as_hash = true
   db.execute(query) do |row|
     result[order] = row

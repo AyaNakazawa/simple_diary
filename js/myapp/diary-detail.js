@@ -530,7 +530,7 @@ class DiaryDetailController extends CommonController {
   openChooseFile() {
     Log.logClassKey(
       "Diary Detail Controller",
-      `DIARY`,
+      `openChooseFile`,
       "Open file chooser"
     );
     
@@ -579,9 +579,9 @@ class DiaryDetailController extends CommonController {
       "Choosed file"
     );
     
-    const filename = $(`#${_selector} ${this.MODEL.DIARY_DETAIL_UPLOAD_SELECTOR}`).val().replace(/\\/g, '/').replace(/.*\//, '');
-    Log.logClassKey('Choosed file', `DIARY`, filename);
-    $(`#${_selector} ${this.MODEL.DIARY_DETAIL_FILE_NAME_SELECTOR}`).val(filename);
+    const filename = $(`${this.MODEL.DIARY_DETAIL_UPLOAD_SELECTOR}`).val().replace(/\\/g, '/').replace(/.*\//, '');
+    Log.logClassKey('Choosed file', `Diary Detail`, filename);
+    $(`${this.MODEL.DIARY_DETAIL_FILE_NAME_SELECTOR}`).val(filename);
     
     if (filename.length == 0) {
       Log.logClass('Diary Detail Controller', 'Upload cancel');
