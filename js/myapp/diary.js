@@ -420,6 +420,7 @@ class DiaryController extends CommonController {
   
   addDiary() {
     Log.logClassKey(this.NAME, 'Click', 'Add');
+    PS.CONTROLLER.SWITCH.DIARY_DETAIL.VIEW.setView(false);
     PS.CONTROLLER.DIARY_DETAIL.openDiary(
       this.MODEL.ID,
       this.MODEL.HASH,
@@ -431,6 +432,7 @@ class DiaryController extends CommonController {
   
   editDiary(_id = null) {
     Log.logClassKey(`${this.NAME}:${_id}`, 'Click', 'Edit');
+    PS.CONTROLLER.SWITCH.DIARY_DETAIL.VIEW.setView(false);
     PS.CONTROLLER.DIARY_DETAIL.openDiary(
       this.MODEL.ID,
       this.MODEL.HASH,
