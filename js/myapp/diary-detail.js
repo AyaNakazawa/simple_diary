@@ -538,10 +538,9 @@ class DiaryDetailController extends CommonController {
   }
   
   uploadImage() {
-    Log.logClassKey(
-      "Upload image",
-      `Diary`,
-      _uploadFlg
+    Log.logClass(
+      `Diary Detail`,
+      "Upload image"
     );
     if (_uploadFlg) {
       
