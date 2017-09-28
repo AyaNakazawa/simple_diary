@@ -42,6 +42,7 @@ class DiaryDetailModel extends CommonModel {
     this.DIARY = null;
     this.IMAGE = [];
     this.UPLOAD_FILE = [];
+    this.UPLOAD_READER = [];
     this.ADD_FLAG = true;
     
     this.IMAGE_ID = 0;
@@ -632,6 +633,7 @@ class DiaryDetailController extends CommonController {
       fileData
     );
     
+    this.MODEL.UPLOAD_READER[this.MODEL.IMAGE_ID] = reader;
     this.MODEL.UPLOAD_FILE[this.MODEL.IMAGE_ID] = formData;
     this.MODEL.IMAGE_ID ++;
   }
