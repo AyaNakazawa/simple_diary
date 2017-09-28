@@ -28,6 +28,7 @@ class DiaryDetailModel extends CommonModel {
     this.DIARY_DETAIL_CLOSE_SELECTOR = '#detail-submit-close';
     
     this.DIARY_DETAIL_IMAGE_PREVIEW_SELECTOR = '.detail-image-preview';
+    this.DIARY_DETAIL_IMAGE_DELETE_SELECTOR = '.detail-image-delete';
     this.DIARY_DETAIL_CHOOSE_FILE_SELECTOR = '.detail-choose-file';
     this.DIARY_DETAIL_UPLOAD_FILE_SELECTOR = '.detail-upload-file';
     this.DIARY_DETAIL_FILE_NAME_SELECTOR = '.upload-file-name';
@@ -172,6 +173,7 @@ class DiaryDetailEvent extends CommonEvent {
     this.setCloseClick();
     
     this.setImagePreviewClick();
+    this.setImageDeleteClick();
     this.setChooseFileClick();
     this.setChooseFile();
   }
@@ -233,6 +235,16 @@ class DiaryDetailEvent extends CommonEvent {
       this.MODEL.DIARY_DETAIL_IMAGE_PREVIEW_SELECTOR,
       function () {
         PS.CONTROLLER.DIARY_DETAIL.openImagePreview($(this).attr("id"));
+      }
+    );
+  }
+  
+  setImageDeleteClick() {
+    super.setOn(
+      'click',
+      this.MODEL.DIARY_DETAIL_IMAGE_DELETE_SELECTOR,
+      function () {
+        PS.CONTROLLER.DIARY_DETAIL.openImageDelete($(this).attr("id"));
       }
     );
   }
