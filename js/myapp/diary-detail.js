@@ -544,31 +544,27 @@ class DiaryDetailController extends CommonController {
     );
     if (_uploadFlg) {
       
-      let _file = new FormData();
-      _file.append(
-        'file',
-        $(`#detail-image ${this.MODEL.DIARY_DETAIL_UPLOAD_SELECTOR}`).prop('files')[0]
-      );
-      
-      $.ajax({
-        url: 'ruby/uploadImage.rb',
-        type : "POST",
-        data: _file,
-        processData : false,
-        contentType : false,
-        success: (_data) => {
-          Log.logClassKey(this.NAME, 'ajax uploadImage', 'success');
-          Log.logClass('upload return', _data);
-        },
-        error: () => {
-          Log.logClassKey(this.NAME, 'ajax uploadImage', 'failed');
-          this.VIEW.generateDiaryDetailArea(
-            this.MODEL.ALERT_DANGER,
-            'ajax通信に失敗しました。',
-            false
-          );
-        }
-      });
+      for (const file in this.MODEL.UPLOAD_FILE) {
+        $.ajax({
+          url: 'ruby/uploadImage.rb',
+          type : "POST",
+          data: file,
+          processData : false,
+          contentType : false,
+          success: (_data) => {
+            Log.logClassKey(this.NAME, 'ajax uploadImage', 'success');
+            Log.logClass('upload return', _data);
+          },
+          error: () => {
+            Log.logClassKey(this.NAME, 'ajax uploadImage', 'failed');
+            this.VIEW.generateDiaryDetailArea(
+              this.MODEL.ALERT_DANGER,
+              'ajax通信に失敗しました。',
+              false
+            );
+          }
+        });
+      }
     }
   }
   
