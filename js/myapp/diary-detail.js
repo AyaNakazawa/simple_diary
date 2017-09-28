@@ -44,6 +44,8 @@ class DiaryDetailModel extends CommonModel {
     this.UPLOAD_FILE = [];
     this.ADD_FLAG = true;
     
+    this.IMAGE_ID = 0;
+    
     this.DIARY_EDIT = null;
     
     this.TYPE_ADD = 'add';
