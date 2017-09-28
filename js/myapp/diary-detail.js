@@ -106,6 +106,11 @@ class DiaryDetailView extends CommonView {
       }
     ));
     
+    // 内容の行数に合わせる
+    if ($('#detail-content').val().getRows() >= 3) {
+      $('#detail-content').attr('rows', $('#detail-content').val().getRows());
+    }
+    
     // 画像選択ボタン
     $(this.MODEL.DIARY_DETAIL_AREA_SELECTOR).append(this.getTemplate(
       this.MODEL.TEMPLATE_DIARY_DETAIL_IMAGE_BUTTON_SELECTOR
