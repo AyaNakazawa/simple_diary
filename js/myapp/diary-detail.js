@@ -508,6 +508,20 @@ class DiaryDetailController extends CommonController {
     });
   }
   
+  deleteImage(
+    _imageId = null
+  ) {
+    if (_imageId == null) {
+      Log.logCaution("deleteImage", "set selector of first argument");
+      return;
+    }
+    Log.logClassKey(
+      "Diary Detail Controller",
+      `Image ID: ${_imageId}`,
+      "Delete image"
+    );
+  }
+  
   openChooseFile(
     _selector = null
   ) {
