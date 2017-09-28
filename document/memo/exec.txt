@@ -1,0 +1,41 @@
+
+実行環境に移すときにやること
+
+  file
+    copy
+      ./css
+      ./db
+      ./fonts
+      ./image
+      ./js
+      ./ruby
+      ./.htaccess
+      ./favicon.ico
+      ./index.html
+      ./LICENSE
+      ./README.md
+    remove
+      ./document
+      ./sass
+      ./temp
+      ./.git
+      ./.gitignore
+      ./.sass-cache
+  
+  html
+    Remove nav desc
+  sd-process
+    function run
+      Remove createDesc
+    Remove createDesc
+    function initContent
+      Remove 'desc-area'
+    function initController
+      Remove desc switch controller
+      Remove desc scroll controller
+  ruby
+    Change shebang
+  image
+    Remove test data
+  db
+    Remove test data
