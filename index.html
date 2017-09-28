@@ -73,7 +73,7 @@
               </button>
               <h4 class="modal-title"><%- confirmTitle %></h4>
             </div>
-            <% if (imageUrl.length > 0) { %>
+            <% if (imageUrl != null) { %>
               <img class="modal-body" src="<%- imageUrl %>" style="width:100%; height:auto;">
               <% } %>
             <% if (confirmMessage.length > 0) { %>
@@ -315,12 +315,12 @@
     </script>
     <!-- diary-detail-image -->
     <script type="text/template" id="diary-detail-image-template">
-      <div class="content-item form-inline">
-        <div class="content-input input-group" id="detail-image-<%- imageId %>">
+      <div class="content-item form-inline" id="detail-image-<%- imageId %>">
+        <div class="content-input input-group">
           <span class="input-group-btn">
             <button type="button" class="btn btn-default detail-image-preview" id="preview-image-<%- imageId %>">
               <% if (type == 'reader') { %>
-                <img src="<%- imageName %>">
+                <img src="<%- imageURL %>">
               <% } else { %>
                 <img src="image/<%- imageName %>">
               <% } %>
