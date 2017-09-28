@@ -66,6 +66,8 @@ class CommonModel extends CommonClass {
     this.ACTIVE = 'active';
     this.HOVER = 'hover';
     
+    this.SPEED_REMOVE = 200;
+    
     this.ALERT_SUCCESS = 'success';
     this.ALERT_INFO = 'info';
     this.ALERT_WARNING = 'warning';
