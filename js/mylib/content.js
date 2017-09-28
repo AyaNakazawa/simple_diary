@@ -33,21 +33,21 @@ class Content {
   
   static getContent(_id = null) {
     if (_id != null) {
-      return `<div class="${Content.CONTENT}" id="${_id}"></div>`
+      return `<div class='${Content.CONTENT}' id='${_id}'></div>`
     }
     return '';
   }
   
   static getHeader(_header = null) {
     if (_header != null) {
-      return `<div class="${Content.HEADER}">${_header}</div>`
+      return `<div class='${Content.HEADER}'>${_header}</div>`
     }
     return '';
   }
   
   static getItemName(_name = null) {
     if (_name != null) {
-      return `<div class="${Content.ITEM_NAME}">${_name}</div>`
+      return `<div class='${Content.ITEM_NAME}'>${_name}</div>`
     }
     return '';
   }
@@ -55,10 +55,10 @@ class Content {
   static getItemKey(..._keys) {
     let result = '';
     if (_keys.length > 0 && (_keys.length == 1 && _keys[0] != null)) {
-      result += `<div class="${Content.ITEM_KEYS}">`
+      result += `<div class='${Content.ITEM_KEYS}'>`
       for (let i = 0; i < _keys.length; i++) {
         // content-key の作成
-        result += `<div class="${Content.ITEM_KEY}">${_keys[i]}</div>`
+        result += `<div class='${Content.ITEM_KEY}'>${_keys[i]}</div>`
       }
       result += `</div>`
     }
@@ -75,14 +75,14 @@ class Content {
     let result = '';
     
     if (contentId != null) {
-      result += `<div class="${Content.CONTENT}" id="${contentId}">`
+      result += `<div class='${Content.CONTENT}' id='${contentId}'>`
     }
     if (type == Content.TYPE_NAME_KEY) {
       // content-header の作成
       result += Content.getHeader(header);
       
       // content-item の作成
-      result += `<div class="${Content.ITEM}">`
+      result += `<div class='${Content.ITEM}'>`
       
       // content-name の作成
       result += Content.getItemName(name);

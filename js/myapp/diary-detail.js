@@ -239,7 +239,7 @@ class DiaryDetailEvent extends CommonEvent {
       'click',
       this.MODEL.DIARY_DETAIL_IMAGE_PREVIEW_SELECTOR,
       function () {
-        PS.CONTROLLER.DIARY_DETAIL.openImagePreview($(this).attr("id"));
+        PS.CONTROLLER.DIARY_DETAIL.openImagePreview($(this).attr('id'));
       }
     );
   }
@@ -249,7 +249,7 @@ class DiaryDetailEvent extends CommonEvent {
       'click',
       this.MODEL.DIARY_DETAIL_IMAGE_DELETE_SELECTOR,
       function () {
-        PS.CONTROLLER.DIARY_DETAIL.openImageDelete($(this).attr("id"));
+        PS.CONTROLLER.DIARY_DETAIL.openImageDelete($(this).attr('id'));
       }
     );
   }
@@ -464,13 +464,13 @@ class DiaryDetailController extends CommonController {
     _selector = null
   ) {
     if (_selector == null) {
-      Log.logCaution("openImagePreview", "set selector of first argument");
+      Log.logCaution('openImagePreview', 'set selector of first argument');
       return;
     }
     Log.logClassKey(
-      "Diary Detail Controller",
+      'Diary Detail Controller',
       `DIARY ${_selector}`,
-      "Open image preview"
+      'Open image preview'
     );
     
     const imageId = parseInt(_selector.slice(-1));
@@ -489,13 +489,13 @@ class DiaryDetailController extends CommonController {
     _selector = null
   ) {
     if (_selector == null) {
-      Log.logCaution("openImageDelete", "set selector of first argument");
+      Log.logCaution('openImageDelete', 'set selector of first argument');
       return;
     }
     Log.logClassKey(
-      "Diary Detail Controller",
+      'Diary Detail Controller',
       `DIARY ${_selector}`,
-      "Open image delete"
+      'Open image delete'
     );
     
     const imageId = parseInt(_selector.slice(-1));
@@ -517,21 +517,21 @@ class DiaryDetailController extends CommonController {
     _imageId = null
   ) {
     if (_imageId == null) {
-      Log.logCaution("deleteImage", "set selector of first argument");
+      Log.logCaution('deleteImage', 'set selector of first argument');
       return;
     }
     Log.logClassKey(
-      "Diary Detail Controller",
+      'Diary Detail Controller',
       `Image ID: ${_imageId}`,
-      "Delete image"
+      'Delete image'
     );
   }
   
   openChooseFile() {
     Log.logClassKey(
-      "Diary Detail Controller",
+      'Diary Detail Controller',
       `openChooseFile`,
-      "Open file chooser"
+      'Open file chooser'
     );
     
     $(`${this.MODEL.DIARY_DETAIL_UPLOAD_SELECTOR}`).click();
@@ -539,15 +539,15 @@ class DiaryDetailController extends CommonController {
   
   uploadImage() {
     Log.logClass(
-      `Diary Detail`,
-      "Upload image"
+      'Diary Detail',
+      'Upload image'
     );
     if (_uploadFlg) {
       
       for (const file in this.MODEL.UPLOAD_FILE) {
         $.ajax({
           url: 'ruby/uploadImage.rb',
-          type : "POST",
+          type : 'POST',
           data: file,
           processData : false,
           contentType : false,
@@ -570,9 +570,9 @@ class DiaryDetailController extends CommonController {
   
   choosedFile() {
     Log.logClassKey(
-      "Diary Detail Controller",
-      `Diary Detail`,
-      "Choosed file"
+      'Diary Detail Controller',
+      'Diary Detail',
+      'Choosed file'
     );
     
     const filename = $(`${this.MODEL.DIARY_DETAIL_UPLOAD_SELECTOR}`).val().replace(/\\/g, '/').replace(/.*\//, '');

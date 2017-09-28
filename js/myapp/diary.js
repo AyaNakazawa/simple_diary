@@ -462,13 +462,13 @@ class DiaryController extends CommonController {
     _imageName = null
   ) {
     if (_imageName == null) {
-      Log.logCaution("openImagePreview", "set image name of first argument");
+      Log.logCaution('openImagePreview', 'set image name of first argument');
       return;
     }
     Log.logClassKey(
-      "Diary Controller",
+      'Diary Controller',
       `DIARY`,
-      "Open image preview"
+      'Open image preview'
     );
     
     new ConfirmController({
