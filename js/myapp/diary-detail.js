@@ -305,6 +305,9 @@ class DiaryDetailController extends CommonController {
   }
   
   checkTitleValidate() {
+    if (!Validate.checkMinLength(this.MODEL.DIARY['title'], 1)) {
+      this.MODEL.DIARY['title'] = this.MODEL.DIARY['content'].substr(0, 10);
+    }
   }
   
   checkContentValidate() {
