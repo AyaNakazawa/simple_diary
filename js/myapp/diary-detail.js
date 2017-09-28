@@ -118,14 +118,16 @@ class DiaryDetailView extends CommonView {
     
     // 画像単体
     for (const imageName of this.MODEL.IMAGE) {
-      $(this.MODEL.DIARY_DETAIL_IMAGE_SPAN_SELECTOR).append(this.getTemplate(
-        this.MODEL.TEMPLATE_DIARY_DETAIL_IMAGE_SELECTOR,
-        {
-          imageName: imageName,
-          imageId: this.MODEL.IMAGE_ID
-        }
-      ));
-      this.MODEL.IMAGE_ID ++;
+      if (imageName.length > 0) {
+        $(this.MODEL.DIARY_DETAIL_IMAGE_SPAN_SELECTOR).append(this.getTemplate(
+          this.MODEL.TEMPLATE_DIARY_DETAIL_IMAGE_SELECTOR,
+          {
+            imageName: imageName,
+            imageId: this.MODEL.IMAGE_ID
+          }
+        ));
+        this.MODEL.IMAGE_ID ++;
+      }
     }
     
     // // 日時
