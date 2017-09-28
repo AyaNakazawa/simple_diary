@@ -18,6 +18,7 @@ class DiaryDetailModel extends CommonModel {
     this.TEMPLATE_DIARY_DETAIL_TITLE_SELECTOR = '#diary-detail-title-template';
     this.TEMPLATE_DIARY_DETAIL_CONTENT_SELECTOR = '#diary-detail-content-template';
     this.TEMPLATE_DIARY_DETAIL_IMAGE_BUTTON_SELECTOR = '#diary-detail-image-button-template';
+    this.TEMPLATE_DIARY_DETAIL_IMAGE_SPAN_SELECTOR = '#diary-detail-image-span-template';
     this.TEMPLATE_DIARY_DETAIL_IMAGE_SELECTOR = '#diary-detail-image-template';
     this.TEMPLATE_DIARY_DETAIL_DATE_SELECTOR = '#diary-detail-date-template';
     this.TEMPLATE_DIARY_DETAIL_LAST_BUTTON_SELECTOR = '#diary-detail-last-button-template';
@@ -34,6 +35,7 @@ class DiaryDetailModel extends CommonModel {
     this.DIARY_DETAIL_FILE_NAME_SELECTOR = '.upload-file-name';
     
     this.DIARY_DETAIL_UPLOAD_SELECTOR = '.detail-upload';
+    this.DIARY_DETAIL_IMAGE_SPAN_SELECTOR = '.detail-image-span';
     
     this.ID = null;
     this.HASH = null;
@@ -546,7 +548,7 @@ class DiaryDetailController extends CommonController {
     }
     Log.logClassKey(
       "Upload image",
-      `DIARY`,
+      `Diary`,
       _uploadFlg
     );
     if (_uploadFlg) {
@@ -588,7 +590,7 @@ class DiaryDetailController extends CommonController {
     }
     Log.logClassKey(
       "Diary Detail Controller",
-      `DIARY`,
+      `Diary Detail`,
       "Choosed file"
     );
     
