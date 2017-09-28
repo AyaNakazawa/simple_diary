@@ -235,7 +235,7 @@
     </script>
     <!-- diary-tbody -->
     <script type="text/template" id="diary-tbody-template">
-      <tr class="diary-<%- diary['id'] %> diary-main" id="diary-<%- diary['id'] %>-main">
+      <tr class="diary-<%- id %> diary-main" id="diary-<%- id %>-main">
         <td><%- diary['title'] %></td>
         <td><%- diary['updateDate'] %></td>
         <td><%- diary['telephone'] %></td>
@@ -243,13 +243,13 @@
     </script>
     <!-- diary-hover -->
     <script type="text/template" id="diary-hover-template">
-      <div class="diary-<%- diary['id'] %> diary-hover" id="diary-<%- diary['id'] %>-detail" style="display:none;">
+      <div class="diary-<%- id %> diary-hover" id="diary-<%- id %>-detail" style="display:none;">
         <% if (diary['imageName'] != null) { %>
           <% let imageId = 0; %>
           <% for (const imageName of diary['imageName'].split(',')) { %>
             <% if (imageName.length > 0) { %>
               <div class="diary-image-area">
-                <img class="diary-image diary-image-<%- diary['id'] %>-<%- imageId %>" src="image/<%- imageName %>">
+                <img class="diary-image diary-image-<%- id %>-<%- imageId %>" src="image/<%- imageName %>">
               </div>
               <% imageId ++; %>
             <% } %>
@@ -259,15 +259,15 @@
           <pre><%- diary['content'] %></pre>
         </div>
         <div class="btn-group">
-          <button type="button" class="btn btn-default diary-<%- diary['id'] %>-edit">
+          <button type="button" class="btn btn-default diary-<%- id %>-edit">
             <span class="fa fa-edit"></span>
             編集
           </button>
-          <button type="button" class="btn btn-default diary-<%- diary['id'] %>-delete">
+          <button type="button" class="btn btn-default diary-<%- id %>-delete">
             <span class="fa fa-trash"></span>
             削除
           </button>
-          <button type="button" class="btn btn-default diary-<%- diary['id'] %>-close">
+          <button type="button" class="btn btn-default diary-<%- id %>-close">
             <span class="fa fa-close"></span>
             閉じる
           </button>
