@@ -593,6 +593,10 @@ class DiaryDetailController extends CommonController {
     const filename = file.val().replace(/\\/g, '/').replace(/.*\//, '');
     Log.logClassKey('Choosed file', `Diary Detail`, filename);
     
+    if(file[0].files[0].type.indexOf("image") < 0){
+      return false;
+    }
+    
     if (filename.length == 0) {
       Log.logClass('Diary Detail Controller', 'Upload cancel');
       
