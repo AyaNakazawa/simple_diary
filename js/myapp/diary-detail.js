@@ -561,6 +561,8 @@ class DiaryDetailController extends CommonController {
       `Image ID: ${_imageId}`,
       'Delete image'
     );
+    
+    this.VIEW.removeHTML(`#detail-image-${_imageId}`);
   }
   
   openChooseFile() {
