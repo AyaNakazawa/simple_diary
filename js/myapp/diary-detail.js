@@ -272,21 +272,13 @@ class DiaryDetailController extends CommonController {
           PS.CONTROLLER.SWITCH.DIARY_DETAIL.VIEW.setView(false);
         }
       } else {
-        if (_copy) {
-          // 日記の編集
-          this.VIEW.generateDiaryDetailArea(
-            this.MODEL.ALERT_SUCCESS,
-            'コピーした日記を追加できます。'
-          );
-          PS.CONTROLLER.SWITCH.DIARY_DETAIL.VIEW.setView(true);
-        } else {
-          // 日記の編集
-          this.VIEW.generateDiaryDetailArea(
-            this.MODEL.ALERT_SUCCESS,
-            '日記を編集できます。'
-          );
-          PS.CONTROLLER.SWITCH.DIARY_DETAIL.VIEW.setView(true);
-        }
+        // 日記の編集
+        this.MODEL.ADD_FLAG = false;
+        this.VIEW.generateDiaryDetailArea(
+          this.MODEL.ALERT_SUCCESS,
+          '日記を編集できます。'
+        );
+        PS.CONTROLLER.SWITCH.DIARY_DETAIL.VIEW.setView(true);
       }
     } else {
       // 情報がない
