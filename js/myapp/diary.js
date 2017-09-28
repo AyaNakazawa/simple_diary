@@ -108,7 +108,13 @@ class DiaryView extends CommonView {
         this.EVENT.setEditClick(_id);
         this.EVENT.setDeleteClick(_id);
         this.EVENT.setCloseClick(_id);
-        this.EVENT.setImageClick(_id, _val['imageName']);
+        if (_val['imageName'] != null) {
+          let imageId = 0;
+          for (const imageName of _val['imageName'].split(',')) {
+            this.EVENT.setImageClick(_id, imageId, imageName);
+            imageId ++;
+          }
+        }
       });
       PS.CONTROLLER.SCROLL.DIARY.VIEW.scroll();
       
@@ -324,9 +330,9 @@ class DiaryEvent extends CommonEvent {
     }
   }
   
-  setImageClick(_id = null, _imageName = null) {
-    if (_id != null || _imageName != null) {
-      $(`.diary-${_id}-image`).click(
+  setImageClick(_id = null, _imageId = null, _imageName = null) {
+    if (_id != null || _imageId != null || _imageName != null) {
+      $(`.diary-image-${_id}-${_imageId}`).click(
         () => {
           this.CONTROLLER.openImagePreview(_imageName);
         }
@@ -411,8 +417,7 @@ class DiaryController extends CommonController {
     PS.CONTROLLER.DIARY_DETAIL.openDiary(
       this.MODEL.ID,
       this.MODEL.HASH,
-      null,
-      false
+      null
     );
     PS.CONTROLLER.SCROLL.DIARY_DETAIL.VIEW.scroll();
     this.VIEW.setDetailView(this.MODEL.SELECT, false, this.MODEL.ACTIVE, this.MODEL.VIEW_SPEED_MS);
@@ -423,8 +428,7 @@ class DiaryController extends CommonController {
     PS.CONTROLLER.DIARY_DETAIL.openDiary(
       this.MODEL.ID,
       this.MODEL.HASH,
-      this.MODEL.DIARYS[_id],
-      false
+      this.MODEL.DIARYS[_id]
     );
     PS.CONTROLLER.SCROLL.DIARY_DETAIL.VIEW.scroll();
     this.VIEW.setDetailView(_id, false, this.MODEL.ACTIVE, this.MODEL.VIEW_SPEED_MS);
