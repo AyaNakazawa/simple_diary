@@ -598,32 +598,33 @@ class DiaryDetailController extends CommonController {
     Log.logClassKey('Choosed file', `Diary Detail`, filename);
     
     if(file[0].files[0].type.indexOf("image") < 0){
-      return false;
+      return;
     }
     
     if (filename.length == 0) {
       Log.logClass('Diary Detail Controller', 'Upload cancel');
+      return;
       
-    } else {
-      Log.logClass('Diary Detail Controller', 'File choosed');
-      
-      $(this.MODEL.DIARY_DETAIL_IMAGE_SPAN_SELECTOR).append(this.VIEW.getTemplate(
-        this.MODEL.TEMPLATE_DIARY_DETAIL_IMAGE_SELECTOR,
-        {
-          type: this.MODEL.SRC_TYPE_RENDER,
-          imageName: filename,
-          imageId: this.MODEL.IMAGE_ID
-        }
-      ));
-      
-      let formData = new FormData();
-      formData.append(
-        'file',
-        $(`${this.MODEL.DIARY_DETAIL_UPLOAD_SELECTOR}`).prop('files')[0]
-      );
-      
-      this.MODEL.UPLOAD_FILE[this.MODEL.IMAGE_ID] = formData;
-      this.MODEL.IMAGE_ID ++;
     }
+    
+    Log.logClass('Diary Detail Controller', 'File choosed');
+    
+    $(this.MODEL.DIARY_DETAIL_IMAGE_SPAN_SELECTOR).append(this.VIEW.getTemplate(
+      this.MODEL.TEMPLATE_DIARY_DETAIL_IMAGE_SELECTOR,
+      {
+        type: this.MODEL.SRC_TYPE_RENDER,
+        imageName: filename,
+        imageId: this.MODEL.IMAGE_ID
+      }
+    ));
+    
+    let formData = new FormData();
+    formData.append(
+      'file',
+      $(`${this.MODEL.DIARY_DETAIL_UPLOAD_SELECTOR}`).prop('files')[0]
+    );
+    
+    this.MODEL.UPLOAD_FILE[this.MODEL.IMAGE_ID] = formData;
+    this.MODEL.IMAGE_ID ++;
   }
 }
