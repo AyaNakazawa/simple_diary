@@ -315,7 +315,9 @@ class UserController extends CommonController {
     ) {
       this.VIEW.generateUserArea(
         this.MODEL.ALERT_WARNING,
-        'パスワード を入力してください。'
+        'パスワード を入力してください。',
+        true,
+        true
       );
       return false;
     } else if (
@@ -326,19 +328,25 @@ class UserController extends CommonController {
     ) {
       this.VIEW.generateUserArea(
         this.MODEL.ALERT_WARNING,
-        `パスワード は ${this.MODEL.PASSWORD_LENGTH_MIN} 文字以上で入力してください。`
+        `パスワード は ${this.MODEL.PASSWORD_LENGTH_MIN} 文字以上で入力してください。`,
+        true,
+        true
       );
       return false;
     } else if (!Validate.checkIncludeNumber(_password)) {
       this.VIEW.generateUserArea(
         this.MODEL.ALERT_WARNING,
-        `パスワード は数字を含めてください。`
+        `パスワード は数字を含めてください。`,
+        true,
+        true
       );
       return false;
     } else if (!Validate.checkIncludeAlphabet(_password)) {
       this.VIEW.generateUserArea(
         this.MODEL.ALERT_WARNING,
-        `パスワード はアルファベットを含めてください。`
+        `パスワード はアルファベットを含めてください。`,
+        true,
+        true
       );
       return false;
     }
