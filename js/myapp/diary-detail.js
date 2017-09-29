@@ -415,6 +415,14 @@ class DiaryDetailController extends CommonController {
     }
     
     const encryptImageData = this.CONTROLLER.encryptImage();
+    if (encryptImageData.length > 950000) {
+      this.MODEL.IMAGE_ID = 0;
+      this.VIEW.generateDiaryDetailArea(
+        this.MODEL.ALERT_WARNING,
+        '画像ファイルが大きすぎます。'
+      );
+      return;
+    }
     
     const encryptTitle = Crypto.encrypt(
       _diary['title'],
