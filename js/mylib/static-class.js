@@ -326,4 +326,18 @@ class Crypto {
     
     return CryptoJS.AES.encrypt(_data, _password).toString();
   }
+  
+  static decrypt (
+    _data = null,
+    _password = null
+  ) {
+    if (_data == null) {
+      return false
+    }
+    if (_password == null) {
+      return false
+    }
+    
+    return CryptoJS.AES.decrypt(_data, _password).toString(CryptoJS.enc.Utf8);
+  }
 }
