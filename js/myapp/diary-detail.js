@@ -422,8 +422,6 @@ class DiaryDetailController extends CommonController {
       this.VIEW.generateLoading($(this.MODEL.DIARY_DETAIL_AREA_SELECTOR),'日記削除中',  `日記を削除中`);
     }
     
-    this.CONTROLLER.uploadImage();
-    
     const encryptTitle = Crypto.encrypt(
       _diary['title'],
       this.MODEL.CRYPTO_HASH
@@ -446,12 +444,9 @@ class DiaryDetailController extends CommonController {
         id: _diary['id'],
         title: encryptTitle,
         content: encryptContent,
-        // title: _diary['title'],
-        // content: _diary['content'],
         registerDate: _diary['registerDate'],
         updateDate: (new Date()).getString(),
         imageName: encryptImage
-        // imageName: imageName
       },
       success: (_data) => {
         Log.logClassKey(this.NAME, 'ajax saveDiary', 'success');
