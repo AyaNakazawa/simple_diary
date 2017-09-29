@@ -663,6 +663,7 @@ class DiaryDetailController extends CommonController {
     );
     
     this.MODEL.UPLOAD_READER[this.MODEL.IMAGE_ID] = reader;
+    this.MODEL.UPLOAD_READER[this.MODEL.IMAGE_ID]['name'] = filename;
     this.MODEL.UPLOAD_FILE[this.MODEL.IMAGE_ID] = formData;
     this.MODEL.IMAGE_ID ++;
   }
