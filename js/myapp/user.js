@@ -31,6 +31,7 @@ class UserModel extends CommonModel {
     this.PASSWORD = null;
     this.HASH = null;
     this.CRYPTO_HASH = null;
+    this.CRYPTO_SALT = 'simplediarysalt';
     
     this.USER_AREA_SELECTOR = '#user-area';
     this.TEMPLATE_LOGINED_SELECTOR = '#logined-template';
@@ -366,6 +367,7 @@ class UserController extends CommonController {
     }
     
     this.MODEL.HASH = SHA256.getHash(this.MODEL.PASSWORD);
+    this.MODEL.CRYPTO_HASH = SHA256.getHash(this.MODEL.PASSWORD + this.MODEL.ID + this.MODEL.CRYPTO_SALT);
     
     this.VIEW.generateLoading(this.MODEL.USER_AREA_SELECTOR, 'ログイン中', `${this.MODEL.ID} でログイン`);
     
@@ -380,7 +382,7 @@ class UserController extends CommonController {
         if (_data.length > 0) {
           this.MODEL.ID = _data;
           this.MODEL.LOGIN = true;
-          PS.CONTROLLER.DIARY.setUser(this.MODEL.ID, this.MODEL.HASH);
+          PS.CONTROLLER.DIARY.setUser(this.MODEL.ID, this.MODEL.HASH, this.MODEL.CRYPTO_HASH);
           this.VIEW.generateUserArea(
             this.MODEL.ALERT_SUCCESS,
             `ユーザー ${this.MODEL.ID} でログインしました。`
@@ -438,7 +440,7 @@ class UserController extends CommonController {
         if (_data.length > 0) {
           this.MODEL.ID = _data;
           this.MODEL.LOGIN = true;
-          PS.CONTROLLER.DIARY.setUser(this.MODEL.ID, this.MODEL.HASH);
+          PS.CONTROLLER.DIARY.setUser(this.MODEL.ID, this.MODEL.HASH, this.MODEL.CRYPTO_HASH);
           this.VIEW.generateUserArea(
             this.MODEL.ALERT_SUCCESS,
             `ユーザー ${this.MODEL.ID} を登録しました。`
