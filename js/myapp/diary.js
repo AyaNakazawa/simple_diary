@@ -418,7 +418,6 @@ class DiaryController extends CommonController {
               
               let imageId = 0;
               let images = [];
-              Log.logObj('decrypt');
               for (const imageData of _data[key]['images'].split(',')) {
                 images[imageId] = Crypto.decrypt(
                   imageData,
