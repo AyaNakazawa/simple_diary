@@ -424,6 +424,19 @@ class DiaryDetailController extends CommonController {
     
     this.CONTROLLER.uploadImage();
     
+    const encryptTitle = Crypto.encrypt(
+      _diary['title'],
+      this.MODEL.CRYPTO_HASH
+    );
+    const encryptContent = Crypto.encrypt(
+      _diary['content'],
+      this.MODEL.CRYPTO_HASH
+    );
+    const encryptImage = Crypto.encrypt(
+      imageName,
+      this.MODEL.CRYPTO_HASH
+    );
+    
     $.ajax({
       url: 'ruby/saveDiary.rb',
       data: {
@@ -431,11 +444,14 @@ class DiaryDetailController extends CommonController {
         userName: _id,
         password: _hash,
         id: _diary['id'],
-        title: _diary['title'],
-        content: _diary['content'],
+        title: encryptTitle,
+        content: encryptContent,
+        // title: _diary['title'],
+        // content: _diary['content'],
         registerDate: _diary['registerDate'],
         updateDate: (new Date()).getString(),
-        imageName: imageName
+        imageName: encryptImage
+        // imageName: imageName
       },
       success: (_data) => {
         Log.logClassKey(this.NAME, 'ajax saveDiary', 'success');
