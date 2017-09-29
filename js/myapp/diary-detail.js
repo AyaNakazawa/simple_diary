@@ -312,7 +312,7 @@ class DiaryDetailController extends CommonController {
     _diary = null,
     _cryptoHash = null,
     _idHash = null,
-    _images = null
+    _images = []
   ) {
     this.MODEL.ID = _id;
     this.MODEL.HASH = _hash;
