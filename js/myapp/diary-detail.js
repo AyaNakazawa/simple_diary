@@ -589,6 +589,14 @@ class DiaryDetailController extends CommonController {
     $(`${this.MODEL.DIARY_DETAIL_UPLOAD_SELECTOR}`).click();
   }
   
+  encryptImage() {
+    Log.logClass(
+      'Diary Detail',
+      'Upload image'
+    );
+    
+  }
+  
   choosedFile() {
     Log.logClassKey(
       'Diary Detail Controller',
