@@ -30,6 +30,7 @@ class UserModel extends CommonModel {
     this.ID = null;
     this.PASSWORD = null;
     this.HASH = null;
+    this.ID_HASH = null;
     this.CRYPTO_HASH = null;
     this.CRYPTO_SALT = 'simplediarysalt';
     
@@ -366,6 +367,7 @@ class UserController extends CommonController {
       return;
     }
     
+    this.MODEL.ID_HASH = SHA256.getHash(this.MODEL.ID);
     this.MODEL.HASH = SHA256.getHash(this.MODEL.PASSWORD);
     this.MODEL.CRYPTO_HASH = SHA256.getHash(this.MODEL.PASSWORD + this.MODEL.ID + this.MODEL.CRYPTO_SALT);
     
@@ -374,15 +376,15 @@ class UserController extends CommonController {
     $.ajax({
       url: 'ruby/loginUser.rb',
       data: {
-        id: this.MODEL.ID,
+        id: this.MODEL.ID_HASH,
         password: this.MODEL.HASH
       },
       success: (_data) => {
         Log.logClassKey(this.NAME, 'ajax loginUser', 'success');
         if (_data.length > 0) {
-          this.MODEL.ID = _data;
+          this.MODEL.ID_HASH = _data;
           this.MODEL.LOGIN = true;
-          PS.CONTROLLER.DIARY.setUser(this.MODEL.ID, this.MODEL.HASH, this.MODEL.CRYPTO_HASH);
+          PS.CONTROLLER.DIARY.setUser(this.MODEL.ID_HASH, this.MODEL.HASH, this.MODEL.CRYPTO_HASH);
           this.VIEW.generateUserArea(
             this.MODEL.ALERT_SUCCESS,
             `ユーザー ${this.MODEL.ID} でログインしました。`
@@ -425,6 +427,7 @@ class UserController extends CommonController {
       return;
     }
     
+    this.MODEL.ID_HASH = SHA256.getHash(this.MODEL.ID);
     this.MODEL.HASH = SHA256.getHash(this.MODEL.PASSWORD);
     
     this.VIEW.generateLoading($(this.MODEL.USER_AREA_SELECTOR),'登録中',  `${this.MODEL.ID} でユーザー登録`);
@@ -432,15 +435,15 @@ class UserController extends CommonController {
     $.ajax({
       url: 'ruby/signupUser.rb',
       data: {
-        id: this.MODEL.ID,
+        id: this.MODEL.ID_HASH,
         password: this.MODEL.HASH
       },
       success: (_data) => {
         Log.logClassKey(this.NAME, 'ajax signupUser', 'success');
         if (_data.length > 0) {
-          this.MODEL.ID = _data;
+          this.MODEL.ID_HASH = _data;
           this.MODEL.LOGIN = true;
-          PS.CONTROLLER.DIARY.setUser(this.MODEL.ID, this.MODEL.HASH, this.MODEL.CRYPTO_HASH);
+          PS.CONTROLLER.DIARY.setUser(this.MODEL.ID_HASH, this.MODEL.HASH, this.MODEL.CRYPTO_HASH);
           this.VIEW.generateUserArea(
             this.MODEL.ALERT_SUCCESS,
             `ユーザー ${this.MODEL.ID} を登録しました。`
@@ -479,6 +482,7 @@ class UserController extends CommonController {
     const oldPasswordHash = SHA256.getHash(oldPassword);
     const newPasswordHash = SHA256.getHash(newPassword);
     
+    this.MODEL.ID_HASH = SHA256.getHash(this.MODEL.ID);
     this.MODEL.HASH = newPasswordHash;
     
     this.VIEW.generateLoading($(this.MODEL.USER_AREA_SELECTOR),'更新中',  `ユーザー ${this.MODEL.ID} のパスワードを更新中`);
@@ -486,7 +490,7 @@ class UserController extends CommonController {
     $.ajax({
       url: 'ruby/changePassword.rb',
       data: {
-        name: this.MODEL.ID,
+        name: this.MODEL.ID_HASH,
         oldPassword: oldPasswordHash,
         newPassword: newPasswordHash
       },
