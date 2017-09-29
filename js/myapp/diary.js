@@ -368,10 +368,12 @@ class DiaryController extends CommonController {
   
   setUser(
     _id = this.MODEL.ID,
-    _hash = this.MODEL.HASH
+    _hash = this.MODEL.HASH,
+    _cryptoHash = this.MODEL.HASH
   ) {
     this.MODEL.ID = _id;
     this.MODEL.HASH = _hash;
+    this.MODEL.CRYPTO_HASH = _cryptoHash;
     
     this.downloadDiary();
   }
