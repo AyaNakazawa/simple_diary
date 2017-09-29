@@ -31,6 +31,7 @@ class DiaryModel extends CommonModel {
     
     this.ID = null;
     this.HASH = null;
+    this.CRYPTO_HASH = null;
     this.DOWNLOAD = null;
     this.DIARYS = null;
     
