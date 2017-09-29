@@ -321,11 +321,7 @@
         <div class="content-input input-group">
           <span class="input-group-btn">
             <button type="button" class="btn btn-default detail-image-preview" id="preview-image-<%- imageId %>">
-              <% if (type == 'reader') { %>
-                <img src="<%- imageURL %>">
-              <% } else { %>
-                <img src="image/<%- imageName %>">
-              <% } %>
+              <img src="<%- image %>">
             </button>
           </span>
           <input type="text" class="form-control upload-file-name" value="<%- imageName %>" placeholder="アップロードする画像を選択してください" readonly>
