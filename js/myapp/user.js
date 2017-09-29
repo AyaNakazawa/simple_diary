@@ -30,6 +30,7 @@ class UserModel extends CommonModel {
     this.ID = null;
     this.PASSWORD = null;
     this.HASH = null;
+    this.CRYPTO_HASH = null;
     
     this.USER_AREA_SELECTOR = '#user-area';
     this.TEMPLATE_LOGINED_SELECTOR = '#logined-template';
@@ -261,7 +262,9 @@ class UserController extends CommonController {
     return false;
   }
   
-  checkIdValidate(_id = null) {
+  checkIdValidate(
+    _id = null
+  ) {
     if (_id == null) {
       return false;
     }
@@ -303,7 +306,9 @@ class UserController extends CommonController {
     return true;
   }
   
-  checkPasswordValidate(_password = null) {
+  checkPasswordValidate(
+    _password = null
+  ) {
     if (_password == null) {
       return false;
     }
