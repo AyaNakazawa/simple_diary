@@ -39,6 +39,7 @@ class DiaryDetailModel extends CommonModel {
     
     this.ID = null;
     this.HASH = null;
+    this.CRYPTO_HASH = null;
     this.DIARY = null;
     this.IMAGE = [];
     this.UPLOAD_FILE = [];
@@ -309,10 +310,12 @@ class DiaryDetailController extends CommonController {
   openDiary(
     _id = null,
     _hash = null,
-    _diary = null
+    _diary = null,
+    _cryptoHash = null
   ) {
     this.MODEL.ID = _id;
     this.MODEL.HASH = _hash;
+    this.MODEL.CRYPTO_HASH = _cryptoHash;
     this.MODEL.DIARY = _diary;
     this.MODEL.IMAGE = [];
     if (_diary != null) {
