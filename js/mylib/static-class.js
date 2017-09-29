@@ -311,3 +311,6 @@ class Validate {
     return false;
   }
 }
+
+class Crypto {
+}
