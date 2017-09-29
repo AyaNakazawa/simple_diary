@@ -595,6 +595,25 @@ class DiaryDetailController extends CommonController {
       'Upload image'
     );
     
+    let imageData = '';
+    for (const file of this.MODEL.UPLOAD_READER) {
+      if (file != null) {
+        const encryptImageName = Crypto.decrypt(
+          file['name'],
+          this.MODEL.CRYPTO_HASH
+        );
+        const encryptImage = Crypto.decrypt(
+          file.result,
+          this.MODEL.CRYPTO_HASH
+        );
+        
+        imageData += ',' + encryptImageName + ':';
+        imageData += encryptImage;
+      }
+    }
+    
+    imageData = imageData.substr(1);
+    return imageData;
   }
   
   choosedFile() {
