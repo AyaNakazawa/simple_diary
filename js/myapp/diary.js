@@ -399,7 +399,23 @@ class DiaryController extends CommonController {
         success: (_data) => {
           Log.logClassKey(this.NAME, 'ajax getDiary', 'success');
           this.MODEL.DOWNLOAD = true;
+          
           if (Object.keys(_data).length > 0) {
+            for (const key of Object.keys(_data)) {
+              _data[key]['title'] = Crypto.decrypt(
+                _data[key]['title'],
+                this.MODEL.CRYPTO_HASH
+              );
+              _data[key]['content'] = Crypto.decrypt(
+                _data[key]['content'],
+                this.MODEL.CRYPTO_HASH
+              );
+              _data[key]['imageName'] = Crypto.decrypt(
+                _data[key]['imageName'],
+                this.MODEL.CRYPTO_HASH
+              );
+            }
+            
             this.MODEL.DIARYS = _data;
             if (this.MODEL.INITIALIZE) {
               this.VIEW.generateDiaryArea(this.MODEL.ALERT_SUCCESS, `日記データを取得しました。`);
@@ -433,7 +449,8 @@ class DiaryController extends CommonController {
     PS.CONTROLLER.DIARY_DETAIL.openDiary(
       this.MODEL.ID,
       this.MODEL.HASH,
-      null
+      null,
+      this.MODEL.CRYPTO_HASH
     );
     PS.CONTROLLER.SCROLL.DIARY_DETAIL.VIEW.scroll();
     this.VIEW.setDetailView(this.MODEL.SELECT, false, this.MODEL.ACTIVE, this.MODEL.VIEW_SPEED_MS);
@@ -447,7 +464,8 @@ class DiaryController extends CommonController {
     PS.CONTROLLER.DIARY_DETAIL.openDiary(
       this.MODEL.ID,
       this.MODEL.HASH,
-      this.MODEL.DIARYS[_id]
+      this.MODEL.DIARYS[_id],
+      this.MODEL.CRYPTO_HASH
     );
     PS.CONTROLLER.SCROLL.DIARY_DETAIL.VIEW.scroll();
     this.VIEW.setDetailView(_id, false, this.MODEL.ACTIVE, this.MODEL.VIEW_SPEED_MS);
