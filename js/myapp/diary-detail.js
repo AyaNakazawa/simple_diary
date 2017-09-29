@@ -403,17 +403,6 @@ class DiaryDetailController extends CommonController {
     _type = null
   ) {
     
-    let imageName = '';
-    for (const fileText of $(this.MODEL.DIARY_DETAIL_FILE_NAME_SELECTOR)) {
-      imageName += ',' + fileText.value;
-    }
-    imageName = imageName.substr(1);
-    Log.logObj(imageName);
-    
-    if (!this.checkValidate(_diary)) {
-      return;
-    }
-    
     if (_type == this.MODEL.TYPE_ADD) {
       this.VIEW.generateLoading($(this.MODEL.DIARY_DETAIL_AREA_SELECTOR),'日記追加中',  `日記を追加中`);
     } else if (_type == this.MODEL.TYPE_UPDATE) {
@@ -421,6 +410,8 @@ class DiaryDetailController extends CommonController {
     } else if (_type == this.MODEL.TYPE_DELETE) {
       this.VIEW.generateLoading($(this.MODEL.DIARY_DETAIL_AREA_SELECTOR),'日記削除中',  `日記を削除中`);
     }
+    
+    const encryptImageData = this.CONTROLLER.encryptImage();
     
     const encryptTitle = Crypto.encrypt(
       _diary['title'],
@@ -446,7 +437,7 @@ class DiaryDetailController extends CommonController {
         content: encryptContent,
         registerDate: _diary['registerDate'],
         updateDate: (new Date()).getString(),
-        imageName: encryptImage
+        imageName: encryptImageData
       },
       success: (_data) => {
         Log.logClassKey(this.NAME, 'ajax saveDiary', 'success');
