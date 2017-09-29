@@ -365,14 +365,20 @@ class DiaryController extends CommonController {
     this.EVENT.setOnEvent();
   }
   
-  setUser(_id = this.MODEL.ID, _hash = this.MODEL.HASH) {
+  setUser(
+    _id = this.MODEL.ID,
+    _hash = this.MODEL.HASH
+  ) {
     this.MODEL.ID = _id;
     this.MODEL.HASH = _hash;
     
     this.downloadDiary();
   }
   
-  downloadDiary(_id = this.MODEL.ID, _hash = this.MODEL.HASH) {
+  downloadDiary(
+    _id = this.MODEL.ID,
+    _hash = this.MODEL.HASH
+  ) {
     this.MODEL.DOWNLOAD = false;
     
     this.clearSearchString();
@@ -430,7 +436,9 @@ class DiaryController extends CommonController {
     this.VIEW.setDetailView(this.MODEL.SELECT, false, this.MODEL.ACTIVE, this.MODEL.VIEW_SPEED_MS);
   }
   
-  editDiary(_id = null) {
+  editDiary(
+    _id = null
+  ) {
     Log.logClassKey(`${this.NAME}:${_id}`, 'Click', 'Edit');
     PS.CONTROLLER.SWITCH.DIARY_DETAIL.VIEW.setView(false);
     PS.CONTROLLER.DIARY_DETAIL.openDiary(
@@ -442,7 +450,9 @@ class DiaryController extends CommonController {
     this.VIEW.setDetailView(_id, false, this.MODEL.ACTIVE, this.MODEL.VIEW_SPEED_MS);
   }
   
-  deleteDiary(_id = null) {
+  deleteDiary(
+    _id = null
+  ) {
     Log.logClassKey(`${this.NAME}:${_id}`, 'Click', 'Delete');
     PS.CONTROLLER.DIARY_DETAIL.deleteDiary(
       this.MODEL.ID,
@@ -452,7 +462,9 @@ class DiaryController extends CommonController {
     this.VIEW.setDetailView(_id, false, this.MODEL.ACTIVE, this.MODEL.VIEW_SPEED_MS);
   }
   
-  closeDiary(_id = null) {
+  closeDiary(
+    _id = null
+  ) {
     Log.logClassKey(`${this.NAME}:${_id}`, 'Click', 'Close');
     this.VIEW.setDetailView(_id, false, this.MODEL.ACTIVE, this.MODEL.VIEW_SPEED_MS);
   }
