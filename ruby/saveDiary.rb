@@ -17,7 +17,7 @@ if _type == 'delete' then
   _id = objCgi['id'].strip
   query = "DELETE FROM Diary WHERE id = #{_id};"
   db.execute(query)
-  puts 'delete'
+  print 'delete'
   exit
   
 else
@@ -29,7 +29,7 @@ else
   _content = objCgi['content'].strip
   _registerDate = objCgi['registerDate'].strip
   _updateDate = objCgi['updateDate'].strip
-  _imageName = objCgi['imageName'].strip
+  _images = objCgi['images'].strip
 end
 
 result = ''
@@ -41,9 +41,9 @@ userId = db.execute(query)
 if userId.length > 0 then
   
   if _type == 'update' then
-    query = "UPDATE Diary SET title = '#{_title}', content = '#{_content}', updateDate = '#{_updateDate}', imageName = '#{_imageName}' WHERE id = #{_id};"
+    query = "UPDATE Diary SET title = '#{_title}', content = '#{_content}', updateDate = '#{_updateDate}', images = '#{_images}' WHERE id = #{_id};"
   elsif _type == 'add' then
-    query = "INSERT INTO Diary( title, content, registerDate, updateDate, userId, imageName) VALUES( '#{_title}', '#{_content}', '#{_registerDate}', '#{_updateDate}', #{userId[0][0]}, '#{_imageName}');"
+    query = "INSERT INTO Diary( title, content, registerDate, updateDate, userId, images) VALUES( '#{_title}', '#{_content}', '#{_registerDate}', '#{_updateDate}', #{userId[0][0]}, '#{_images}');"
   end
   
   db.execute(query)
@@ -52,4 +52,4 @@ if userId.length > 0 then
   
 end
 
-puts result
+print result

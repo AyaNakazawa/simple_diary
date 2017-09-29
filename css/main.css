@@ -280,13 +280,16 @@ body:before {
 
 #diary-detail-area .detail-upload {
   display: none; }
-#diary-detail-area button.detail-image-preview {
-  padding: 2px; }
-  #diary-detail-area button.detail-image-preview img {
+#diary-detail-area .detail-image-preview {
+  display: inline-block; }
+  #diary-detail-area .detail-image-preview img {
     margin: 0;
     padding: 0;
-    height: 28px;
-    width: auto; }
+    height: 120px;
+    width: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer; }
 #diary-detail-area #detail-content {
   width: 100%; }
 

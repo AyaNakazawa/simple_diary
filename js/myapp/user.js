@@ -384,7 +384,7 @@ class UserController extends CommonController {
         if (_data.length > 0) {
           this.MODEL.ID_HASH = _data;
           this.MODEL.LOGIN = true;
-          PS.CONTROLLER.DIARY.setUser(this.MODEL.ID_HASH, this.MODEL.HASH, this.MODEL.CRYPTO_HASH);
+          PS.CONTROLLER.DIARY.setUser(this.MODEL.ID, this.MODEL.HASH, this.MODEL.CRYPTO_HASH, this.MODEL.ID_HASH);
           this.VIEW.generateUserArea(
             this.MODEL.ALERT_SUCCESS,
             `ユーザー ${this.MODEL.ID} でログインしました。`
@@ -443,7 +443,7 @@ class UserController extends CommonController {
         if (_data.length > 0) {
           this.MODEL.ID_HASH = _data;
           this.MODEL.LOGIN = true;
-          PS.CONTROLLER.DIARY.setUser(this.MODEL.ID_HASH, this.MODEL.HASH, this.MODEL.CRYPTO_HASH);
+          PS.CONTROLLER.DIARY.setUser(this.MODEL.ID, this.MODEL.HASH, this.MODEL.CRYPTO_HASH, this.MODEL.ID_HASH);
           this.VIEW.generateUserArea(
             this.MODEL.ALERT_SUCCESS,
             `ユーザー ${this.MODEL.ID} を登録しました。`

@@ -40,10 +40,9 @@ class DiaryDetailModel extends CommonModel {
     this.ID = null;
     this.HASH = null;
     this.CRYPTO_HASH = null;
+    this.ID_HASH = null;
     this.DIARY = null;
-    this.IMAGE = [];
-    this.UPLOAD_FILE = [];
-    this.UPLOAD_READER = [];
+    this.IMAGES = [];
     this.ADD_FLAG = true;
     
     this.IMAGE_ID = 0;
@@ -127,13 +126,13 @@ class DiaryDetailView extends CommonView {
     ));
     
     // 画像単体
-    for (const imageName of this.MODEL.IMAGE) {
-      if (imageName.length > 0) {
+    for (const image of this.MODEL.IMAGES) {
+      if (image != null) {
         $(this.MODEL.DIARY_DETAIL_IMAGE_SPAN_SELECTOR).append(this.getTemplate(
           this.MODEL.TEMPLATE_DIARY_DETAIL_IMAGE_SELECTOR,
           {
             type: this.MODEL.SRC_TYPE_UPLOAD,
-            imageName: imageName,
+            imageData: image,
             imageId: this.MODEL.IMAGE_ID
           }
         ));
@@ -162,7 +161,7 @@ class DiaryDetailView extends CommonView {
     let diary = {
       title: $('#detail-title').val(),
       content: $('#detail-content').val(),
-      imageName: $('#detail-image .upload-file-name').val(),
+      image: this.MODEL.IMAGES,
       registerDate: (new Date()).getString(),
       updateDate: (new Date()).getString()
     }
@@ -311,16 +310,16 @@ class DiaryDetailController extends CommonController {
     _id = null,
     _hash = null,
     _diary = null,
-    _cryptoHash = null
+    _cryptoHash = null,
+    _idHash = null,
+    _images = null
   ) {
     this.MODEL.ID = _id;
     this.MODEL.HASH = _hash;
     this.MODEL.CRYPTO_HASH = _cryptoHash;
+    this.MODEL.ID_HASH = _idHash;
     this.MODEL.DIARY = _diary;
-    this.MODEL.IMAGE = [];
-    if (_diary != null) {
-      this.MODEL.IMAGE = _diary['imageName'].split(',');
-    }
+    this.MODEL.IMAGES = _images;
     
     this.MODEL.IMAGE_ID = 0;
     
@@ -403,6 +402,10 @@ class DiaryDetailController extends CommonController {
     _type = null
   ) {
     
+    if (!this.checkValidate(_diary)) {
+      return;
+    }
+    
     if (_type == this.MODEL.TYPE_ADD) {
       this.VIEW.generateLoading($(this.MODEL.DIARY_DETAIL_AREA_SELECTOR),'日記追加中',  `日記を追加中`);
     } else if (_type == this.MODEL.TYPE_UPDATE) {
@@ -421,23 +424,19 @@ class DiaryDetailController extends CommonController {
       _diary['content'],
       this.MODEL.CRYPTO_HASH
     );
-    const encryptImage = Crypto.encrypt(
-      imageName,
-      this.MODEL.CRYPTO_HASH
-    );
     
     $.ajax({
       url: 'ruby/saveDiary.rb',
       data: {
         type: _type,
-        userName: _id,
-        password: _hash,
+        userName: this.MODEL.ID_HASH,
+        password: this.MODEL.HASH,
         id: _diary['id'],
         title: encryptTitle,
         content: encryptContent,
         registerDate: _diary['registerDate'],
         updateDate: (new Date()).getString(),
-        imageName: encryptImageData
+        images: encryptImageData
       },
       success: (_data) => {
         Log.logClassKey(this.NAME, 'ajax saveDiary', 'success');
@@ -501,18 +500,12 @@ class DiaryDetailController extends CommonController {
     );
     
     const imageId = parseInt(_selector.slice(-1));
-    let imageURL = '';
-    
-    if (this.MODEL.UPLOAD_FILE[imageId - 1] == null) {
-      imageURL = `image/${this.MODEL.IMAGE[imageId]}`;
-    } else {
-      imageURL = this.MODEL.UPLOAD_READER[imageId - 1].result;
-    }
+    const imageData = this.MODEL.IMAGES[imageId];
     
     new ConfirmController({
       CONFIRM_ID: 'image-preview',
       CONFIRM_TITLE: 'プレビュー',
-      IMAGE_URL: imageURL,
+      IMAGE_URL: imageData,
       AUTO_OPEN: true,
       TYPE: ConfirmModel.TYPE_1BUTTON,
       YES: '閉じる'
@@ -533,19 +526,13 @@ class DiaryDetailController extends CommonController {
     );
     
     const imageId = parseInt(_selector.slice(-1));
-    let imageURL = '';
-    
-    if (this.MODEL.UPLOAD_FILE[imageId - 1] == null) {
-      imageURL = `image/${this.MODEL.IMAGE[imageId]}`;
-    } else {
-      imageURL = this.MODEL.UPLOAD_READER[imageId - 1].result;
-    }
+    const imageData = this.MODEL.IMAGES[imageId];
     
     new ConfirmController({
       CONFIRM_ID: 'image-delete',
       CONFIRM_TITLE: '画像の削除',
       CONFIRM_MESSAGE: 'この画像を削除しますか？',
-      IMAGE_URL: imageURL,
+      IMAGE_URL: imageData,
       AUTO_OPEN: true,
       TYPE: ConfirmModel.TYPE_2BUTTON,
       FUNCTION_YES: () => {
@@ -568,6 +555,7 @@ class DiaryDetailController extends CommonController {
     );
     
     this.VIEW.removeHTML(`#detail-image-${_imageId}`);
+    this.MODEL.IMAGES[_imageId] = null;
   }
   
   openChooseFile() {
@@ -587,19 +575,14 @@ class DiaryDetailController extends CommonController {
     );
     
     let imageData = '';
-    for (const file of this.MODEL.UPLOAD_READER) {
-      if (file != null) {
-        const encryptImageName = Crypto.decrypt(
-          file['name'],
-          this.MODEL.CRYPTO_HASH
-        );
-        const encryptImage = Crypto.decrypt(
-          file.result,
+    for (const image of this.MODEL.IMAGES) {
+      if (image != null) {
+        const encryptImage = Crypto.encrypt(
+          image,
           this.MODEL.CRYPTO_HASH
         );
         
-        imageData += ',' + encryptImageName + ':';
-        imageData += encryptImage;
+        imageData += ',' + encryptImage;
       }
     }
     
@@ -638,24 +621,14 @@ class DiaryDetailController extends CommonController {
         this.MODEL.TEMPLATE_DIARY_DETAIL_IMAGE_SELECTOR,
         {
           type: this.MODEL.SRC_TYPE_READER,
-          imageURL: reader.result,
-          imageName: filename,
+          imageData: reader.result,
           imageId: this.MODEL.IMAGE_ID
         }
       ));
+      this.MODEL.IMAGES[this.MODEL.IMAGE_ID] = reader.result;
+      this.MODEL.IMAGE_ID ++;
     }
     
     reader.readAsDataURL(fileData);
-    
-    let formData = new FormData();
-    formData.append(
-      'file',
-      fileData
-    );
-    
-    this.MODEL.UPLOAD_READER[this.MODEL.IMAGE_ID] = reader;
-    this.MODEL.UPLOAD_READER[this.MODEL.IMAGE_ID]['name'] = filename;
-    this.MODEL.UPLOAD_FILE[this.MODEL.IMAGE_ID] = formData;
-    this.MODEL.IMAGE_ID ++;
   }
 }

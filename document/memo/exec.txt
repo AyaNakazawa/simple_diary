@@ -39,3 +39,5 @@
     Remove test data
   db
     Remove test data
+  css
+    Remove debug

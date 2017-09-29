@@ -67,14 +67,17 @@
     display: none;
   }
   
-  button.detail-image-preview {
-    padding: 2px;
+  .detail-image-preview {
+    display: inline-block;
     
     img {
       margin: 0;
       padding: 0;
-      height: 28px;
+      height: 120px;
       width: auto;
+      border: $border-size $border-style $border-color;
+      border-radius: $border-radius-size;
+      cursor: pointer;
     }
   }
   

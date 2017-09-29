@@ -32,6 +32,7 @@ class DiaryModel extends CommonModel {
     this.ID = null;
     this.HASH = null;
     this.CRYPTO_HASH = null;
+    this.ID_HASH = null;
     this.DOWNLOAD = null;
     this.DIARYS = null;
     
@@ -83,6 +84,7 @@ class DiaryView extends CommonView {
         }
       ));
       
+      // let _id = 0;
       $.each(this.MODEL.DIARYS, (_id, _val) => {
         this.MODEL.DIARYS[_id][this.MODEL.ACTIVE] = false;
         
@@ -115,13 +117,14 @@ class DiaryView extends CommonView {
         this.EVENT.setEditClick(_id);
         this.EVENT.setDeleteClick(_id);
         this.EVENT.setCloseClick(_id);
-        if (_val['imageName'] != null) {
+        if (_val['images'] != null) {
           let imageId = 0;
-          for (const imageName of _val['imageName'].split(',')) {
-            this.EVENT.setImageClick(_id, imageId, imageName);
+          for (const imageData of _val['images']) {
+            this.EVENT.setImageClick(_id, imageId, imageData);
             imageId ++;
           }
         }
+        _id ++;
       });
       PS.CONTROLLER.SCROLL.DIARY.VIEW.scroll();
       
@@ -337,11 +340,11 @@ class DiaryEvent extends CommonEvent {
     }
   }
   
-  setImageClick(_id = null, _imageId = null, _imageName = null) {
-    if (_id != null || _imageId != null || _imageName != null) {
+  setImageClick(_id = null, _imageId = null, _imageData) {
+    if (_id != null || _imageId != null) {
       $(`.diary-image-${_id}-${_imageId}`).click(
         () => {
-          this.CONTROLLER.openImagePreview(_imageName);
+          this.CONTROLLER.openImagePreview(_imageData);
         }
       );
     }
@@ -369,30 +372,32 @@ class DiaryController extends CommonController {
   setUser(
     _id = this.MODEL.ID,
     _hash = this.MODEL.HASH,
-    _cryptoHash = this.MODEL.CRYPTO_HASH
+    _cryptoHash = this.MODEL.CRYPTO_HASH,
+    _idHash = this.MODEL.ID_HASH
   ) {
     this.MODEL.ID = _id;
     this.MODEL.HASH = _hash;
     this.MODEL.CRYPTO_HASH = _cryptoHash;
+    this.MODEL.ID_HASH = _idHash;
     
     this.downloadDiary();
   }
   
   downloadDiary(
-    _id = this.MODEL.ID,
+    _idHash = this.MODEL.ID_HASH,
     _hash = this.MODEL.HASH
   ) {
     this.MODEL.DOWNLOAD = false;
     
     this.clearSearchString();
     
-    this.VIEW.generateLoading(this.MODEL.DIARY_AREA_SELECTOR, '通信中', `ユーザーID ${_id} の日記データを取得中`);
+    this.VIEW.generateLoading(this.MODEL.DIARY_AREA_SELECTOR, '通信中', `ユーザー ${this.MODEL.ID} の日記データを取得中`);
     
-    if (_id != null && _hash != null) {
+    if (_idHash != null && _hash != null) {
       $.ajax({
         url: 'ruby/getDiary.rb',
         data: {
-          id: _id,
+          id: _idHash,
           password: _hash
         },
         dataType: 'json',
@@ -410,10 +415,18 @@ class DiaryController extends CommonController {
                 _data[key]['content'],
                 this.MODEL.CRYPTO_HASH
               );
-              _data[key]['imageName'] = Crypto.decrypt(
-                _data[key]['imageName'],
-                this.MODEL.CRYPTO_HASH
-              );
+              
+              let imageId = 0;
+              let images = [];
+              Log.logObj('decrypt');
+              for (const imageData of _data[key]['images'].split(',')) {
+                images[imageId] = Crypto.decrypt(
+                  imageData,
+                  this.MODEL.CRYPTO_HASH
+                );
+                imageId ++;
+              }
+              _data[key]['images'] = images;
             }
             
             this.MODEL.DIARYS = _data;
@@ -450,7 +463,9 @@ class DiaryController extends CommonController {
       this.MODEL.ID,
       this.MODEL.HASH,
       null,
-      this.MODEL.CRYPTO_HASH
+      this.MODEL.CRYPTO_HASH,
+      this.MODEL.ID_HASH,
+      []
     );
     PS.CONTROLLER.SCROLL.DIARY_DETAIL.VIEW.scroll();
     this.VIEW.setDetailView(this.MODEL.SELECT, false, this.MODEL.ACTIVE, this.MODEL.VIEW_SPEED_MS);
@@ -465,7 +480,9 @@ class DiaryController extends CommonController {
       this.MODEL.ID,
       this.MODEL.HASH,
       this.MODEL.DIARYS[_id],
-      this.MODEL.CRYPTO_HASH
+      this.MODEL.CRYPTO_HASH,
+      this.MODEL.ID_HASH,
+      this.MODEL.DIARYS[_id]['images']
     );
     PS.CONTROLLER.SCROLL.DIARY_DETAIL.VIEW.scroll();
     this.VIEW.setDetailView(_id, false, this.MODEL.ACTIVE, this.MODEL.VIEW_SPEED_MS);
@@ -500,9 +517,9 @@ class DiaryController extends CommonController {
   }
   
   openImagePreview(
-    _imageName = null
+    imageData = null
   ) {
-    if (_imageName == null) {
+    if (imageData == null) {
       Log.logCaution('openImagePreview', 'set image name of first argument');
       return;
     }
@@ -515,7 +532,7 @@ class DiaryController extends CommonController {
     new ConfirmController({
       CONFIRM_ID: 'image-preview',
       CONFIRM_TITLE: 'プレビュー',
-      IMAGE_URL: `image/${_imageName}`,
+      IMAGE_URL: imageData,
       AUTO_OPEN: true,
       TYPE: ConfirmModel.TYPE_1BUTTON,
       YES: '閉じる'

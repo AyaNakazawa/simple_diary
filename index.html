@@ -246,12 +246,12 @@
     <!-- diary-hover -->
     <script type="text/template" id="diary-hover-template">
       <div class="diary-<%- id %> diary-hover" id="diary-<%- id %>-detail" style="display:none;">
-        <% if (diary['imageName'] != null) { %>
+        <% if (diary['images'] != null) { %>
           <% let imageId = 0; %>
-          <% for (const imageName of diary['imageName'].split(',')) { %>
-            <% if (imageName.length > 0) { %>
+          <% for (const image of diary['images']) { %>
+            <% if (image.length > 0) { %>
               <div class="diary-image-area">
-                <img class="diary-image diary-image-<%- id %>-<%- imageId %>" src="image/<%- imageName %>">
+                <img class="diary-image diary-image-<%- id %>-<%- imageId %>" src="<%- image %>">
               </div>
               <% imageId ++; %>
             <% } %>
@@ -307,6 +307,7 @@
         <div class="content-input">
           <button type="button" class="btn btn-default" id="detail-choose-file"><span class="fa fa-file"></span> 画像を選択</button>
           <input type="file" class="display-none" id="detail-upload">
+          <canvas class="display-none" id="detail-image-canvas"></canvas>
         </div>
       </div>
     </script>
@@ -318,16 +319,11 @@
     <!-- diary-detail-image -->
     <script type="text/template" id="diary-detail-image-template">
       <div class="content-item form-inline" id="detail-image-<%- imageId %>">
-        <div class="content-input input-group">
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default detail-image-preview" id="preview-image-<%- imageId %>">
-              <img src="<%- image %>">
-            </button>
-          </span>
-          <input type="text" class="form-control upload-file-name" value="<%- imageName %>" placeholder="アップロードする画像を選択してください" readonly>
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default detail-image-delete" id="delete-image-<%- imageId %>"><i class="fa fa-trash" aria-hidden="true"></i> 削除</button>
-          </span>
+        <div class="content-input">
+          <div class="detail-image-preview form-inline" id="preview-image-<%- imageId %>">
+            <img src="<%- imageData %>">
+          </div>
+          <button type="button" class="btn btn-default detail-image-delete" id="delete-image-<%- imageId %>"><i class="fa fa-trash" aria-hidden="true"></i></button>
         </div>
       </div>
     </script>
