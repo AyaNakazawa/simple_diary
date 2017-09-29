@@ -454,6 +454,7 @@ class DiaryDetailController extends CommonController {
           PS.CONTROLLER.SWITCH.DIARY.VIEW.setView(true);
           PS.CONTROLLER.SWITCH.DIARY_DETAIL.VIEW.setView(false);
         } else {
+          this.MODEL.IMAGE_ID = 0;
           this.VIEW.generateDiaryDetailArea(
             this.MODEL.ALERT_WARNING,
             `日記の登録に失敗しました。`
@@ -462,6 +463,7 @@ class DiaryDetailController extends CommonController {
       },
       error: () => {
         Log.logClassKey(this.NAME, 'ajax saveDiary', 'failed');
+        this.MODEL.IMAGE_ID = 0;
         this.VIEW.generateDiaryDetailArea(
           this.MODEL.ALERT_DANGER,
           'ajax通信に失敗しました。',
