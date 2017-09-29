@@ -127,7 +127,7 @@ class DiaryDetailView extends CommonView {
     
     // 画像単体
     for (const image of this.MODEL.IMAGES) {
-      if (image != null) {
+      if (image.length > 0) {
         $(this.MODEL.DIARY_DETAIL_IMAGE_SPAN_SELECTOR).append(this.getTemplate(
           this.MODEL.TEMPLATE_DIARY_DETAIL_IMAGE_SELECTOR,
           {
