@@ -1,4 +1,4 @@
-#!ruby
+#!/usr/local/share/rbenv/shims/ruby
 print "Content-type: text/html\n\n";
 
 require 'cgi'
@@ -19,13 +19,13 @@ query = "SELECT id FROM User WHERE name = '#{_name}' AND password = '#{_oldPassw
 userId = db.execute(query)
 
 if userId.length > 0 then
-  
+
   query = "UPDATE User SET password = '#{_newPassword}' WHERE name = '#{_name}';"
-  
+
   db.execute(query)
-  
+
   result = 'true'
-  
+
 end
 
 print result

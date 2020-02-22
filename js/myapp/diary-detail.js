@@ -164,7 +164,7 @@ class DiaryDetailView extends CommonView {
       image: this.MODEL.IMAGES,
       registerDate: (new Date()).getString(),
       updateDate: (new Date()).getString()
-    }
+    };
     if (this.MODEL.DIARY != null) {
       diary['id'] = this.MODEL.DIARY['id'];
     }
@@ -369,7 +369,7 @@ class DiaryDetailController extends CommonController {
   ) {
     this.MODEL.DIARY = _diary;
     
-    this.checkTitleValidate()
+    this.checkTitleValidate();
     if (this.checkContentValidate()) {
       return true;
     }
@@ -447,7 +447,7 @@ class DiaryDetailController extends CommonController {
         images: encryptImageData
       },
       success: (_data) => {
-        Log.logClassKey(this.NAME, 'ajax saveDiary', 'success');
+        super.log('ajax saveDiary', 'success');
         if (_data.length > 0) {
           PS.CONTROLLER.DIARY.setUser();
           PS.CONTROLLER.SCROLL.DIARY.VIEW.scroll();
@@ -462,7 +462,7 @@ class DiaryDetailController extends CommonController {
         }
       },
       error: () => {
-        Log.logClassKey(this.NAME, 'ajax saveDiary', 'failed');
+        super.log('ajax saveDiary', 'failed');
         this.MODEL.IMAGE_ID = 0;
         this.VIEW.generateDiaryDetailArea(
           this.MODEL.ALERT_DANGER,
@@ -637,7 +637,7 @@ class DiaryDetailController extends CommonController {
       ));
       this.MODEL.IMAGES[this.MODEL.IMAGE_ID] = reader.result;
       this.MODEL.IMAGE_ID ++;
-    }
+    };
     
     reader.readAsDataURL(fileData);
   }

@@ -1,4 +1,4 @@
-#!ruby
+#!/usr/local/share/rbenv/shims/ruby
 print "Content-type: text/html\n\n";
 
 require 'cgi'
@@ -19,11 +19,11 @@ if _type == 'delete' then
   db.execute(query)
   print 'delete'
   exit
-  
+
 else
   if _type == 'update' then
     _id = objCgi['id'].strip
-    
+
   end
   _title = objCgi['title'].strip
   _content = objCgi['content'].strip
@@ -39,17 +39,17 @@ query = "SELECT id FROM User WHERE name = '#{_userName}' AND password = '#{_pass
 userId = db.execute(query)
 
 if userId.length > 0 then
-  
+
   if _type == 'update' then
     query = "UPDATE Diary SET title = '#{_title}', content = '#{_content}', updateDate = '#{_updateDate}', images = '#{_images}' WHERE id = #{_id};"
   elsif _type == 'add' then
     query = "INSERT INTO Diary( title, content, registerDate, updateDate, userId, images) VALUES( '#{_title}', '#{_content}', '#{_registerDate}', '#{_updateDate}', #{userId[0][0]}, '#{_images}');"
   end
-  
+
   db.execute(query)
 
   result = 'true'
-  
+
 end
 
 print result

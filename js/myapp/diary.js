@@ -402,7 +402,7 @@ class DiaryController extends CommonController {
         },
         dataType: 'json',
         success: (_data) => {
-          Log.logClassKey(this.NAME, 'ajax getDiary', 'success');
+          super.log('ajax getDiary', 'success');
           this.MODEL.DOWNLOAD = true;
           
           if (Object.keys(_data).length > 0) {
@@ -443,7 +443,7 @@ class DiaryController extends CommonController {
           }
         },
         error: () => {
-          Log.logClassKey(this.NAME, 'ajax getDiary', 'failed');
+          super.log('ajax getDiary', 'failed');
           this.VIEW.generateDiaryArea(this.MODEL.ALERT_DANGER, 'ajax通信に失敗しました。', false);
           this.MODEL.INITIALIZE = true;
         }
@@ -456,7 +456,7 @@ class DiaryController extends CommonController {
   }
   
   addDiary() {
-    Log.logClassKey(this.NAME, 'Click', 'Add');
+    super.log('Click', 'Add');
     PS.CONTROLLER.SWITCH.DIARY_DETAIL.VIEW.setView(false);
     PS.CONTROLLER.DIARY_DETAIL.openDiary(
       this.MODEL.ID,

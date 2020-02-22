@@ -42,11 +42,11 @@ class ProcessStack {
       // カレントの存在確認
       if (this.stack[this.current] != null) {
         // Log.logClass(this.NAME, 'Current is exists');
-        // Log.logClassKey(this.NAME, 'this.repeatMs', this.repeatMs);
+        // super.log('this.repeatMs', this.repeatMs);
         // カレントが存在する
         // カレントの終了確認
         if (this.stack[this.current].COMPLETE) {
-          // Log.logClassKey(this.NAME, this.stack[this.current].NAME, `ID:${this.current} / Check Complete`);
+          // super.log(this.stack[this.current].NAME, `ID:${this.current} / Check Complete`);
           // カレントが終了している
           // 次の処理が登録されているか確認
           if (this.stack[this.current + 1] != null) {
@@ -55,10 +55,10 @@ class ProcessStack {
             // カレントアップ
             this.current ++;
             // 次の処理を実行する
-            // Log.logClassKey(this.NAME, this.stack[this.current].NAME, `ID:${this.current} / Run`);
+            // super.log(this.stack[this.current].NAME, `ID:${this.current} / Run`);
             this.stack[this.current].FUNCTION(() => {
               // 次の処理の第１引数に処理終了のコールバック関数を入れる
-              // Log.logClassKey(this.NAME, this.stack[this.current].NAME, `ID:${this.current} / Complete`);
+              // super.log(this.stack[this.current].NAME, `ID:${this.current} / Complete`);
               this.stack[this.current].COMPLETE = true;
             });
           } else {
@@ -92,7 +92,7 @@ class ProcessStack {
     if (this.count == 0) {
       Log.logClass(this.NAME, 'Initialize');
     } else {
-      Log.logClassKey(this.NAME, this.stack[this.count].NAME, `ID:${this.count} / Set`);
+      super.log(this.stack[this.count].NAME, `ID:${this.count} / Set`);
     }
     
     // カウントアップ

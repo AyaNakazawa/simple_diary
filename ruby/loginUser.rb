@@ -1,4 +1,4 @@
-#!ruby
+#!/usr/local/share/rbenv/shims/ruby
 print "Content-type: text/html\n\n";
 
 require 'cgi'

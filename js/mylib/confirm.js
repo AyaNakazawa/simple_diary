@@ -200,32 +200,32 @@ class ConfirmController extends CommonController {
   }
   
   openConfirm() {
-    Log.logClassKey(this.NAME, this.MODEL.CONFIRM_TITLE, 'Open', Log.ARROW_INPUT);
+    super.log(this.MODEL.CONFIRM_TITLE, 'Open', Log.ARROW_INPUT);
     Log.logClass(this.NAME, this.MODEL.CONFIRM_ID_SELECTOR);
     $(this.MODEL.CONFIRM_ID_SELECTOR).modal();
   }
   
   selectYes() {
-    Log.logClassKey(this.NAME, this.MODEL.CONFIRM_TITLE, 'Yes', Log.ARROW_INPUT);
+    super.log(this.MODEL.CONFIRM_TITLE, 'Yes', Log.ARROW_INPUT);
     this.MODEL.FUNCTION_YES();
     this.destroy();
   }
   
   selectNo() {
-    Log.logClassKey(this.NAME, this.MODEL.CONFIRM_TITLE, 'No', Log.ARROW_INPUT);
+    super.log(this.MODEL.CONFIRM_TITLE, 'No', Log.ARROW_INPUT);
     this.MODEL.FUNCTION_NO();
     this.destroy();
   }
   
   selectClose() {
-    Log.logClassKey(this.NAME, this.MODEL.CONFIRM_TITLE, 'Close', Log.ARROW_INPUT);
+    super.log(this.MODEL.CONFIRM_TITLE, 'Close', Log.ARROW_INPUT);
     this.MODEL.FUNCTION_CLOSE();
     this.destroy();
   }
   
   destroy() {
     if (this.MODEL.DESTROY) {
-      Log.logClassKey(this.NAME, this.MODEL.CONFIRM_TITLE, 'Destroy', Log.ARROW_INPUT);
+      super.log(this.MODEL.CONFIRM_TITLE, 'Destroy', Log.ARROW_INPUT);
       this.EVENT.setEvent(false);
       setTimeout(
         () => {
@@ -237,7 +237,7 @@ class ConfirmController extends CommonController {
   }
   
   remove() {
-    Log.logClassKey(this.NAME, this.MODEL.CONFIRM_TITLE, 'Remove', Log.ARROW_INPUT);
+    super.log(this.MODEL.CONFIRM_TITLE, 'Remove', Log.ARROW_INPUT);
     $(this.MODEL.CONFIRM_ID_SELECTOR).remove();
   }
 }

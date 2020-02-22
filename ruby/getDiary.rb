@@ -1,4 +1,4 @@
-#!ruby
+#!/usr/local/share/rbenv/shims/ruby
 print "Content-type: text/html\n\n";
 
 require 'cgi'
@@ -20,17 +20,17 @@ userId = db.execute(query)
 
 if userId.length > 0 then
   query = "SELECT * FROM Diary WHERE userId = #{userId[0][0]} ORDER BY updateDate desc;"
-  
+
   order = 1
   db.results_as_hash = true
   db.execute(query) do |row|
     result[order] = row
     order += 1
   end
-  
+
   puts result.to_json
-  
+
 else
   puts '{}'
-  
+
 end
